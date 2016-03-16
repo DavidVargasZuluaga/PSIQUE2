@@ -1,0 +1,169 @@
+@charset "utf-8";
+/* SILSPA CSS */
+body{
+	width: 90%;
+	background-color: #238676;
+	margin:auto;
+	font-family: Calibri, "Calibri Light";
+	text-decoration: none;
+}
+/*HEADER !!!*/
+#miga{/*MIGAS DE PAN*/
+	background-color: #FFF;
+	width: 100%;
+	font-style: normal;
+	text-align: center;
+	color: #999;
+	margin-top: 1%;
+	height: 20%;
+	font-weight: bold;
+	text-outline:#238676;
+}
+#miga.a{
+	text-decoration: none;
+	color: 000;
+}
+/*COLOR LINK MIGA*/
+/*#miga.a:link{ 
+	text-decoration:none;
+}*/
+#header{
+	width:100%;
+	height:auto;
+	float:left;
+	background-color: #FFF;
+}
+#ojo{/*CUADRO LOGO SILAM*/
+	width:auto;
+	height: auto;
+	background-color: white;
+	float: left;
+	border: solid white 5px;
+	min-width:50px;
+}
+#letrero{/*CUADRO DE EL LETRERO*/
+	min-width:50px;
+	height: auto;
+	background-color: white;
+	float:left; 
+	border: solid white 5px;
+}
+#ingreso{/*CUADRO DE INGRESO Y REGISTRO*/
+	height: auto;
+	min-width:30%;
+	background-color:#FFF;
+	float: right;
+	margin-right:10px;
+	font-size: 16px;
+	color: #000;
+	padding: 10px;
+	margin-bottom:15px;
+	vertical-align: middle;
+}
+
+.form{/*CAMPOS DE FORMULARIOS*/
+	transition: 0s;
+	border-bottom-color: #066;
+	border-right-width: 0px;
+	border-top-width: 0px;
+	border-left-width: 0px;
+	margin: 1%;
+	max-width:100%;
+	padding: 5px;
+	border-radius: 5px;
+	margin-top: 10px;
+	margin-bottom: 15px;
+	vertical-align: middle;
+  	min-width:90%;
+}
+.form:focus{
+	border-left-width: medium;
+	border-right-width: medium;
+	border-top-width: medium;
+	border-color: #238676;
+	border-bottom-width: medium;
+	outline: 0;
+}
+input:required:valid {
+	border: 1px solid green;
+}
+.boton-form{/*BOTONES DEL FORMULARIO*/
+	padding: 5px;
+	min-width:40%;
+	background-color: #238676;
+	float: left;
+	color: #FFF;
+	margin-left:5px;
+	margin-right:10px;
+	border-radius:5px;
+	transition:1s;
+}
+.boton-form:hover{
+	background-color:#FFF;
+	color:#238676;
+}
+#olvido{/*BOTON DE OLVIDO SU CONTRASEÑA*/
+	padding-left:5px;
+	text-decoration: none;
+}
+
+/*SECCION*/
+#barra-nav{/*BARRA DE NAVEGACION*/
+	float: left;
+	width: 95%;
+	height: auto;
+	background-color: #FFF;
+	margin: 10px;
+}
+#cuerpo{
+	width: 100%;
+	min-height:200px;
+	background-color:#FFF;
+	float:left;
+}
+#ZonaDeTrabajo{/*AQUI VA TODO*/
+	float:left;
+	min-height:300px;
+	width:100%;
+	background-image:url(../img/mAgua.jpg);
+	padding-bottom:15px;
+}
+#mensaje{/*MENSAJE CONTACTENOS*/
+	height:60px;
+}
+#infoNosotros{/*INFORMACION NOSOTROS*/
+	height:auto;
+	min-width:20%;
+	padding:10px;
+	float:left;
+}
+ED
+
+
+/*FOOTER*/
+#footer{
+	float:left;
+	width: 100%;
+	height:auto;
+	background-color: #FFF;
+	text-align:center;
+}
+#redes{/*CUADRO DE LAS REDES SOCIALES*/
+	width: 100%;
+	height:20%;
+	background-color:#fff;
+	float:left;
+	margin-bottom: 10px;
+}
+.icons{/*BOTONES DE LAS REDES SOCIALES*/
+	background-color: #FFF;
+	float:auto;
+	transition:2s;
+	font-size: 25px;
+	color: #238676;
+	padding: 10px;
+}
+.icons:hover{
+	color: #fff;
+	background-color: #238676;
+}
