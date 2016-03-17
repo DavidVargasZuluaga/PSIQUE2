@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+        <link rel="shortcut icon" type="image/x-icon" href="../resources/img/icono.ico"/>
+        
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="estilos.css"/>
+        <h:outputStylesheet library="css" name="font-awesome.css"/>
+        
+        <h:outputScript library="js" name="jquery-1.12.2.min.js" target="head"/>
+        <h:outputScript library="js" name="bootstrap.min.js" target="body"/>
+
+    </h:head>
+
+     <h:body class="marcaguaAd">
+        <header class="">
+            <h:form>
+                <nav class="trans2 navbar-fixed-top">
+                    <div class="container ">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed " data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" >
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar color2"></span>
+                                <span class="icon-bar color2" ></span>
+                                <span class="icon-bar color2"></span>
+                            </button>
+                            <a class="navbar-brand botonesnav" href="#">Administrador</a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a class="botonesnav" outcome="/modAdmon/principalAdmon.xhtml"><i class="fa fa-desktop fa-lg"></i> &nbsp; Principal</a> </li>
+                                <li class="dropdown">
+                                    <a class="botonesnav dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users fa-lg"></i> &nbsp; Usuarios <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a><strong>Listar</strong></a></li>
+                                        <li><a outcome="/modAdmon/crudAprendices.xhtml" ><i class="fa fa-pencil-square-o fa-lg"></i> &nbsp; Aprendices</a></li>
+                                        <li><a outcome="/modAdmon/crudPsicologos.xhtml" ><i class="fa fa-pencil-square-o fa-lg"></i> &nbsp; Psicologos</a></li>
+                                        <li><a outcome="/modAdmon/crudCoordinadores.xhtml" ><i class="fa fa-pencil-square-o fa-lg"></i> &nbsp; Coordinadores</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a><strong>Crear</strong></a></li>
+                                        <li><a outcome="/modAdmon/crearUsuario.xhtml"><i class="fa fa-user-plus fa-lg"></i> &nbsp; Usuario</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a outcome="/modAdmon/crudAdmon.xhtml"><i class="fa fa-user-secret fa-lg"></i> &nbsp; Super Administrador</a></li>
+                                        <li role="separator" class="divider"></li>						
+                                    </ul>
+                                    <li><a outcome="/modAdmon/notifiAdmon.psique" class="botonesnav" ><i class="fa fa-bookmark fa-lg"></i> &nbsp; Notificaciones</a></li>
+                                </li>
+
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a outcome="/index.xhtml" class="botonesnav" >Cerrar Sesion &nbsp; &nbsp;</a></li>
+                            </ul>
+                            <ul style="margin-top: 5px; margin-left: 5px;" class="nav navbar-nav navbar-right img-rounded ">
+                            </ul>
+
+                        </div>
+                    </div>
+                </nav>
+            </h:form>
+        </header>
+        <div class="container">
+            
+            <ui:insert name="body"></ui:insert>
+            
+            <div class="color1 row">
+                <div class="centrar container tfooter col-md-12">
+                    <hr/>
+                    <h4>CopyRigth © 2015 | PSIQUE Todos los derechos reservados
+                        <br/>
+                        Sistema de Información para el Seguimiento Psicológico del Aprendiz.   
+                        <br/>
+                        <small>PSIQUE 2.0</small>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>

@@ -88,22 +88,22 @@
                         <h:form id="formulario" class="form-group" >
                             <div class="form-group">
                                 <h:outputLabel value="Documento de identidad" class="control-label" style="font-weight:bold" for="ide"/>
-                                <h:inputText converterMessage="Numero de documento invalido" requiredMessage="Documento requerido" id="ide" class="form-control" value="#{usuarioController.usuario.idUsuario}" tabindex="1" required="true" />
+                                <h:inputText converterMessage="Numero de documento invalido" requiredMessage="Documento requerido" id="ide" class="form-control" tabindex="1" required="true" />
                              </div>
                             <div class="form-group">
                                 <h:outputLabel value="Contraseña" class="control-label" style="font-weight:bold" for="clave"/>
-                                <h:inputSecret converterMessage="Contraseña invalida" requiredMessage="Clave requerida" id="clave" class="form-control"  value="#{usuarioController.usuario.clave}" tabindex="2" required="true" />
+                                <h:inputSecret converterMessage="Contraseña invalida" requiredMessage="Clave requerida" id="clave" class="form-control" tabindex="2" required="true" />
                              </div>
                             <div class="form-group" tabindex="3">
                                 <h:link style="font-weight:bold; color: #23527c" value="¿Olvidaste tu contraseña?"/>
                             </div>
                             <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                                <h:commandLink id="hey" class="btn btn-block botones" action="#{usuarioController.autenticar()}" tabindex="4"><i class="fa fa-sign-in fa-lg"></i> &nbsp; Entrar</h:commandLink>
+                                <h:commandLink class="btn btn-block botones" tabindex="4" action="modAprendiz/principalAprendiz.xhtml"><i class="fa fa-sign-in fa-lg" ></i> &nbsp; Entrar</h:commandLink>
                             </div>
                         </h:form>
                         <div class="form-group col-xs-6 col-sm-6 col-md-6">
                             <h:form>
-                                <h:commandLink class="btn btn-block botones2" action="/modUsuario/registroAprendiz.psique" tabindex="5" ><i class="fa fa-user-plus fa-lg"></i> &nbsp;  Crear cuenta</h:commandLink>
+                                <h:commandLink class="btn btn-block botones2" action="modAprendiz/principalAprendiz.xhtml" ><i class="fa fa-user-plus fa-lg"></i> &nbsp;  Crear cuenta</h:commandLink>
                             </h:form>
                         </div>
                     </div>
