@@ -2,21 +2,152 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 
+        <link rel="shortcut icon" type="image/x-icon" href="../resources/img/icono.ico"/>
+        
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="estilos.css"/>
+        <h:outputStylesheet library="css" name="font-awesome.css"/>
+        
+        <h:outputScript library="js" name="jquery-1.12.2.min.js" target="head"/>
+        <h:outputScript library="js" name="bootstrap.min.js" target="body"/>
 
-        <title>
-            <ui:insert name="title">Plantilla Corporativa</ui:insert>
-        </title>
     </h:head>
 
-    <h:body>
-        
-        <ui:insert name="content">Content</ui:insert>
-        
-    </h:body>
+    <h:body class="marcagua">
+        <header>
+            <nav class="trans2 navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <h:form>
+                            <button type="button" class="navbar-toggle collapsed " data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" >
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar color2"></span>
+                                <span class="icon-bar color2" ></span>
+                                <span class="icon-bar color2"></span>
+                            </button>
+                        </h:form>
+                        <a class="botonesnav navbar-left "><strong> &nbsp; MENU &nbsp;</strong> </a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a class="botonesnav"> &nbsp; <i class="fa fa-desktop fa-lg"></i> &nbsp; Inicio</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="botonesnav dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> &nbsp; <i class="fa fa-users fa-lg"></i> &nbsp; Nosotros &nbsp; <span class="caret"></span></a>
+                                <ul class="dropdown-menu ">
+                                    <li><a><strong>Psicólogos</strong></a></li>
+                                    <li><a href="modCorporativo/nosotrosP.html"><i class="fa fa-user-md fa-lg"></i> &nbsp; Sobre nosotros ... </a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a><strong>Desarrolladores</strong></a></li>
+                                    <li><a href="modCorporativo/nosotrosD.html"><i class="fa fa-code fa-lg"></i> &nbsp; Sobre nosotros...</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="modCorporativo/contactenos.html"><i class="fa fa-comment fa-lg"></i> &nbsp; Contáctenos</a></li>
+                                    <li role="separator" class="divider"></li>						
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="botonesnav dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> &nbsp; <i class="fa fa-server fa-lg"></i> &nbsp; Servicios &nbsp; <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a><strong>Psicología</strong></a></li>
+                                    <li><a href="404.html"><i class="fa fa-info fa-lg"></i> &nbsp; Orientación y asesoramiento psicopatología</a></li>
+                                    <li><a href="404.html"><i class="fa fa-info fa-lg"></i> &nbsp; Atención psicológica</a></li>
+                                    <li><a href="404.html"><i class="fa fa-question fa-lg"></i> &nbsp; Como puedo concertar una visita ?</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="404.html" class="botonesnav"><i class="fa fa-eye-slash fa-lg"></i> &nbsp; SILSPA</a></li>
 
+                                </ul>
+                            </li>
+                            <li role="separator" style="color: black;" class="divider"></li>
+                        </ul>
+                        <a class="navbar-brand botonesnav navbar-right"><strong>¡ Bienvenido ! &nbsp; <i class="fa fa-home fa-lg"></i></strong> </a>
+                    </div>
+
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <div class="color1 container-fluid row">
+                <br/>
+                <br/>
+                <dir class="container-fluid">
+                    <div class="centrar col-xs-12 col-sm-5 col-md-3">
+                        
+                    </div>
+                    <div class="col-xs-12 col-sm-7 col-md-4">
+                       
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-5">
+                        <br/>
+                        <br/>
+                        <h:form id="formulario" class="form-group" >
+                            <div class="form-group">
+                                <h:outputLabel value="Documento de identidad" class="control-label" style="font-weight:bold" for="ide"/>
+                                <h:inputText converterMessage="Numero de documento invalido" requiredMessage="Documento requerido" id="ide" class="form-control" value="#{usuarioController.usuario.idUsuario}" tabindex="1" required="true" />
+                             </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Contraseña" class="control-label" style="font-weight:bold" for="clave"/>
+                                <h:inputSecret converterMessage="Contraseña invalida" requiredMessage="Clave requerida" id="clave" class="form-control"  value="#{usuarioController.usuario.clave}" tabindex="2" required="true" />
+                             </div>
+                            <div class="form-group" tabindex="3">
+                                <h:link style="font-weight:bold; color: #23527c" value="¿Olvidaste tu contraseña?"/>
+                            </div>
+                            <div class="form-group col-xs-6 col-sm-6 col-md-6">
+                                <h:commandLink id="hey" class="btn btn-block botones" action="#{usuarioController.autenticar()}" tabindex="4"><i class="fa fa-sign-in fa-lg"></i> &nbsp; Entrar</h:commandLink>
+                            </div>
+                        </h:form>
+                        <div class="form-group col-xs-6 col-sm-6 col-md-6">
+                            <h:form>
+                                <h:commandLink class="btn btn-block botones2" action="/modUsuario/registroAprendiz.psique" tabindex="5" ><i class="fa fa-user-plus fa-lg"></i> &nbsp;  Crear cuenta</h:commandLink>
+                            </h:form>
+                        </div>
+                    </div>
+                </dir>
+            </div>
+            <!--CUERPO-->
+            <ui:insert name="body"></ui:insert>
+            <div class="color1 row">
+                <br/>
+                <div class="col-sx-12 col-sm-8 col-md-4">
+                   
+                </div>
+                <div class="col-sx-12 col-sm-12 col-md-4 ">
+                    <div class="list-grosup centrar">
+                        <a href="#" class="list-group-item " >¿Como usar SILSPA?</a>
+                        <a href="#" class="btn list-group-item">Blog del CSF</a>
+                        <a href="#" class="list-group-item">Ingeniería SILSPA</a>
+                        <a href="#" class="list-group-item">Otros enlaces</a>
+                    </div>
+                </div>
+            </div>
+            <div class="color1 row">
+                <nav class="btn-group col-sm-12 col-xs-12 col-md-12" role="group" >
+                    <ul class="pager">
+                        <h:form>
+                            <li><h:commandLink class="color1" ><i class="fa fa-facebook-official fa-3x"></i></h:commandLink></li>
+                            <li><h:commandLink class="color1" ><i class="fa fa-twitter fa-3x"></i></h:commandLink></li>
+                            <li><h:commandLink class="color1" ><i class="fa fa-youtube-play fa-3x"></i></h:commandLink></li>
+                            <li><h:commandLink class="color1" ><i class="fa fa-skype fa-3x"></i></h:commandLink></li>
+                        </h:form>
+                    </ul>
+                </nav>
+            </div>
+            <div class="color1 row">
+                <div class="centrar container tfooter col-md-12">
+                    <hr/>
+                    <h4>CopyRigth © 2015 | PSIQUE Todos los derechos reservados
+                        <br/>
+                        Sistema de Información para el Seguimiento Psicológico del Aprendiz.   
+                        <br/>
+                        <small>PSIQUE 2.0</small>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </h:body>
 </html>
