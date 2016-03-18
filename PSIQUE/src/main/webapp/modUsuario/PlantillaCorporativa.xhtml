@@ -11,12 +11,16 @@
 
         <link rel="shortcut icon" type="image/x-icon" href="../resources/img/icono.ico"/>
         
-        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
         <h:outputStylesheet library="css" name="estilos.css"/>
-        <h:outputStylesheet library="css" name="font-awesome.css"/>
+        <h:outputStylesheet library="css" name="font-awesome.css"/> 
+
+        <h:outputScript library="js" name="jquery-1.9.1.js" target="head"/>
+        <h:outputScript library="js" name="jquery.validate.js" target="head"/>
+        <h:outputScript library="js" name="additional-methods.js" target="head"/>
+        <h:outputScript library="js" name="bootstrap.min.js" target="head"/>
         
-        <h:outputScript library="js" name="jquery-1.12.2.min.js" target="head"/>
-        <h:outputScript library="js" name="bootstrap.min.js" target="body"/>
+        <f:event type="preRenderView" listener="#{usuarioController.cerrarSesion()}"/>
 
     </h:head>
 
@@ -33,7 +37,7 @@
                                 <span class="icon-bar color2"></span>
                             </button>
                         </h:form>
-                        <a class="botonesnav navbar-left "><strong> &nbsp; MENU &nbsp;</strong> </a>
+                        <a class="navbar-brand botonesnav navbar-left "><strong> &nbsp; MENU &nbsp;</strong> </a>
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
@@ -77,44 +81,66 @@
                 <br/>
                 <dir class="container-fluid">
                     <div class="centrar col-xs-12 col-sm-5 col-md-3">
-                        
+                        <h:graphicImage value="/resources/img/ojo.png" class="centrar img-responsive" />
                     </div>
                     <div class="col-xs-12 col-sm-7 col-md-4">
-                       
+                        <h:graphicImage value="resources/img/letrero.png" class="centrar img-responsive" />
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-5">
-                        <br/>
-                        <br/>
                         <h:form id="formulario" class="form-group" >
                             <div class="form-group">
                                 <h:outputLabel value="Documento de identidad" class="control-label" style="font-weight:bold" for="ide"/>
-                                <h:inputText converterMessage="Numero de documento invalido" requiredMessage="Documento requerido" id="ide" class="form-control" tabindex="1" required="true" />
-                             </div>
+                                <h:inputText converterMessage="Numero de documento invalido" requiredMessage="Documento requerido" id="ide" class="form-control" value="#{usuarioController.usuario.idUsuario}" tabindex="1" required="true" />
+                            </div>
                             <div class="form-group">
                                 <h:outputLabel value="Contraseña" class="control-label" style="font-weight:bold" for="clave"/>
-                                <h:inputSecret converterMessage="Contraseña invalida" requiredMessage="Clave requerida" id="clave" class="form-control" tabindex="2" required="true" />
-                             </div>
+                                <h:inputSecret converterMessage="Contraseña invalida" requiredMessage="Clave requerida" id="clave" class="form-control"  value="#{usuarioController.usuario.clave}" tabindex="2" required="true" />
+                            </div>
                             <div class="form-group" tabindex="3">
                                 <h:link style="font-weight:bold; color: #23527c" value="¿Olvidaste tu contraseña?"/>
                             </div>
                             <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                                <h:commandLink class="btn btn-block botones" tabindex="4" action="modAprendiz/principalAprendiz.xhtml"><i class="fa fa-sign-in fa-lg" ></i> &nbsp; Entrar</h:commandLink>
+                                <h:commandLink id="hey" class="btn btn-block botones" action="#{usuarioController.autenticar()}" tabindex="4"><i class="fa fa-sign-in fa-lg"></i> &nbsp; Entrar</h:commandLink>
                             </div>
                         </h:form>
                         <div class="form-group col-xs-6 col-sm-6 col-md-6">
                             <h:form>
-                                <h:commandLink class="btn btn-block botones2" action="modAprendiz/principalAprendiz.xhtml" ><i class="fa fa-user-plus fa-lg"></i> &nbsp;  Crear cuenta</h:commandLink>
+                                <h:commandLink class="btn btn-block botones2" action="/modUsuario/registroAprendiz.psique" tabindex="5" ><i class="fa fa-user-plus fa-lg"></i> &nbsp;  Crear cuenta</h:commandLink>
                             </h:form>
                         </div>
                     </div>
                 </dir>
             </div>
+            
             <!--CUERPO-->
             <ui:insert name="body"></ui:insert>
             <div class="color1 row">
                 <br/>
                 <div class="col-sx-12 col-sm-8 col-md-4">
-                   
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <a href="#">
+                                <h:graphicImage class="img-circle media-object" value="resources/img/twit/t1.jpg" style="height:64px;width:64px;"/>
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Jairito Sanchez <small> @DonJairo</small></h4>
+                            Excelente pagina.
+                        </div>
+                        <br/>
+                        <div class="media-left media-middle">
+                            <a href="#">
+                                <h:graphicImage class="img-circle media-object" value="resources/img/twit/t2.jpg" style="height:64px;width:64px;"/>
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Marcel Yordan <small> @MarcelYordan</small></h4>
+                            Puedo comunicarme con el psicólogo del centro en unos pocos clicks.
+                        </div>
+                    </div>
+                </div>
+                <div class="centrar col-sx-12 col-sm-4 col-md-4">
+                    <h:graphicImage value="resources/img/dispo.png" style="max-width: 100%;"/>
                 </div>
                 <div class="col-sx-12 col-sm-12 col-md-4 ">
                     <div class="list-grosup centrar">
