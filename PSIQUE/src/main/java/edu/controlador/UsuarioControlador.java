@@ -90,7 +90,18 @@ public class UsuarioControlador implements Serializable {
         return res;
     }
     
-
+    public String cancelarCita (Cita cita){
+        cita.setEstado("cancelada");
+        citaFacade.edit(cita);
+        return "citasSolicitadas.xhtml";
+    }
+    
+    public String aceptarCitar (Cita cita){
+          cita.setEstado("pendiente");
+        citaFacade.edit(cita);
+        return "citasSolicitadas.xhtml";
+    }
+    
     public List<Aprendiz> mostrarAprendices() {
         List<Aprendiz> aprendices = aprendizFacade.findAll();
         return aprendices;
@@ -100,7 +111,7 @@ public class UsuarioControlador implements Serializable {
         List<Cita> Citas = citaFacade.findAll();
         List<Cita> citasPendientes = new ArrayList<Cita>();
         for (int i = 0; i < Citas.size(); i++) {
-            if (Citas.get(i).getEstado().equals("CUMPLIDA")) {
+            if (Citas.get(i).getEstado().equals("pendiente")) {
                 citasPendientes.add(Citas.get(i));
             }
         }

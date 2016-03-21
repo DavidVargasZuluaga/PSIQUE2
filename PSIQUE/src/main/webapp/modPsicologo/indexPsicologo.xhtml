@@ -15,12 +15,12 @@
             <link rel="shortcut icon" href="../resources/img/icono.ico"/>
             
             <h:outputStylesheet library="css" name="bootstrap.min.css"/>
-        <h:outputStylesheet library="css" name="estilos.css"/>
-        <h:outputStylesheet library="css" name="font-awesome.css"/> 
+            <h:outputStylesheet library="css" name="estilos.css"/>
+            <h:outputStylesheet library="css" name="font-awesome.css"/> 
 
-        <h:outputScript library="js" name="jquery-1.12.2.min.js" target="head"/>
-        <h:outputScript library="js" name="bootstrap.min.js" target="body"/>
-        <h:outputScript library="js" name="bootstrap-table.min.css" target="body"/>
+            <h:outputScript library="js" name="jquery-1.12.2.min.js" target="head"/>
+            <h:outputScript library="js" name="bootstrap.min.js" target="body"/>
+            <h:outputScript library="js" name="bootstrap-table.min.css" target="body"/>
 
             <script type="text/javascript" src="../resources/js/bootstrap-table.min.js"></script>
             <!-- InstanceEndEditable -->
@@ -141,95 +141,7 @@
                                 </div>
                             </footer>
                             <!-- InstanceBeginEditable name="Script" --> 
-                            <script>
-                                // Función ready que ejecuta su contenido al cargar
-                                $().ready(function () {
-                                    // Validación del formulario, tener en cuenta el ID
-                                    $("#formRegistro").validate({// Aplicación de la funcion validate. A continuación se especifican las reglas y los mensajes
-                                        // Aplicación de REGLAS de validación
-                                        rules: {
-                                            nombres: {
-                                                required: true,
-                                                minlength: 3
-                                            },
-                                            primerApellido: {
-                                                required: true,
-                                                minlength: 3
-                                            },
-                                            segundoApellido: {
-                                                required: true,
-                                                minlength: 3
-                                            },
-                                            fecha: {
-                                                required: true
-                                            },
-                                            documento: {
-                                                required: true,
-                                                digits: true,
-                                                minlength: 8
-                                            },
-                                            telefono: {
-                                                minlength: 6,
-                                                digits: true
-                                            },
-                                            correo: {
-                                                required: true
-                                            },
-                                            clave: {
-                                                required: true,
-                                                minlength: 6
-                                            },
-                                            confirmarClave: {
-                                                required: true,
-                                                minlength: 6,
-                                                equalTo: "#clave"
-                                            }
-                                        }, // Cierre de las reglas, se separa con coma de los mensajes
-
-                                        // Mensajes a generar para indicar al usuario la estructura valida que debe ingresar. Se debe indicar por cada regla adicionada anteriormente para sobre escribir los mensajes por defecto (los cuales están en inglés. Se encuentran en "jquery.validate.js" línea 308)
-                                        messages: {
-                                            nombres: {
-                                                required: "Campo requerido",
-                                                minlength: "Minimo 3 letras"
-                                            },
-                                            primerApellido: {
-                                                required: "Campo requerido",
-                                                minlength: "Minimo 3 letras"
-                                            },
-                                            segundoApellido: {
-                                                required: "Campo requerido",
-                                                minlength: "Minimo 3 letras"
-                                            },
-                                            fecha: {
-                                                required: "Campo requerido"
-                                            },
-                                            documento: {
-                                                required: "Campo requerido",
-                                                digits: "Solo digitos",
-                                                minlength: "Minimo 8 digitos"
-                                            },
-                                            telefono: {
-                                                minlength: "Minimo 3 letras",
-                                                digits: "Solo digitos"
-                                            },
-                                            correo: {
-                                                required: "Campo requerido"
-                                            },
-                                            clave: {
-                                                required: "Campo requerido",
-                                                minlength: "Minimo 5 letras"
-                                            },
-                                            confirmarClave: {
-                                                required: "Campo requerido",
-                                                minlength: "Minimo 5 letras",
-                                                equalTo: "#password"
-                                            }
-                                        } // Cierre de los mensajes
-                                    }); // Cierre de la función validate
-                                }); // Cierre de la función ready
-
-                                // NOTA: Revise el archivo "additional-methods" (ya enlazado arriba), para obtener otros métodos de validación como "lettersonly" básico para el trabajo de su sistema de información
-                            </script>
+                           
                             <!-- InstanceEndEditable -->
                             </h:body>
                             </html>

@@ -102,14 +102,14 @@
                                     </thead>
 
                                     <tbody>
-                                        <ui:repeat var="miLista" value="#{controladorPsicologo.mostrarCitas()}">
+                                        <ui:repeat var="miLista" value="#{usuarioControlador.mostrarCitas()}">
                                             <tr>
                                                 <td>#{miLista.idAprendiz.usuario.noDocumento}</td>
                                                 <td>#{miLista.idAprendiz.usuario.nombres}</td>
                                                 <td>#{miLista.idAprendiz.usuario.primerApellido}</td>
                                                 <td>#{miLista.idAprendiz.usuario.segundoApellido}</td>
                                                 <td>#{miLista.idAprendiz.usuario.fechaNacimiento}</td>
-                                                <td><button value="1"/></td>
+
                                             </tr>
                                         </ui:repeat>
                                     </tbody>
