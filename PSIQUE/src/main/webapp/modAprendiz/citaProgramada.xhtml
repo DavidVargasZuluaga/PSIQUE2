@@ -2,13 +2,13 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:composition template="PlantillaAprendiz.xhtml">
 
         <ui:define name="title">
-            Bienvenido Aprendiz
+            Administrar cita
         </ui:define>
-
         <ui:define name="body">
             <div class="row container-fluid trans3">
                 <br/>
@@ -33,7 +33,7 @@
                             <br/>
                             <div class="profile-usermenu botonesnav">
                                 <ul class="nav botonesnav">
-                                    <li><a class="botonesnav" href="miPerfilAdmon.xhtml" ><i class="fa fa-user fa-lg"></i> &nbsp; Mi perfil</a></li>
+                                    <li><a class="botonesnav" outcome="miPerfilAdmon.xhtml" ><i class="fa fa-user fa-lg"></i> &nbsp; Mi perfil</a></li>
                                     <li><a class="botonesnav" ><i class="fa fa-envelope fa-lg"></i> &nbsp; Mensajeria</a></li>
                                     <li><a class="botonesnav" ><i class="fa fa-cog fa-spin fa-lg"></i> &nbsp; Configuracion</a></li>
                                     <li><a class="botonesnav" ><i class="fa fa-question-circle fa-lg"></i> &nbsp; Ayuda</a></li>
@@ -45,10 +45,13 @@
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-7" style="color: black;" >
                     <div class="container-fluid">
-                        <div class="jumbotron">
-                            <h1><i class="fa fa-angellist"></i>&nbsp; Bienvenido!</h1>
-                            <p>Apreciado usuario, le invitamos a que cada dia mas contribuyamos positivamente en el progreso de la salud mental de el personal estudiantil.</p>
-                        </div>
+                        <c:forEach items="#{UsuarioControlador.aprendizLog.citaCollection}" var="c">
+                            <c:if test="#{c == 'ACEPTADA'}">
+                                <h1>
+                                    
+                                </h1>
+                            </c:if>
+                        </c:forEach>
                     </div>
                 </div>
             </div>

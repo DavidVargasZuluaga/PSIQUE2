@@ -23,7 +23,7 @@
     </h:head>
 
     <h:body class="marcaguaA">
-        <header class="">
+        <header class="perfilHover">
             <h:form>
                 <nav class="trans2 navbar-fixed-top">
                     <div class="container ">
@@ -38,12 +38,15 @@
                         </div>
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li><a class="botonesnav" href="/modAdmon/principalAdmon.xhtml"><i class="fa fa-desktop fa-lg"></i> &nbsp; Principal</a> </li>
-                                <li><a class="botonesnav" href="/modAdmon/principalAdmon.xhtml"><i class="fa fa-book fa-lg"></i> &nbsp; Gestionar cita</a> </li>
+                                <li><a class="botonesnav" href="/PSIQUE/modAprendiz/principalAprendiz.xhtml"><i class="fa fa-desktop fa-lg"></i> &nbsp; Principal</a> </li>
+                                <li><a class="botonesnav" href="/PSIQUE/modAprendiz/citaProgramada.xhtml"><i class="fa fa-book fa-lg"></i> &nbsp; Gestionar cita</a> </li>
                                 <li><a class="botonesnav" href="/modAdmon/principalAdmon.xhtml"><i class="fa fa-bookmark fa-lg"></i> &nbsp; Notificaciones</a> </li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a outcome="/index.xhtml" class="botonesnav" >Cerrar Sesion &nbsp; &nbsp;</a></li>
+                                <li><a href="/PSIQUE/index.xhtml" class="botonesnav" >Cerrar Sesion &nbsp; &nbsp;</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right centrar" style="padding-top:10px;" >
+                                <li class="fa fa-eye fa-2x"></li>
                             </ul>
                             <ul style="margin-top: 5px; margin-left: 5px;" class="nav navbar-nav navbar-right img-rounded ">
                             </ul>
@@ -54,6 +57,7 @@
         </header>
         <div class="container">
 
+            <!--CUERPO-->
             <ui:insert name="body"></ui:insert>
 
             <div class="color1 row">

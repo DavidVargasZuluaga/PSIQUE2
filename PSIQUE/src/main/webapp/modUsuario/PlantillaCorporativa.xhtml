@@ -84,18 +84,15 @@
                     <div class="col-xs-12 col-sm-12 col-md-5">
                         <h:form id="formulario" class="form-group" >
                             <div class="form-group">
-                                <h:outputLabel value="Documento de identidad" class="control-label" style="font-weight:bold" for="ide"/>
-                                <h:inputText converterMessage="Numero de documento invalido" requiredMessage="Documento requerido" id="ide" class="form-control" value="#{usuarioController.usuario.idUsuario}" tabindex="1" required="true" />
+                                <label class="col-md-4 control-label" for="documento">Documento</label>  
+                                <input id="documento" name="documento" type="text" pattern="[0-9]{4,15}" placeholder="10118666789" class="form-control input-md" required=""/>
                             </div>
                             <div class="form-group">
-                                <h:outputLabel value="Contraseña" class="control-label" style="font-weight:bold" for="clave"/>
-                                <h:inputSecret converterMessage="Contraseña invalida" requiredMessage="Clave requerida" id="clave" class="form-control"  value="#{usuarioController.usuario.clave}" tabindex="2" required="true" />
-                            </div>
-                            <div class="form-group" tabindex="3">
-                                <h:link style="font-weight:bold; color: #23527c" value="¿Olvidaste tu contraseña?"/>
+                                <label class="col-md-4 control-label" for="clave">Contraseña</label>
+                                <input id="clave" name="clave" type="password" pattern="[a-z,A-Z,0-9]{1,20}" placeholder="************" class="form-control input-md" required=""/>
                             </div>
                             <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                                <h:commandLink id="hey" class="btn btn-block botones" action="#{usuarioController.autenticar()}" tabindex="4"><i class="fa fa-sign-in fa-lg"></i> &nbsp; Entrar</h:commandLink>
+                                <h:commandButton action="#{usuarioControlador.autenticar()}" id="ingresar" value="Ingresar" class="btn botones btn-group-justified"> </h:commandButton>
                             </div>
                         </h:form>
                         <div class="form-group col-xs-6 col-sm-6 col-md-6">
@@ -109,8 +106,7 @@
 
             <!--CUERPO-->
             <ui:insert name="body"></ui:insert>
-
-
+            
             <div class="color1 row">
                 <br/>
                 <div class="col-sx-12 col-sm-8 col-md-4">
