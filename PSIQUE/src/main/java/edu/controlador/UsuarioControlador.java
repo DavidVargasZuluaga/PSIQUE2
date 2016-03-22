@@ -58,7 +58,7 @@ public class UsuarioControlador implements Serializable {
             String clave = (String) params.get("clave");
             this.listaUsuarios = ejbUsuario.findAll();
             for (int i = 0; i < listaUsuarios.size(); i++) {
-                if (listaUsuarios.get(i).getIdUsuario().equals(doc) && listaUsuarios.get(i).getClave().equals(clave)) {
+                if (listaUsuarios.get(i).getNoDocumento() == doc && listaUsuarios.get(i).getClave().equals(clave)) {
                     this.usuarioLog = listaUsuarios.get(i);
                     httpServletRequest.getSession().setAttribute("UsuarioLog", listaUsuarios.get(i));
                     break;
@@ -69,15 +69,13 @@ public class UsuarioControlador implements Serializable {
                     res = "/index.xhtml";
                     break;
                 case 2:
-                    res = "modCoordinador/principalCoordinador.xhtml";
+                    res = "/modCoordinador/principalCoordinador.xhtml";
                     break;
                 case 3:
-                    psicologoLog = psicologoFacade.find(usuarioLog.getIdUsuario());
-                    res = "modPsicologo/indexPsicologo.xhtml";
+                    res = "/modPsicologo/indexPsicologo.xhtml";
                     break;
                 case 4:
-                    aprendizLog = aprendizFacade.find(usuarioLog.getIdUsuario());
-                    res = "modAprendiz/principalAprendiz.xhtml";
+                    res = "/modAprendiz/principalAprendiz.xhtml";
                     break;
                 default:
                     res = "/index.xhtml";
@@ -96,7 +94,6 @@ public class UsuarioControlador implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return "/index";
     }
 

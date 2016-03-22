@@ -11,13 +11,15 @@
 
         <link rel="shortcut icon" type="image/x-icon" href="/resources/img/icono.ico"/>
 
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
         <h:outputStylesheet library="css" name="bootstrap.min.css"/>
         <h:outputStylesheet library="css" name="estilos.css"/>
         <h:outputStylesheet library="css" name="font-awesome.css"/>
 
         <h:outputScript library="js" name="jquery-1.12.2.min.js" target="head"/>
+        <h:outputScript library="js" name="bootstrap.js" target="body"/>
         <h:outputScript library="js" name="bootstrap.min.js" target="body"/>
-        
+
         <f:event type="preRenderView" listener="#{usuarioControlador.validarSesion()}"/>
 
         <title>
@@ -62,6 +64,36 @@
 
             <!--CUERPO-->
             <ui:insert name="body"></ui:insert>
+
+            <div class="modal fade " id="modalValorar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod13">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Codigo de cita #{c.idCita}</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="control-label">
+                                    <label style="color:black;">A su criterio, valore la atencion de esta cita</label>
+                                    <br/>
+                                    <h:selectOneMenu value="#{citaControlador.citaTemp.valoracion}">
+                                        <f:selectItem itemValue="5" itemLabel="Muy buena"/>
+                                        <f:selectItem itemValue="4" itemLabel="Buena"/>
+                                        <f:selectItem itemValue="3" itemLabel="Aceptable"/>
+                                        <f:selectItem itemValue="2" itemLabel="Podria mejorar"/>
+                                        <f:selectItem itemValue="1" itemLabel="Mala"/>
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <h:commandButton action="#{citaControlador.valorarCita()}" class="botones2 btn" value="Crear Cuenta"></h:commandButton>
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
 
             <div class="color1 row">
                 <div class="centrar container tfooter col-md-12">

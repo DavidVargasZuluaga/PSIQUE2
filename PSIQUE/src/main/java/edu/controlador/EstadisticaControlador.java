@@ -48,7 +48,6 @@ public class EstadisticaControlador implements Serializable {
                 case "Heterosexual":
                     heterosexual++;
                     break;
-
                 case "Bisexual":
                     bisexual++;
                     break;
