@@ -2,13 +2,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 
-        <link rel="shortcut icon" type="image/x-icon" href="../resources/img/icono.ico"/>
+        <link rel="shortcut icon" type="image/x-icon" href="/resources/img/icono.ico"/>
 
         <h:outputStylesheet library="css" name="bootstrap.min.css"/>
         <h:outputStylesheet library="css" name="estilos.css"/>
@@ -16,6 +17,8 @@
 
         <h:outputScript library="js" name="jquery-1.12.2.min.js" target="head"/>
         <h:outputScript library="js" name="bootstrap.min.js" target="body"/>
+        
+        <f:event type="preRenderView" listener="#{usuarioControlador.validarSesion()}"/>
 
         <title>
             <ui:insert name="title"></ui:insert>
@@ -23,9 +26,9 @@
     </h:head>
 
     <h:body class="marcaguaA">
-        <header class="perfilHover">
+        <header class="">
             <h:form>
-                <nav class="trans2 navbar-fixed-top">
+                <nav class="trans2 navbar-fixed-top perfilHover">
                     <div class="container ">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle collapsed " data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" >
@@ -43,7 +46,7 @@
                                 <li><a class="botonesnav" href="/modAdmon/principalAdmon.xhtml"><i class="fa fa-bookmark fa-lg"></i> &nbsp; Notificaciones</a> </li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="/PSIQUE/index.xhtml" class="botonesnav" >Cerrar Sesion &nbsp; &nbsp;</a></li>
+                                <li><h:commandLink action="#{usuarioControlador.cerrarSesion()}" class="botonesnav" >Cerrar Sesion &nbsp; &nbsp;</h:commandLink></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right centrar" style="padding-top:10px;" >
                                 <li class="fa fa-eye fa-2x"></li>
@@ -67,7 +70,7 @@
                         <br/>
                         Sistema de Información para el Seguimiento Psicológico del Aprendiz.   
                         <br/>
-                        <small>PSIQUE 3.0</small>
+                        <small>PSIQUE 3.6</small>
                     </h4>
                 </div>
             </div>

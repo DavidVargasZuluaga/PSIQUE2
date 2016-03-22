@@ -21,14 +21,13 @@
                             <div class="profile-userpic btn-group-lg centrar">
                                 <h:graphicImage style="max-width: 200px;" value="/resources/img/perfil/pAd.jpg" class="img-responsive img-circle centrar" />
                             </div>
-                            <br/>
                             <hr/>
                             <div class="profile-usertitle centrar center-block">
-                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value="#{usuarioController.usuario.nombres} &nbsp;"/>
-                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value=" #{usuarioController.usuario.primerApellido} &nbsp; "/>
-                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value=" #{usuarioController.usuario.segundoApellido} &nbsp; "/>
+                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value="#{usuarioControlador.usuarioLog.nombres} &nbsp;"/>
+                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value=" #{usuarioControlador.usuarioLog.primerApellido} &nbsp; "/>
+                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value=" #{usuarioControlador.usuarioLog.segundoApellido} &nbsp; "/>
                                 <br/> 
-                                <h:outputLabel style="color:#5a7391;" class="profile-usertitle-job centrar" value="#{usuarioController.usuario.idRol.nombre}"/>
+                                <h:outputLabel style="color:#5a7391;" class="profile-usertitle-job centrar" value="#{usuarioControlador.usuarioLog.idRol.nombre}"/>
                             </div>
                             <br/>
                             <div class="profile-usermenu botonesnav">
@@ -44,10 +43,8 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-7" style="color: black;" >
-                    <div class="container-fluid">
-                        <div class="jumbotron">
-                            as
-                        </div>
+                    <div class="container-fluid centrar">
+                            <h2>Bienvenido Aprendiz</h2>
                     </div>
                 </div>
             </div>

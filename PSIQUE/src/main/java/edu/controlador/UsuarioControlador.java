@@ -23,17 +23,16 @@ import javax.servlet.http.HttpServletRequest;
 public class UsuarioControlador implements Serializable {
 
     @Inject
-    UsuarioFacade ejbUsuario;
+    private UsuarioFacade ejbUsuario;
 
     @Inject
-    AprendizFacade aprendizFacade;
+    private AprendizFacade aprendizFacade;
 
     @Inject
-    PsicologoFacade psicologoFacade;
+    private PsicologoFacade psicologoFacade;
 
     @Inject
-    CitaFacade citaFacade;
-    
+    private CitaFacade citaFacade;
 
     private Usuario usuarioLog;
     private Aprendiz aprendizLog;
@@ -77,7 +76,7 @@ public class UsuarioControlador implements Serializable {
                     res = "modPsicologo/indexPsicologo.xhtml";
                     break;
                 case 4:
-                    aprendizLog = aprendizFacade.find(usuarioLog);
+                    aprendizLog = aprendizFacade.find(usuarioLog.getIdUsuario());
                     res = "modAprendiz/principalAprendiz.xhtml";
                     break;
                 default:
@@ -89,19 +88,45 @@ public class UsuarioControlador implements Serializable {
         }
         return res;
     }
-    
-    public String cancelarCita (Cita cita){
+
+    public String cerrarSesion() {
+        try {
+            init();
+            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "/index";
+    }
+
+    public void validarSesion() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        try {
+            if (httpServletRequest.getSession().getAttribute("UsuarioLog") != null) {
+            } else {
+                facesContext.getExternalContext().redirect("/PSIQUE");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public String cancelarCita(Cita cita) {
         cita.setEstado("cancelada");
         citaFacade.edit(cita);
         return "citasSolicitadas.xhtml";
     }
-    
-    public String aceptarCitar (Cita cita){
-          cita.setEstado("pendiente");
+
+    public String aceptarCitar(Cita cita) {
+        cita.setEstado("pendiente");
         citaFacade.edit(cita);
         return "citasSolicitadas.xhtml";
     }
-    
+
     public List<Aprendiz> mostrarAprendices() {
         List<Aprendiz> aprendices = aprendizFacade.findAll();
         return aprendices;

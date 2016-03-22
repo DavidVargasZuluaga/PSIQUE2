@@ -1,14 +1,113 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="modUsuario/PlantillaCorporativa.xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:composition template="modUsuario/PlantillaCorporativa.xhtml">
 
-    <ui:define name="title">
-        Bienvendio a PSIQUE
-    </ui:define>
+        <ui:define name="title">
+            Bienvendio a PSIQUE
+        </ui:define>
 
-    <ui:define name="body">
-    </ui:define>
+        <ui:define name="body">
+            <div class="row color1 botonesnav">
+                <ol class="color1 centrar  breadcrumb">
+                    <li class="active">Inicio</li>
+                </ol>
+            </div>
+            <div class="row trans">
+                <div class="container-fluid " style="padding:0px;">
+                    <!-- InstanceBeginEditable name="TODO" -->
+                    <div class="container-fluid " style="padding:8px;">
+                        <div id="slider1" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#slider1" data-slide-to="0" class="active"></li>
+                                <li data-target="#slider1" data-slide-to="1"></li>
+                                <li data-target="#slider1" data-slide-to="2"></li>
+                                <li data-target="#slider1" data-slide-to="3"></li>
+                                <li data-target="#slider1" data-slide-to="4"></li>
+                                <li data-target="#slider1" data-slide-to="5"></li>
+                            </ol>
+                            <div class="centrar carousel-inner" role="listbox">
+                                <div class="item active">
+                                    <h:graphicImage value="/resources/img/SliderImg/i1.jpg" alt="" class="img-responsive"/>
+                                    <div class="carousel-caption">
+                                        <h2><b>BIENVENIDO A PSIQUE</b></h2>
+                                        <small>http://tinyurl.com/nzwlm4p</small>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <h:graphicImage value="/resources/img/SliderImg/i2.jpg" alt="" class="img-responsive"/>
+                                    <div class="color3 carousel-caption">
+                                        <h2><b>SOLICITA TU CITA AHORA</b></h2>
+                                        <h4><b>Sin ponerte de pie, utiliza nuestro servicio.</b></h4><br/><small>hhttp://tinyurl.com/planrhm</small>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <h:graphicImage value="/resources/img/SliderImg/i3.jpg" alt="" class="img-responsive"/>
+                                    <div class="color3 carousel-caption">
+                                        <h2><b>TODO TIENE SOLUCION</b></h2><h4><b>Te podemos ayudar a encontrar una respuesta.</b></h4><br/><small>http://tinyurl.com/o6zckzf</small>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <h:graphicImage value="/resources/img/SliderImg/i4.jpg" alt="" class="img-responsive"/>
+                                    <div class="color3 carousel-caption">
+                                        <h2><b>PERSONAL CALIFICADO</b></h2>
+                                        <h4><b>El personal psicológico del CSF esta altamente calificado para brindarle una atención profesional y confidencial.</b></h4><small>http://www.inper.edu.mx/psicologia/img/320x320psicologia-02.jpg</small>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <h:graphicImage value="/resources/img/SliderImg/i5.jpg" alt="" class="img-responsive"/>
+                                    <div class="color3 carousel-caption">
+                                        <h2><b>ORIENTACION Y ASESORAMIENTO</b></h2><h4><b>Intervención psicológica y terapéutica a nivel individual.</b></h4><small>http://tinyurl.com/o4aphr6</small>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <h:graphicImage value="/resources/img/SliderImg/i6.jpg" alt="" class="img-responsive"/>
+                                    <div class="color3 carousel-caption">
+                                        <h2><b>ATENCION PERSONALIZADA</b></h2><h4><b>Amable y confiable.</b></h4><small>http://tinyurl.com/nmnl7zv</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#slider1" class="left carousel-control" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+                            <span class="sr-only">Anterior</span>
+                            <a href="#slider1" class="right carousel-control" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="false"></span></a>
+                            <span class="sr-only">Siguiente</span>
+                        </div>
+                        <hr/>
 
-</ui:composition>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2 class="centrar"><i class="fa fa-thumb-tack"></i> &nbsp; OBJETIVO</h2>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <h4>El sistema de información logístico para el seguimiento psicológico del aprendiz SILSPA tiene como objetivo favorecer el acercamiento del aprendiz a la orientación psicológica, orientación que le puede facilitar la estabilidad personal y también el rendimiento académico. Los destinatarios de SILSPA son los estudiantes del SENA CSF que necesitan orientación psicológica y/o psicopatología
+                                    . El servicio Psicológico de le SENA Centro de Servicios Financieros, en concordancia con los principios del bienestar de la educación superior que se despenen de la Ley 30 de 1992</h4>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <h4> y en particular con la filosofía de el SENA y el servicio de salud del SENA que buscan la formación integral del ser y el mejoramiento de su calidad de vida, ha venido desarrollando acciones tendientes al mejoramiento de la salud mental de la comunidad de aprendices. Estas acciones contribuyen tanto al bienestar individual como colectivo, puesto que están encaminadas a la generación de conciencia en torno a la responsabilidad con el ser propio y con el entorno.</h4>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <h2 class="centrar"><span class="fa fa-paper-plane" aria-hidden="false"></span> &nbsp; MISION</h2>
+                                <h4>El servicio psicológico tiene como misión trabajar en la salud integral del ser humano a través de la prevención, el mantenimiento y el mejoramiento de la salud mental de la comunidad de aprendices, para lograr la meta del máximo desarrollo de sus potencialidades.</h4>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <h2 class="centrar"><span class="fa fa-picture-o" aria-hidden="false"></span> &nbsp; VISION</h2>
+                                <h4>El servicio psicológico contribuirá significativamente a mantener la salud mental de la comunidad SENA.</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
 
