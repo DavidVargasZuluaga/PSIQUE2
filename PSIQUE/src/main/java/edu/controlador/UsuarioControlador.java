@@ -70,7 +70,7 @@ public class UsuarioControlador implements Serializable {
                     res = "/index.xhtml";
                     break;
                 case 2:
-                    res = "/index.xhtml";
+                    res = "modCoordinador/principalCoordinador.xhtml";
                     break;
                 case 3:
                     psicologoLog = psicologoFacade.find(usuarioLog.getIdUsuario());

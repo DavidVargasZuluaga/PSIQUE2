@@ -3,10 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <ui:composition template="PlantillaAprendiz.xhtml">
+    <ui:composition template="PlantillaCoordinador.xhtml">
 
         <ui:define name="title">
-            Bienvenido Aprendiz
+            Bienvenido Coordinador
         </ui:define>
 
         <ui:define name="body">
@@ -43,15 +43,60 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-7" style="color: black;" >
-                    <div class="container-fluid">
-                        <div class="jumbotron">
-                            as
-                        </div>
+                <div class="col-xs-12 col-sm-6 col-md-9 color1">
+                    <h3><i class="fa fa-chevron-right fa-lg"></i> &nbsp; Descripcion : </h3>
+                    <h4>Reporte semanal de los casos atendidos por los psicologos.</h4><br/><i class="fa fa-chevron-down fa-1g"></i> &nbsp; Psicologo # 1: Rojo<br/><i class="fa fa-chevron-down fa-1g"></i> &nbsp; Psicologo # 2 : Amarillo<br/><i class="fa fa-chevron-down fa-1g"></i> &nbsp; Psicologo # 3: Gris
+                    <hr/>
+                    <strong><i class="fa fa-chevron-right"></i> &nbsp; Psicologos promediados : </strong><br/>
+                    <small>3</small>
+                    <br/>
+                    <strong><i class="fa fa-chevron-right"></i> &nbsp; Fecha de actualizacion</strong><br/>
+                    <small>10/10/2015</small>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div id="canvas-holder">
+                        <canvas id="chart-area" width="300" height="300"/>
                     </div>
                 </div>
             </div>
-        </ui:define>
+            <script>
 
+                var pieData = [
+                    {
+                        value: 300,
+                        color: "#F7464A",
+                        highlight: "#FF5A5E",
+                        label: "Homosexual"
+                    },
+                    {
+                        value: 200,
+                        color: "#FDB45C",
+                        highlight: "#FFC870",
+                        label: "Heterosexual"
+                    },
+                    {
+                        value: 120,
+                        color: "#4D5360",
+                        highlight: "#616774",
+                        label: "Bisexual"
+                    },
+                    {
+                        value: 120,
+                        color: "#4D5360",
+                        highlight: "#616774",
+                        label: "Asexual"
+                    }
+
+                ];
+
+                window.onload = function () {
+                    var ctx = document.getElementById("chart-area").getContext("2d");
+                    window.myPie = new Chart(ctx).Pie(pieData);
+                };
+
+
+
+            </script>
+        </ui:define>
     </ui:composition>
 </html>
