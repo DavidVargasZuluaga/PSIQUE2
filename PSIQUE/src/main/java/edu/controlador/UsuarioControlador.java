@@ -65,7 +65,7 @@ public class UsuarioControlador implements Serializable {
         listaUsuarios = new ArrayList();
         listaPsicologos = psicologoFacade.findAll();
     }
-
+    
     public String autenticar() {
         String res = "/index.xhtml";
         FacesContext facesContext = FacesContext.getCurrentInstance();

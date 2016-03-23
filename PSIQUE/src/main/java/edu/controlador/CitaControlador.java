@@ -38,21 +38,27 @@ public class CitaControlador implements Serializable {
     private void init() {
         citaTemp = new Cita();
     }
-    
-    public List<Cita> listarCitasAprendizLog(Aprendiz a){
+
+    public List<Cita> listarCitasAprendizLog(Aprendiz a) {
         List<Cita> resul = new ArrayList();
         List<Cita> citas = citaFacade.findAll();
         for (int i = 0; i < citas.size(); i++) {
-            if(citas.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())){
+            if (citas.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())) {
                 resul.add(citas.get(i));
             }
         }
         return resul;
     }
 
-    public String valorarCita() {
-        citaFacade.edit(citaTemp);
-        return "/citaProgramada.xhtml";
+    public String valorarCita(Cita cita) {
+        Cita c = cita;
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        c.setValoracion(Integer.parseInt((String)params.get("valor")));
+        citaFacade.edit(c);
+        return "/modAprendiz/citaProgramada.xhtml";
     }
 
     public String solicitarCita(Aprendiz a) {
@@ -82,7 +88,13 @@ public class CitaControlador implements Serializable {
 
     public boolean confirmacionSolicitud(Aprendiz a) {
         boolean res = false;
-        List<Cita> citas = (List) a.getCitaCollection();
+        List<Cita> listaCitas = citaFacade.findAll();
+        List<Cita> citas = new ArrayList();
+        for (int i = 0; i < listaCitas.size(); i++) {
+            if (listaCitas.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())) {
+                citas.add(listaCitas.get(i));
+            }
+        }
         for (int i = 0; i < citas.size(); i++) {
             switch (citas.get(i).getEstado()) {
                 case "PENDIENTE":
@@ -97,6 +109,17 @@ public class CitaControlador implements Serializable {
             }
         }
         return res;
+    }
+
+    public Cita ultimaCitaAprendiz(Aprendiz a) {
+        citaTemp = new Cita();
+        List<Cita> listaCitas = citaFacade.findAll();
+        for (int i = 0; i < listaCitas.size(); i++) {
+            if(listaCitas.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz()) && listaCitas.get(i).getEstado().equals("CUMPLIDA")){
+                citaTemp = listaCitas.get(i);
+            }
+        }
+        return citaTemp;
     }
 
     public Cita getCitaTemp() {

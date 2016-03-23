@@ -78,17 +78,17 @@
                                 <div class="control-label">
                                     <label style="color:black;">A su criterio, valore la atencion de esta cita</label>
                                     <br/>
-                                    <h:selectOneMenu value="#{citaControlador.citaTemp.valoracion}">
-                                        <f:selectItem itemValue="5" itemLabel="Muy buena"/>
-                                        <f:selectItem itemValue="4" itemLabel="Buena"/>
-                                        <f:selectItem itemValue="3" itemLabel="Aceptable"/>
-                                        <f:selectItem itemValue="2" itemLabel="Podria mejorar"/>
-                                        <f:selectItem itemValue="1" itemLabel="Mala"/>
-                                    </h:selectOneMenu>
+                                    <select name="valor">
+                                        <option value="5" >Muy buena</option>
+                                        <option value="4" >Buena</option>
+                                        <option value="3" >Aceptable</option>
+                                        <option value="2" >Podria mejorar</option>
+                                        <option value="1" >Mala</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <h:commandButton action="#{citaControlador.valorarCita()}" class="botones2 btn" value="Crear Cuenta"></h:commandButton>
+                                <h:commandButton action="#{citaControlador.valorarCita(citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz))}" class="botones2 btn" value="Crear Cuenta"></h:commandButton>
                                 <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
                             </div>
                         </div>
