@@ -24,22 +24,15 @@
                                 <h:graphicImage style="max-width: 200px;" value="/resources/img/perfil/pAd.jpg" class="img-responsive img-circle centrar" />
                             </div>
                             <hr/>
-                            <div class="profile-usertitle centrar center-block">
-                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value="#{usuarioControlador.usuarioLog.nombres} &nbsp;"/>
-                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value=" #{usuarioControlador.usuarioLog.primerApellido} &nbsp; "/>
-                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value=" #{usuarioControlador.usuarioLog.segundoApellido} &nbsp; "/>
-                                <br/> 
-                                <h:outputLabel style="color:#5a7391;" class="profile-usertitle-job centrar" value="#{usuarioControlador.usuarioLog.idRol.nombre}"/>
-                            </div>
-                            <br/>
                             <div class="profile-usermenu botonesnav">
                                 <ul class="nav botonesnav">
-                                    <li><a class="botonesnav" href="miPerfilAdmon.xhtml" ><i class="fa fa-user fa-lg"></i> &nbsp; Mi perfil</a></li>
-                                    <li><a class="botonesnav" ><i class="fa fa-envelope fa-lg"></i> &nbsp; Mensajeria</a></li>
-                                    <li><a class="botonesnav" ><i class="fa fa-cog fa-spin fa-lg"></i> &nbsp; Configuracion</a></li>
-                                    <li><a class="botonesnav" ><i class="fa fa-question-circle fa-lg"></i> &nbsp; Ayuda</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/miPerfil.xhtml" ><i class="fa fa-user fa-lg"></i> &nbsp; Mi perfil</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/mensajeria.xhtmls" ><i class="fa fa-envelope fa-lg"></i> &nbsp; Mensajeria</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/configuracion.xhtml" ><i class="fa fa-cog fa-spin fa-lg"></i> &nbsp; Configuracion</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/ayuda.xhtml" ><i class="fa fa-question-circle fa-lg"></i> &nbsp; Ayuda</a></li>
                                 </ul>
                             </div>
+                            <br/>
                             <hr/>
                         </div>
                     </div>
@@ -48,61 +41,62 @@
                     <div class="container-fluid row">
                         <h:form>
                             <c:if test="#{citaControlador.confirmacionSolicitud(usuarioControlador.usuarioLog.aprendiz) == false}">
-                                <h3>Usted no tiene citas pendientes <br/> <small>Solicite la suya ahora !</small></h3>
                                 <div class="col-xm-12 col-sm-12 col-md-6 ">
+                                    <h3>Usted no tiene citas pendientes <br/> <small>Solicite la suya ahora !</small></h3>
                                     <h:commandLink class="btn botones2 btn-block" onclick="$('#modalNuevaCita').modal('show'); return false;">Solicitar cita</h:commandLink>
+                                    <hr/>
                                 </div>
                             </c:if>
-                            <c:if test="#{citaControlador.listarCitasAprendizLog(usuarioControlador.usuarioLog.aprendiz) != null}" >
-                                <c:if test="#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz) != null}" >
-                                    <h3>Ultima cita cumplida</h3>
-                                    <h4>Fecha y hora</h4>
-                                    <h5>#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).fecha.month}/#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).fecha.day} &nbsp; #{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).fecha.hours}:#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).fecha.minutes}</h5>
-                                    <h4>Psicologo</h4>
-                                    <h5>#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).idPsicologo.usuario.nombres} #{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).idPsicologo.usuario.primerApellido}</h5>
-                                    <div class="col-xm-12 col-sm-12 col-md-6">
+                            <div class="col-xm-12 col-sm-12 col-md-6 ">
+                                <c:if test="#{citaControlador.listarCitasAprendizLog(usuarioControlador.usuarioLog.aprendiz) != null}" >
+                                    <c:if test="#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz) != null}" >
+                                        <h3>Ultima cita cumplida</h3>
+                                        <h4>Fecha y hora</h4>
+                                        <h5>#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).fecha.month}/#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).fecha.day} &nbsp; #{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).fecha.hours}:#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).fecha.minutes}</h5>
+                                        <h4>Psicologo</h4>
+                                        <h5>#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).idPsicologo.usuario.nombres} #{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).idPsicologo.usuario.primerApellido}</h5>
                                         <br/>
                                         <h:commandLink class="btn botones btn-block" onclick="$('#modalValorar').modal('show'); return false;" >
                                             Valorar ultima cita
                                         </h:commandLink>
                                         <hr/>
-                                    </div>
-                                </c:if>
-                                <c:forEach items="#{citaControlador.listarCitasAprendizLog(usuarioControlador.usuarioLog.aprendiz)}" var="c">
-                                    <c:choose>
-                                        <div class="col-xm-12 col-sm-12 col-md-6">
-                                            <c:when test="#{c.estado == 'PENDIENTE'}">
-                                                <h3>Ud tiene una cita programada</h3>
-                                                <h4>Fecha y hora</h4>
-                                                <h5>#{c.fecha.month}/#{c.fecha.day} &nbsp; #{c.fecha.hours}:#{c.fecha.minutes}</h5>
-                                                <h4>Psicologo</h4>
-                                                <h5>#{c.idPsicologo.usuario.nombres} #{c.idPsicologo.usuario.primerApellido}</h5>
-                                                <h4>Cita confirmada</h4>
-                                                <h:commandLink title="Cancelar cita" class="btn botonesinv" action="#{citaControlador.cancelarCitaAprendiz(c)}" >
-                                                    <i class="fa fa-times-circle fa-lg"></i>
-                                                </h:commandLink>
-                                                <hr/>
-                                            </c:when>
-                                            <c:when test="#{c.estado == 'SOLICITADA'}">
-                                                <h3>Ud solicito una cita</h3>
-                                                <h4>Fecha y hora</h4>
-                                                <h5>#{c.fecha.month}/#{c.fecha.day} &nbsp; #{c.fecha.hours}:#{c.fecha.minutes}</h5>
-                                                <h4>Psicologo</h4>
-                                                <h5>#{c.idPsicologo.usuario.nombres} #{c.idPsicologo.usuario.primerApellido}</h5>
-                                                <h4>No ah sido confirmada</h4>
-                                                <h:commandLink title="Cancelar cita" class="btn botonesinv" action="#{citaControlador.cancelarCitaAprendiz(c)}" >
-                                                    <i class="fa fa-times-circle fa-lg"></i>
-                                                </h:commandLink>
-                                                <hr/>
-                                            </c:when>
-                                            <c:set var="#{citaControlador.citaTemp}" value="#{c}" />
-                                        </div>
-                                    </c:choose>
-                                    <c:set var="citaAnterior" value="#{c}" />
+                                    </c:if>
+                                    <c:forEach items="#{citaControlador.listarCitasAprendizLog(usuarioControlador.usuarioLog.aprendiz)}" var="c">
+                                        <c:choose>
+                                            <div class="col-xm-12 col-sm-12 col-md-6">
+                                                <c:when test="#{c.estado == 'PENDIENTE'}">
+                                                    <h3>Ud tiene una cita programada</h3>
+                                                    <h4>Fecha y hora</h4>
+                                                    <h5>#{c.fecha.month}/#{c.fecha.day} &nbsp; #{c.fecha.hours}:#{c.fecha.minutes}</h5>
+                                                    <h4>Psicologo</h4>
+                                                    <h5>#{c.idPsicologo.usuario.nombres} #{c.idPsicologo.usuario.primerApellido}</h5>
+                                                    <h4>Cita confirmada</h4>
+                                                    <h:commandLink title="Cancelar cita" class="btn botonesinv" action="#{citaControlador.cancelarCitaAprendiz(c)}" >
+                                                        <i class="fa fa-times-circle fa-lg"></i>
+                                                    </h:commandLink>
+                                                    <hr/>
+                                                </c:when>
+                                                <c:when test="#{c.estado == 'SOLICITADA'}">
+                                                    <h3>Ud solicito una cita</h3>
+                                                    <h4>Fecha y hora</h4>
+                                                    <h5>#{c.fecha.month}/#{c.fecha.day} &nbsp; #{c.fecha.hours}:#{c.fecha.minutes}</h5>
+                                                    <h4>Psicologo</h4>
+                                                    <h5>#{c.idPsicologo.usuario.nombres} #{c.idPsicologo.usuario.primerApellido}</h5>
+                                                    <h4>No ah sido confirmada</h4>
+                                                    <h:commandLink title="Cancelar cita" class="btn botonesinv" action="#{citaControlador.cancelarCitaAprendiz(c)}" >
+                                                        <i class="fa fa-times-circle fa-lg"></i>
+                                                    </h:commandLink>
+                                                    <hr/>
+                                                </c:when>
+                                                <c:set var="#{citaControlador.citaTemp}" value="#{c}" />
+                                            </div>
+                                        </c:choose>
+                                        <c:set var="citaAnterior" value="#{c}" />
+                                        <br/>
+                                    </c:forEach>
                                     <br/>
-                                </c:forEach>
-                                <br/>
-                            </c:if>
+                                </c:if>
+                            </div>
                         </h:form>
                     </div>
                 </div>
