@@ -51,33 +51,49 @@
                                 <div class="col-xm-12 col-sm-12 col-md-6">
                                     <h3>Usted no tiene citas pendientes <br/> <small>Solicite la suya ahora !</small></h3>
                                     <br/>
-                                    <h:commandLink class="btn botones2 btn-block">Solicitar cita</h:commandLink>
+                                    <h:commandLink class="btn botones2 btn-block" onclick="$('#modalNuevaCita').modal('show'); return false;">Solicitar cita</h:commandLink>
                                 </div>
                             </c:if>
+
                             <c:if test="#{usuarioControlador.usuarioLog.aprendiz.citaCollection.size() != 0}" >
                                 <c:forEach items="#{usuarioControlador.usuarioLog.aprendiz.citaCollection}" var="c">
                                     <c:choose>
-                                        <c:when test="#{c.estado == 'pendiente'}">
-                                            <h3>Tu proxima cita</h3>
+                                        <c:when test="#{c.estado == 'PENDIENTE'}">
+                                            <h3>Ud tiene una cita programada</h3>
                                             <h4>Fecha y hora</h4>
                                             <h5>#{c.fecha.month}/#{c.fecha.day} &nbsp; #{c.fecha.hours}:#{c.fecha.minutes}</h5>
                                             <h4>Psicologo</h4>
                                             <h5>#{c.idPsicologo.usuario.nombres} #{c.idPsicologo.usuario.primerApellido}</h5>
-                                            <div class="col-xm-12 col-sm-12 col-md-6">
-                                                <h:commandLink class="btn botones btn-block" onclick="$('#modalValorar').modal('show'); return false;" >
-                                                    Valorar ultima cita
-                                                    <f:setPropertyActionListener value="#{c}" target="#{citaControlador.citaTemp}"/>
-                                                </h:commandLink>
-                                            </div>
+                                        </c:when>
+                                        <c:when test="#{c.estado == 'SOLICITADA'}">
+                                            <h3>Ud solicito una cita</h3>
+                                            <h4>Fecha y hora</h4>
+                                            <h5>#{c.fecha.month}/#{c.fecha.day} &nbsp; #{c.fecha.hours}:#{c.fecha.minutes}</h5>
+                                            <h4>Psicologo</h4>
+                                            <h5>#{c.idPsicologo.usuario.nombres} #{c.idPsicologo.usuario.primerApellido}</h5>
+                                            <h4>No ah sido confirmada</h4>
+                                        </c:when>
+                                        <c:when test="#{c.estado == 'CUMPLIDA'}">
+                                            <h3>Su ultima cita fue</h3>
+                                            <h4>Fecha y hora</h4>
+                                            <h5>#{c.fecha.month}/#{c.fecha.day} &nbsp; #{c.fecha.hours}:#{c.fecha.minutes}</h5>
+                                            <h4>Psicologo</h4>
+                                            <h5>#{c.idPsicologo.usuario.nombres} #{c.idPsicologo.usuario.primerApellido}</h5>
+                                            <h4>No ah sido confirmada</h4>
                                         </c:when>
                                     </c:choose>
                                     <br/>
-                                    
                                 </c:forEach>
+                                <c:if test="#{usuarioControlador.usuarioLog.aprendiz.citaCollection.size() > 0}" >
+                                    <div class="col-xm-12 col-sm-12 col-md-6">
+                                        <h:commandLink class="btn botones btn-block" onclick="$('#modalValorar').modal('show'); return false;" >
+                                            Valorar ultima cita
+                                            <f:setPropertyActionListener value="#{c}" target="#{citaControlador.citaTemp}"/>
+                                        </h:commandLink>
+                                    </div>
+                                </c:if>
                                 <br/>
-
                             </c:if>
-
                         </h:form>
                     </div>
                 </div>

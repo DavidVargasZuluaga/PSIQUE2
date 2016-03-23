@@ -6,6 +6,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
@@ -23,7 +24,10 @@ import javax.servlet.http.HttpServletRequest;
 public class UsuarioControlador implements Serializable {
 
     @Inject
-    private UsuarioFacade ejbUsuario;
+    private RolFacade rolFacade;
+
+    @Inject
+    private UsuarioFacade usuarioFacade;
 
     @Inject
     private AprendizFacade aprendizFacade;
@@ -33,18 +37,33 @@ public class UsuarioControlador implements Serializable {
 
     @Inject
     private CitaFacade citaFacade;
+    
+    @Inject
+    private FichaFacade fichaFacade;
 
+    private int modalCreacion;
+    
     private Usuario usuarioLog;
+    private Usuario usuarioTemp;
     private Aprendiz aprendizLog;
-    private List<Usuario> listaUsuarios;
+    private Aprendiz aprendizTemp;
     private Psicologo psicologoLog;
+    
+    private List<Usuario> listaUsuarios;
+    private List<Psicologo> listaPsicologos;
 
     @PostConstruct
     public void init() {
+        modalCreacion = 0;
+        
         usuarioLog = new Usuario();
-        listaUsuarios = new ArrayList();
+        usuarioTemp = new Usuario();
         aprendizLog = new Aprendiz();
+        aprendizTemp = new Aprendiz();
         psicologoLog = new Psicologo();
+        
+        listaUsuarios = new ArrayList();
+        listaPsicologos = psicologoFacade.findAll();
     }
 
     public String autenticar() {
@@ -56,7 +75,7 @@ public class UsuarioControlador implements Serializable {
         try {
             Long doc = Long.parseLong((String) params.get("documento"));
             String clave = (String) params.get("clave");
-            this.listaUsuarios = ejbUsuario.findAll();
+            this.listaUsuarios = usuarioFacade.findAll();
             for (int i = 0; i < listaUsuarios.size(); i++) {
                 if (listaUsuarios.get(i).getNoDocumento() == doc && listaUsuarios.get(i).getClave().equals(clave)) {
                     this.usuarioLog = listaUsuarios.get(i);
@@ -109,7 +128,71 @@ public class UsuarioControlador implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    public void crearUsuario() {
+        usuarioTemp = new Usuario();
+        boolean existe = true;
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        try {
+            usuarioTemp.setIdRol(rolFacade.find(4));
+            usuarioTemp.setTipoDocumento((String) params.get("tipoDocumento"));
+            usuarioTemp.setNoDocumento(Long.parseLong((String) params.get("documento")));
+            usuarioTemp.setClave((String) params.get("clave"));
+            usuarioTemp.setClave((String) params.get("correo"));
+            usuarioTemp.setEstado("ACTIVO");
+            usuarioTemp.setFechaNacimiento((Date) params.get("fechaNacimiento"));
+            usuarioTemp.setNombres((String) params.get("nombres"));
+            usuarioTemp.setPrimerApellido((String) params.get("primerApellido"));
+            usuarioTemp.setSegundoApellido((String) params.get("segundoApellido"));
+            usuarioTemp.setTelefono((String) params.get("telefono"));
+            for (int i = 0; i < usuarioFacade.findAll().size() ; i++) {
+                if(usuarioFacade.findAll().get(i).getNoDocumento() == usuarioTemp.getNoDocumento()){
+                    existe = false;
+                    usuarioTemp = new Usuario();
+                    break;
+                }
+            }
+            if(existe){
+                usuarioFacade.create(usuarioTemp);
+                modalCreacion = 1;
+            }else{
+                modalCreacion = 2;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public String crearAprendiz(){
+        crearUsuario();
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        
+        try {
+            if(usuarioTemp != null){
+                aprendizTemp.setUsuario(usuarioTemp);
+                aprendizTemp.setFicha(fichaFacade.find((Integer) params.get("Ficha")));
+                aprendizTemp.setUbicacion((String) params.get("ubicacion"));
+                aprendizTemp.setSexo((String) params.get("sexo"));
+                aprendizTemp.setEstadoCivil((String) params.get("estadoCivil")); 
+                aprendizTemp.setRaza((String) params.get("raza")); 
+                aprendizTemp.setReligion((String) params.get("religion"));
+                aprendizTemp.setTendenciaPolitica((String) params.get("politica")); 
+                aprendizTemp.setOrientacionSexual((String) params.get("sexual"));
+                aprendizTemp.setDiscapacidad((String) params.get("discapacidad")); 
+                aprendizTemp.setPasaTiempo((String) params.get("pasaTiempo"));
+                aprendizFacade.create(aprendizTemp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return " ";
     }
 
     public String cancelarCita(Cita cita) {
@@ -158,6 +241,46 @@ public class UsuarioControlador implements Serializable {
 
     public Usuario getUsuarioLog() {
         return usuarioLog;
+    }
+
+    public int getModalCreacion() {
+        return modalCreacion;
+    }
+
+    public void setModalCreacion(int modalCreacion) {
+        this.modalCreacion = modalCreacion;
+    }
+
+    public Usuario getUsuarioTemp() {
+        return usuarioTemp;
+    }
+
+    public void setUsuarioTemp(Usuario usuarioTemp) {
+        this.usuarioTemp = usuarioTemp;
+    }
+
+    public Aprendiz getAprendizTemp() {
+        return aprendizTemp;
+    }
+
+    public void setAprendizTemp(Aprendiz aprendizTemp) {
+        this.aprendizTemp = aprendizTemp;
+    }
+
+    public Psicologo getPsicologoLog() {
+        return psicologoLog;
+    }
+
+    public void setPsicologoLog(Psicologo psicologoLog) {
+        this.psicologoLog = psicologoLog;
+    }
+
+    public List<Psicologo> getListaPsicologos() {
+        return listaPsicologos;
+    }
+
+    public void setListaPsicologos(List<Psicologo> listaPsicologos) {
+        this.listaPsicologos = listaPsicologos;
     }
 
     public void setUsuarioLog(Usuario usuarioLog) {

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -88,6 +89,36 @@
                             </div>
                             <div class="modal-footer">
                                 <h:commandButton action="#{citaControlador.valorarCita()}" class="botones2 btn" value="Crear Cuenta"></h:commandButton>
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            
+            <div class="modal fade " id="modalNuevaCita" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod1">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Solicitar cita</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="control-label">
+                                    <label style="color:black;">Seleccione el psicologo de su preferencia</label>
+                                    <select name="psicologo" class="form-control">
+                                        <c:forEach var="p" items="#{usuarioControlador.listaPsicologos}">
+                                            <option value="#{p.idPsicologo}" >#{p.usuario.nombres} #{p.usuario.primerApellido} #{p.usuario.segundoApellido}</option>
+                                        </c:forEach>
+                                    </select>
+                                    <br/>
+                                    <label style="color:black;">Seleccione la fecha para su cita</label>
+                                    <input type="text" class="form-control" name="fecha"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <h:commandButton action="#{citaControlador.solicitarCita(usuarioControlador.usuarioLog.aprendiz)}" class="botones2 btn" value="Solicitar"></h:commandButton>
                                 <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
                             </div>
                         </div>
