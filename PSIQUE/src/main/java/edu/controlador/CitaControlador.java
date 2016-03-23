@@ -6,7 +6,9 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.context.ExternalContext;
@@ -31,10 +33,21 @@ public class CitaControlador implements Serializable {
     private Cita citaTemp;
     private Cita citaAnterior;
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-    
+
     @PostConstruct
     private void init() {
         citaTemp = new Cita();
+    }
+    
+    public List<Cita> listarCitasAprendizLog(Aprendiz a){
+        List<Cita> resul = new ArrayList();
+        List<Cita> citas = citaFacade.findAll();
+        for (int i = 0; i < citas.size(); i++) {
+            if(citas.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())){
+                resul.add(citas.get(i));
+            }
+        }
+        return resul;
     }
 
     public String valorarCita() {
@@ -59,12 +72,31 @@ public class CitaControlador implements Serializable {
         }
         return "/modAprendiz/citaProgramada.xhtml";
     }
-    
-    public String cancelarCitaAprendiz(Cita c){
+
+    public String cancelarCitaAprendiz(Cita c) {
         citaTemp = citaFacade.find(c.getIdCita());
         citaTemp.setEstado("CANCELADA");
         citaFacade.edit(citaTemp);
         return "/modAprendiz/citaProgramada.xhtml";
+    }
+
+    public boolean confirmacionSolicitud(Aprendiz a) {
+        boolean res = false;
+        List<Cita> citas = (List) a.getCitaCollection();
+        for (int i = 0; i < citas.size(); i++) {
+            switch (citas.get(i).getEstado()) {
+                case "PENDIENTE":
+                    res = true;
+                    break;
+                case "SOLICITADA":
+                    res = true;
+                    break;
+                default:
+                    res = false;
+                    break;
+            }
+        }
+        return res;
     }
 
     public Cita getCitaTemp() {
