@@ -29,6 +29,7 @@ public class CitaControlador implements Serializable {
     private PsicologoFacade psicologoFacade;
 
     private Cita citaTemp;
+    private Cita citaAnterior;
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     
     @PostConstruct
@@ -56,8 +57,14 @@ public class CitaControlador implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return "/citaProgramada.xhtml";
+        return "/modAprendiz/citaProgramada.xhtml";
+    }
+    
+    public String cancelarCitaAprendiz(Cita c){
+        citaTemp = citaFacade.find(c.getIdCita());
+        citaTemp.setEstado("CANCELADA");
+        citaFacade.edit(citaTemp);
+        return "/modAprendiz/citaProgramada.xhtml";
     }
 
     public Cita getCitaTemp() {
@@ -66,6 +73,14 @@ public class CitaControlador implements Serializable {
 
     public void setCitaTemp(Cita citaTemp) {
         this.citaTemp = citaTemp;
+    }
+
+    public Cita getCitaAnterior() {
+        return citaAnterior;
+    }
+
+    public void setCitaAnterior(Cita citaAnterior) {
+        this.citaAnterior = citaAnterior;
     }
 
 }

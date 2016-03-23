@@ -64,6 +64,7 @@
                                             <h5>#{c.fecha.month}/#{c.fecha.day} &nbsp; #{c.fecha.hours}:#{c.fecha.minutes}</h5>
                                             <h4>Psicologo</h4>
                                             <h5>#{c.idPsicologo.usuario.nombres} #{c.idPsicologo.usuario.primerApellido}</h5>
+                                            <hr/>
                                         </c:when>
                                         <c:when test="#{c.estado == 'SOLICITADA'}">
                                             <h3>Ud solicito una cita</h3>
@@ -72,6 +73,8 @@
                                             <h4>Psicologo</h4>
                                             <h5>#{c.idPsicologo.usuario.nombres} #{c.idPsicologo.usuario.primerApellido}</h5>
                                             <h4>No ah sido confirmada</h4>
+                                            <h:commandLink class="btn botonesinv" action="#{citaControlador.cancelarCitaAprendiz(c)}" ><i class="fa fa-trash fa-lg"></i></h:commandLink>
+                                            <hr/>
                                         </c:when>
                                         <c:when test="#{c.estado == 'CUMPLIDA'}">
                                             <h3>Su ultima cita fue</h3>
@@ -81,7 +84,9 @@
                                             <h5>#{c.idPsicologo.usuario.nombres} #{c.idPsicologo.usuario.primerApellido}</h5>
                                             <h4>No ah sido confirmada</h4>
                                         </c:when>
+                                        <c:set var="#{citaControlador.citaTemp}" value="#{c}" />
                                     </c:choose>
+                                    <c:set var="citaAnterior" value="#{c}" />
                                     <br/>
                                 </c:forEach>
                                 <c:if test="#{usuarioControlador.usuarioLog.aprendiz.citaCollection.size() > 0}" >
