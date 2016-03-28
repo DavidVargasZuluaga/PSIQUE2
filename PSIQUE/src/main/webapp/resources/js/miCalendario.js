@@ -25,9 +25,8 @@ $(function () {
     
     $('#calendarioMañana').timepicker({
         'step': 30,
-        'minTime': '9:30am',
-        'maxTime': '11:30am',
-        'showDuration': true
+        'minTime': '9:30 am',
+        'maxTime': '11:30 am'
     });
     
 });

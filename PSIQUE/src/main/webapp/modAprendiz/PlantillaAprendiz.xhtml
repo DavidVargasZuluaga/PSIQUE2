@@ -115,14 +115,13 @@
                                             <option value="#{p.idPsicologo}" >#{p.usuario.nombres} #{p.usuario.primerApellido} #{p.usuario.segundoApellido}</option>
                                         </c:forEach>
                                     </select>
-                                    <div class="input-group">
-                                        <label style="color:black;">Fecha:</label>
-                                        <input type="datetime-local" data-format="MM/dd/yyy" class="form-control" value="2012-04-05"/>
-                                    </div>
-                                    <div class="input-group">
-                                        <label style="color:black;">Hora</label>
-                                        <input id="calendarioMañana" type="text" class="time form-control" />
-                                    </div>
+                                    <br/>
+                                    <label style="color:black;" >Fecha:</label>
+                                    <input type="date" class="form-control" name="fecha"/>
+                                    <br/>
+                                    <label style="color:black;">Hora</label>
+                                    <input id="calendarioMañana" type="text" class="time form-control" name="hora"/>
+                                    <br/>
                                 </div>
                             </div>
                             <div class="modal-footer">

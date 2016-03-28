@@ -48,7 +48,7 @@
                 <div class="col-xs-12 col-sm-8 col-md-9" style="color: black;" >
                     <div class="container-fluid row col-xs-12 col-sm-8 col-md-6">
                         <h:form>
-                            <c:if test="#{citaControlador.confirmacionSolicitud(usuarioControlador.usuarioLog.aprendiz) == false}">
+                            <c:if test="#{citaControlador.confirmacionSolicitud(usuarioControlador.usuarioLog.aprendiz) == 0}">
                                 <div class="col-xm-12 ">
                                     <h3>Usted no tiene citas pendientes <br/> <small>Solicite la suya ahora !</small></h3>
                                     <h:commandLink class="btn botones2 btn-block" onclick="$('#modalNuevaCita').modal('show'); return false;">Solicitar cita</h:commandLink>
@@ -75,34 +75,36 @@
                                 <c:choose>
                                     <c:when test="#{c.estado == 'PENDIENTE'}">
                                         <div class="col-xm-12 ">
-                                            <h3>Ud tiene una cita programada</h3>
+                                            <h:commandLink title="Cancelar cita" class="btn botonesinv" action="#{citaControlador.cancelarCitaAprendiz(c)}" >
+                                                <i class="fa fa-times-circle fa-lg"></i>
+                                            </h:commandLink><h3>Ud tiene una cita programada</h3>
                                             <h4>Fecha y hora</h4>
-                                            <h5>#{c.fecha.month}/#{c.fecha.day} &nbsp; #{c.fecha.hours}:#{c.fecha.minutes}</h5>
+                                            <h:outputLabel style="color:black;" class="label" value="#{c.fecha}">
+                                                <f:convertDateTime pattern="dd/MM/yyy hh:mm" />
+                                            </h:outputLabel>
                                             <h4>Psicologo</h4>
                                             <h5>#{c.idPsicologo.usuario.nombres} #{c.idPsicologo.usuario.primerApellido}</h5>
                                             <h4>Cita confirmada</h4>
-                                            <h:commandLink title="Cancelar cita" class="btn botonesinv" action="#{citaControlador.cancelarCitaAprendiz(c)}" >
-                                                <i class="fa fa-times-circle fa-lg"></i>
-                                            </h:commandLink>
                                             <hr/>
                                         </div>
                                     </c:when>
                                     <c:when test="#{c.estado == 'SOLICITADA'}">
                                         <div class="col-xm-12 ">
-                                            <h3>Ud solicito una cita</h3>
-                                            <h4>Fecha y hora</h4>
-                                            <h5>#{c.fecha.month}/#{c.fecha.day} &nbsp; #{c.fecha.hours}:#{c.fecha.minutes}</h5>
-                                            <h4>Psicologo</h4>
-                                            <h5>#{c.idPsicologo.usuario.nombres} #{c.idPsicologo.usuario.primerApellido}</h5>
-                                            <h4>No ah sido confirmada</h4>
                                             <h:commandLink title="Cancelar cita" class="btn botonesinv" action="#{citaControlador.cancelarCitaAprendiz(c)}" >
                                                 <i class="fa fa-times-circle fa-lg"></i>
                                             </h:commandLink>
+                                            <h:outputLabel style="font-size:20px;" >&nbsp; Ud solicito una cita</h:outputLabel>
+                                            <h4>Fecha y hora</h4>
+                                            <h:outputLabel style="color:black;" class="label" value="#{c.fecha}">
+                                                <f:convertDateTime pattern="dd/MM/yyy hh:mm" />
+                                            </h:outputLabel>
+                                            <h4>Psicologo</h4>
+                                            <h5>#{c.idPsicologo.usuario.nombres} #{c.idPsicologo.usuario.primerApellido}</h5>
+                                            <h4>No ah sido confirmada</h4>
                                             <hr/>
                                         </div>
                                     </c:when>
                                 </c:choose>
-                                <br/>
                             </c:forEach>
                             <br/>
                         </h:form>

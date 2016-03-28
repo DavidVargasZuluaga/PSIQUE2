@@ -32,7 +32,7 @@ public class CitaControlador implements Serializable {
 
     private Cita citaTemp;
     private Cita citaAnterior;
-    private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mma");
 
     @PostConstruct
     private void init() {
@@ -56,7 +56,7 @@ public class CitaControlador implements Serializable {
         ExternalContext externalContext = facesContext.getExternalContext();
         Map params = externalContext.getRequestParameterMap();
         HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
-        c.setValoracion(Integer.parseInt((String)params.get("valor")));
+        c.setValoracion(Integer.parseInt((String) params.get("valor")));
         citaFacade.edit(c);
         return "/modAprendiz/citaProgramada.xhtml";
     }
@@ -70,7 +70,8 @@ public class CitaControlador implements Serializable {
         try {
             citaTemp.setIdAprendiz(a);
             citaTemp.setIdPsicologo(psicologoFacade.find(Long.parseLong((String) params.get("psicologo"))));
-            citaTemp.setFecha(format.parse((String) params.get("fecha")));
+            String hora = (params.get("fecha")+" "+params.get("hora"));
+            citaTemp.setFecha((Date) format.parse(hora));
             citaTemp.setEstado("SOLICITADA");
             citaFacade.create(citaTemp);
         } catch (Exception e) {
@@ -86,27 +87,28 @@ public class CitaControlador implements Serializable {
         return "/modAprendiz/citaProgramada.xhtml";
     }
 
-    public boolean confirmacionSolicitud(Aprendiz a) {
-        boolean res = false;
+    public int confirmacionSolicitud(Aprendiz a) {
+        int res = 0;
         List<Cita> listaCitas = citaFacade.findAll();
         List<Cita> citas = new ArrayList();
-        for (int i = 0; i < listaCitas.size(); i++) {
-            if (listaCitas.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())) {
-                citas.add(listaCitas.get(i));
+        try {
+            for (int i = 0; i < listaCitas.size(); i++) {
+                if (listaCitas.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())) {
+                    citas.add(listaCitas.get(i));
+                }
             }
-        }
-        for (int i = 0; i < citas.size(); i++) {
-            switch (citas.get(i).getEstado()) {
-                case "PENDIENTE":
-                    res = true;
-                    break;
-                case "SOLICITADA":
-                    res = true;
-                    break;
-                default:
-                    res = false;
-                    break;
+            for (int i = 0; i < citas.size(); i++) {
+                switch (citas.get(i).getEstado()) {
+                    case "PENDIENTE":
+                        res = 1;
+                        break;
+                    case "SOLICITADA":
+                        res = 1;
+                        break;
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return res;
     }
@@ -115,7 +117,7 @@ public class CitaControlador implements Serializable {
         citaTemp = new Cita();
         List<Cita> listaCitas = citaFacade.findAll();
         for (int i = 0; i < listaCitas.size(); i++) {
-            if(listaCitas.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz()) && listaCitas.get(i).getEstado().equals("CUMPLIDA")){
+            if (listaCitas.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz()) && listaCitas.get(i).getEstado().equals("CUMPLIDA")) {
                 citaTemp = listaCitas.get(i);
             }
         }
