@@ -31,6 +31,7 @@
                                 <br/> 
                                 <h:outputLabel style="color:#5a7391;" class="profile-usertitle-job centrar" value="#{usuarioControlador.usuarioLog.idRol.nombre}"/>
                             </div>
+                            <br/>
                             <div class="profile-usermenu botonesnav">
                                 <ul class="nav botonesnav">
                                     <li><a class="botonesnav" href="/PSIQUE/modAprendiz/miPerfil.xhtml" ><i class="fa fa-user fa-lg"></i> &nbsp; Mi perfil</a></li>
@@ -58,8 +59,10 @@
                                 <div class="col-xm-12 " >
                                     <h3>Ultima cita cumplida</h3>
                                     <h4>Fecha y hora</h4>
-                                    <h5>#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).fecha.month}/#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).fecha.day} &nbsp; #{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).fecha.hours}:#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).fecha.minutes}</h5>
-                                    <h4>Psicologo</h4>
+                                    <h:outputLabel style="color:black;" class="label" value="#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).fecha}">
+                                        <f:convertDateTime pattern="dd/MM/yyy hh:mm" />
+                                    </h:outputLabel>
+                                    <h4>Psicologo</h4> 
                                     <h5>#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).idPsicologo.usuario.nombres} #{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).idPsicologo.usuario.primerApellido}</h5>
                                     <br/>
                                     <h:commandLink class="btn botones btn-block" onclick="$('#modalValorar').modal('show'); return false;" >
