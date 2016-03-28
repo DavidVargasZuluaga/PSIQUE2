@@ -195,6 +195,9 @@ public class UsuarioControlador implements Serializable {
         }
         return " ";
     }
+    
+    // FELIPE ES UN PUERCO METIENDO CONTENIDO DEL MODULO CITAS EN ESTE CONTROLADOR
+    // PENDIENTE POR MODIFICAR
 
     public String cancelarCita(Cita cita) {
         cita.setEstado("cancelada");

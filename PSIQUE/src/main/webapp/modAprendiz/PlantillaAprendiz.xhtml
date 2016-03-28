@@ -23,6 +23,7 @@
         <h:outputScript library="js" name="bootstrap-table.js" target="body"/>
         <h:outputScript library="js" name="jquery.timepicker.js" target="body"/>
         <h:outputScript library="js" name="miCalendario.js" target="body"/>
+        <h:outputScript library="js" name="mostrar.js" target="body"/>
 
         <f:event type="preRenderView" listener="#{usuarioControlador.validarSesion()}"/>
 
@@ -109,19 +110,49 @@
                             </div>
                             <div class="modal-body">
                                 <div class="control-label">
-                                    <label style="color:black;">Seleccione el psicologo de su preferencia</label>
-                                    <select name="psicologo" class="form-control">
-                                        <c:forEach var="p" items="#{usuarioControlador.listaPsicologos}">
-                                            <option value="#{p.idPsicologo}" >#{p.usuario.nombres} #{p.usuario.primerApellido} #{p.usuario.segundoApellido}</option>
-                                        </c:forEach>
+                                    <label style="color:black;">Seleccione el horario de su preferencia</label>
+                                    <select class="form-control" onchange="mostrarJornada(this.value)">
+                                        <option disabled="true" selected="true">Jornada</option>
+                                        <option value="1">Mañana</option>
+                                        <option value="2">Tarde</option>
                                     </select>
                                     <br/>
-                                    <label style="color:black;" >Fecha:</label>
-                                    <input type="date" class="form-control" name="fecha"/>
-                                    <br/>
-                                    <label style="color:black;">Hora</label>
-                                    <input id="calendarioMañana" type="text" class="time form-control" name="hora"/>
-                                    <br/>
+                                    <div id="Mañana" style="display: none;" >
+                                        <label style="color:black;">Seleccione el psicologo de su preferencia</label>
+                                        <select name="psicologo" class="form-control">
+                                            <option disabled="true" selected="true">Psicologos</option>
+                                            <c:forEach var="p" items="#{usuarioControlador.listaPsicologos}">
+                                                <c:if test="#{p.jornada == 'Mañana'}">
+                                                    <option value="#{p.idPsicologo}" >#{p.usuario.nombres} #{p.usuario.primerApellido} #{p.usuario.segundoApellido}</option>
+                                                </c:if>
+                                            </c:forEach>
+                                        </select>
+                                        <br/>
+                                        <label style="color:black;" >Fecha:</label>
+                                        <input type="date" class="form-control" name="fecha"/>
+                                        <br/>
+                                        <label style="color:black;">Hora</label>
+                                        <input id="calendarioMañana" type="text" class="time form-control" name="hora"/>
+                                        <br/>
+                                    </div>
+                                    <div id="Tarde" style="display: none;" >
+                                        <label style="color:black;">Seleccione el psicologo de su preferencia</label>
+                                        <select name="psicologo" class="form-control">
+                                            <option disabled="true" selected="true">Psicologos</option>
+                                            <c:forEach var="p" items="#{usuarioControlador.listaPsicologos}">
+                                                <c:if test="#{p.jornada == 'Tarde'}">
+                                                    <option value="#{p.idPsicologo}" >#{p.usuario.nombres} #{p.usuario.primerApellido} #{p.usuario.segundoApellido}</option>
+                                                </c:if>
+                                            </c:forEach>
+                                        </select>
+                                        <br/>
+                                        <label style="color:black;" >Fecha:</label>
+                                        <input type="date" class="form-control" name="fecha"/>
+                                        <br/>
+                                        <label style="color:black;">Hora</label>
+                                        <input id="calendarioTarde" type="text" class="time form-control" name="hora"/>
+                                        <br/>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">

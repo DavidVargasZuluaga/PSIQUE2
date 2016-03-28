@@ -29,4 +29,10 @@ $(function () {
         'maxTime': '11:30 am'
     });
     
+    $('#calendarioTarde').timepicker({
+        'step': 30,
+        'minTime': '12:30 pm',
+        'maxTime': '4:30 pm'
+    });
+    
 });
