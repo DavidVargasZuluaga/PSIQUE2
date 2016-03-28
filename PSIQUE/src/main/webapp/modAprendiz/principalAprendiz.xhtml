@@ -2,7 +2,9 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="PlantillaAprendiz.xhtml">
 
         <ui:define name="title">
@@ -44,11 +46,20 @@
                 </div>
                 <div class="col-xs-12 col-sm-8 col-md-9" style="color: black;" >
                     <div class="container-fluid centrar">
-                            <h2>Bienvenido Aprendiz</h2>
+                        <h1>Bienvenido Aprendiz</h1>
+                        <br/>
+                        <h:outputLabel style="color:black; font-size: xx-large;" class="label" value="#{usuarioControlador.fechaActual}">
+                            <f:convertDateTime pattern="dd/MM/yyy HH:mm" />
+                        </h:outputLabel>
+                        <hr/>
+                        <c:choose >
+                            <c:when test="#{(usuarioControlador.fechaActual.hours != 1)}">
+                                <h3>A través de otros nos convertimos en nosotros mimos. <small>Lev S. Vygotsky</small></h3>
+                            </c:when>
+                        </c:choose>
                     </div>
                 </div>
             </div>
         </ui:define>
-
     </ui:composition>
 </html>

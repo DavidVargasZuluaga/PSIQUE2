@@ -13,18 +13,15 @@
         <link rel="shortcut icon" type="image/x-icon" href="/resources/img/icono.ico"/>
 
         <h:outputStylesheet library="css" name="bootstrap.css"/>
-        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
         <h:outputStylesheet library="css" name="estilos.css"/>
         <h:outputStylesheet library="css" name="font-awesome.css"/>
-        <h:outputStylesheet library="css" name="bootstrap-table.css"/>
         <h:outputStylesheet library="css" name="bootstrap-table.min.css"/>
-        
+
         <h:outputScript library="js" name="jquery-1.12.2.min.js" target="head"/>
         <h:outputScript library="js" name="bootstrap.js" target="body"/>
-        <h:outputScript library="js" name="bootstrap.min.js" target="body"/>
         <h:outputScript library="js" name="bootstrap-table.js" target="body"/>
-        <h:outputScript library="js" name="bootstrap-table.min.js" target="body"/>
-
+        <h:outputScript library="js" name="datePicker.js" target="body"/>
+        
         <f:event type="preRenderView" listener="#{usuarioControlador.validarSesion()}"/>
 
         <title>
@@ -99,7 +96,7 @@
                     </h:form>
                 </div>
             </div>
-            
+
             <div class="modal fade " id="modalNuevaCita" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                 <div class="modal-dialog modal-sm" role="document">
                     <h:form class="form-horizontal form" id="mod1">
@@ -117,8 +114,10 @@
                                         </c:forEach>
                                     </select>
                                     <br/>
-                                    <label style="color:black;">Seleccione la fecha para su cita</label>
-                                    <input type="text" class="form-control" name="fecha"/>
+                                    <div class="input-group">
+                                        <label style="color:black;">Seleccione la fecha para su cita</label>
+                                        <input type="datetime-local" data-format="MM/dd/yyy HH:mm" class="form-control" value="2012-04-05"/>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">

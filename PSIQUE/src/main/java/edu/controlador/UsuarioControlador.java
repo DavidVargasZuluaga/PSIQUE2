@@ -42,6 +42,7 @@ public class UsuarioControlador implements Serializable {
     private FichaFacade fichaFacade;
 
     private int modalCreacion;
+    private Date fechaActual = new Date();
     
     private Usuario usuarioLog;
     private Usuario usuarioTemp;
@@ -301,6 +302,14 @@ public class UsuarioControlador implements Serializable {
 
     public void setAprendizLog(Aprendiz aprendizLog) {
         this.aprendizLog = aprendizLog;
+    }
+
+    public Date getFechaActual() {
+        return fechaActual;
+    }
+
+    public void setFechaActual(Date fechaActual) {
+        this.fechaActual = fechaActual;
     }
 
 }
