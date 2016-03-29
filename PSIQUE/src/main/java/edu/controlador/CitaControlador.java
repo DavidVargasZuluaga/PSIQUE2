@@ -34,9 +34,13 @@ public class CitaControlador implements Serializable {
     private Cita citaAnterior;
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mma");
 
+    private int modalCita;
+    
     @PostConstruct
     private void init() {
         citaTemp = new Cita();
+        
+        modalCita = 0;
     }
 
     public List<Cita> listarCitasAprendizLog(Aprendiz a) {
@@ -63,6 +67,8 @@ public class CitaControlador implements Serializable {
 
     public String solicitarCita(Aprendiz a) {
         citaTemp = new Cita();
+        boolean existe = false;
+        List<Cita> listaCitas = citaFacade.findAll();
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map params = externalContext.getRequestParameterMap();
@@ -72,8 +78,22 @@ public class CitaControlador implements Serializable {
             citaTemp.setIdPsicologo(psicologoFacade.find(Long.parseLong((String) params.get("psicologo"))));
             String hora = (params.get("fecha")+" "+params.get("hora"));
             citaTemp.setFecha((Date) format.parse(hora));
+            citaTemp.setValoracion(0);
             citaTemp.setEstado("SOLICITADA");
-            citaFacade.create(citaTemp);
+            for (int i = 0; i < listaCitas.size() ; i++) {
+                if(listaCitas.get(i).getFecha().equals(citaTemp.getFecha())){
+                    existe = true;
+                    break;
+                }
+            }
+            if(!existe){
+                modalCita = 0;
+                citaFacade.create(citaTemp);
+            } else {
+                modalCita = 1;
+                citaTemp = new Cita();
+            }
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -121,6 +141,9 @@ public class CitaControlador implements Serializable {
                 citaTemp = listaCitas.get(i);
             }
         }
+        if(citaTemp.getIdCita() == null){
+            citaTemp = null;
+        }
         return citaTemp;
     }
 
@@ -138,6 +161,14 @@ public class CitaControlador implements Serializable {
 
     public void setCitaAnterior(Cita citaAnterior) {
         this.citaAnterior = citaAnterior;
+    }
+
+    public int getModalCita() {
+        return modalCita;
+    }
+
+    public void setModalCita(int modalCita) {
+        this.modalCita = modalCita;
     }
 
 }

@@ -76,13 +76,14 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Codigo de cita #{c.idCita}</h4>
+                                <h4 class="modal-title" id="myModalLabel">Calificacion de atencion</h4>
                             </div>
                             <div class="modal-body">
                                 <div class="control-label">
-                                    <label style="color:black;">A su criterio, valore la atencion de esta cita</label>
+                                    <label style="color:black;">Valore la atencion que ud recibio por parte del psicologo en esta cita.</label>
                                     <br/>
-                                    <select name="valor">
+                                    <select name="valor" class="form-control">
+                                        <option disabled="true" selected="true">Calificacion</option>
                                         <option value="5" >Muy buena</option>
                                         <option value="4" >Buena</option>
                                         <option value="3" >Aceptable</option>
@@ -92,14 +93,13 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <h:commandButton action="#{citaControlador.valorarCita(citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz))}" class="botones2 btn" value="Crear Cuenta"></h:commandButton>
+                                <h:commandButton action="#{citaControlador.valorarCita(citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz))}" class="botones2 btn" value="Valorar cita   "></h:commandButton>
                                 <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
                             </div>
                         </div>
                     </h:form>
                 </div>
             </div>
-
             <div class="modal fade " id="modalNuevaCita" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                 <div class="modal-dialog modal-sm" role="document">
                     <h:form class="form-horizontal form" id="mod1">
