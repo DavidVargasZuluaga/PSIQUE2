@@ -196,6 +196,30 @@ public class UsuarioControlador implements Serializable {
         return " ";
     }
     
+    public String editarDatosPersonales(){
+        String res = "/PSIQUE";
+        usuarioFacade.edit(usuarioLog);
+        switch (usuarioLog.getIdRol().getIdRol()) {
+                case 1:
+                    res = "/index.xhtml";
+                    break;
+                case 2:
+                    res = "/modCoordinador/configuracion.xhtml";
+                    break;
+                case 3:
+                    res = "/modPsicologo/configuracion.xhtml";
+                    break;
+                case 4:
+                    res = "/modAprendiz/configuracion.xhtml";
+                    break;
+                default:
+                    res = "/index.xhtml";
+                    break;
+            }
+        
+        return "";
+    }
+    
     // FELIPE ES UN PUERCO METIENDO CONTENIDO DEL MODULO CITAS EN ESTE CONTROLADOR
     // PENDIENTE POR MODIFICAR
 

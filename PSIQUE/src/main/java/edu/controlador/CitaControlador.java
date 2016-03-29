@@ -76,7 +76,12 @@ public class CitaControlador implements Serializable {
         try {
             citaTemp.setIdAprendiz(a);
             citaTemp.setIdPsicologo(psicologoFacade.find(Long.parseLong((String) params.get("psicologo"))));
-            String hora = (params.get("fecha")+" "+params.get("hora"));
+            String hora;
+            if(citaTemp.getIdPsicologo().getJornada().equals("Mañana")){
+                hora = (params.get("fecha2")+" "+params.get("hora2"));
+            } else {
+                hora = (params.get("fecha")+" "+params.get("hora"));
+            }
             citaTemp.setFecha((Date) format.parse(hora));
             citaTemp.setValoracion(0);
             citaTemp.setEstado("SOLICITADA");

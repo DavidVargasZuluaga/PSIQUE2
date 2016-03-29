@@ -117,24 +117,6 @@
                                         <option value="2">Tarde</option>
                                     </select>
                                     <br/>
-                                    <div id="Mañana" style="display: none;" >
-                                        <label style="color:black;">Seleccione el psicologo de su preferencia</label>
-                                        <select name="psicologo" class="form-control">
-                                            <option disabled="true" selected="true">Psicologos</option>
-                                            <c:forEach var="p" items="#{usuarioControlador.listaPsicologos}">
-                                                <c:if test="#{p.jornada == 'Mañana'}">
-                                                    <option value="#{p.idPsicologo}" >#{p.usuario.nombres} #{p.usuario.primerApellido} #{p.usuario.segundoApellido}</option>
-                                                </c:if>
-                                            </c:forEach>
-                                        </select>
-                                        <br/>
-                                        <label style="color:black;" >Fecha:</label>
-                                        <input type="date" class="form-control" name="fecha"/>
-                                        <br/>
-                                        <label style="color:black;">Hora</label>
-                                        <input id="calendarioMañana" type="text" class="time form-control" name="hora"/>
-                                        <br/>
-                                    </div>
                                     <div id="Tarde" style="display: none;" >
                                         <label style="color:black;">Seleccione el psicologo de su preferencia</label>
                                         <select name="psicologo" class="form-control">
@@ -153,10 +135,54 @@
                                         <input id="calendarioTarde" type="text" class="time form-control" name="hora"/>
                                         <br/>
                                     </div>
+                                    <div id="Mañana" style="display: none;" >
+                                        <label style="color:black;">Seleccione el psicologo de su preferencia</label>
+                                        <select name="psicologo" class="form-control">
+                                            <option disabled="true" selected="true">Psicologos</option>
+                                            <c:forEach var="p" items="#{usuarioControlador.listaPsicologos}">
+                                                <c:if test="#{p.jornada == 'Mañana'}">
+                                                    <option value="#{p.idPsicologo}" >#{p.usuario.nombres} #{p.usuario.primerApellido} #{p.usuario.segundoApellido}</option>
+                                                </c:if>
+                                            </c:forEach>
+                                        </select>
+                                        <br/>
+                                        <label style="color:black;" >Fecha:</label>
+                                        <input type="date" class="form-control" name="fecha2"/>
+                                        <br/>
+                                        <label style="color:black;">Hora</label>
+                                        <input id="calendarioMañana" type="text" class="time form-control" name="hora2"/>
+                                        <br/>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <h:commandButton action="#{citaControlador.solicitarCita(usuarioControlador.usuarioLog.aprendiz)}" class="botones2 btn" value="Solicitar"></h:commandButton>
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div class="modal fade " id="modalDatosPersonales" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod14">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Editar datos personales</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="control-label">
+                                    <label style="color:black;">Correo electronico</label>
+                                    <br/>
+                                    <h:inputText class="form-control" value="#{usuarioControlador.usuarioLog.correo}" />
+                                    <label style="color:black;">Telefono</label>
+                                    <br/>
+                                    <h:inputText class="form-control" value="#{usuarioControlador.usuarioLog.telefono}" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <h:commandButton class="botones2 btn" value="Editar datos" action="#{usuarioControlador.editarDatosPersonales()}"></h:commandButton>
                                 <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
                             </div>
                         </div>

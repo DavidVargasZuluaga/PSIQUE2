@@ -6,7 +6,7 @@ $(document).ready(function () {
     ;
     $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
 
-    $('#formRegistro').formValidation({
+    $('#form').formValidation({
         message: 'Porfavor diligencie  este campo',
         icon: {
             valid: 'glyphicon glyphicon-ok',
@@ -14,7 +14,7 @@ $(document).ready(function () {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            primerNombre: {
+            nombres: {
                 validators: {
                     notEmpty: {
                         message: 'Porfavor ingrese el primer nombre del coordinador.'
@@ -78,10 +78,10 @@ $(document).ready(function () {
                     }
                 }
             },
-            documento: {
+            noDocumento: {
                 validators: {
                     notEmpty: {
-                        message: 'Porfavor ingrese el documento del coordinador'
+                        message: 'Porfavor digite su documento'
                     },
                     stringLength: {
                         min: 10,
@@ -113,7 +113,7 @@ $(document).ready(function () {
             correo: {
                 validators: {
                     notEmpty: {
-                        message: 'Porfavor digite el correo electronico'
+                        message: 'Porfavor digite su correo electronico'
                     },
                     regexp: {
                         regexp: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
@@ -124,17 +124,28 @@ $(document).ready(function () {
             clave: {
                 validators: {
                     notEmpty: {
-                        message: 'Porfavor digite la contraseña'
+                        message: 'Porfavor digite su contraseña'
                     }
                 }
-            }, 
+            },
+            confirmarClave: {
+                validators: {
+                    notEmpty: {
+                        message: 'Porfavor digite de nuevo su contraseña'
+                    },
+                    identical: {//Que sea el mismo valor de otro campo
+                        field: 'clave',
+                        message: 'Debe introducir el mismo valor de la contraseña'
+                    }
+                }
+            },
             gender: {
                 validators: {
                     notEmpty: {
                         message: 'La jornada es requerida'
                     }
                 }
-            }, 
+            },
             ficha: {
                 validators: {
                     notEmpty: {
@@ -158,7 +169,15 @@ $(document).ready(function () {
                         message: 'El numero de la ficha es requerido'
                     }
                 }
+            },
+            fecha: {
+                validators: {
+                    notEmpty: {
+                        message: 'La fecha de nacimiento es requerida'
+                    }
+                }
             }
         }
     });
 });
+
