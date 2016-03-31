@@ -34,12 +34,15 @@ public class MensajeControlador implements Serializable {
     private Date fechaActual;
 
     private Mensaje mensajeTemp;
+    private List<Mensaje> mensajes;
 
     @PostConstruct
     private void init() {
         mensajeTemp = new Mensaje();
         fechaActual = new Date();
+        mensajes = mensajeFacade.findAll();
     }
+    
 
     public List<Mensaje> cargarMensajesRecibidos(Usuario u) {
         List<Mensaje> tMensajes = mensajeFacade.findAll();
@@ -89,6 +92,17 @@ public class MensajeControlador implements Serializable {
         }
         return mensajes;
     }
+    
+    public String borrarMensajeAprendiz(Mensaje m){
+        String res = "/modAprendiz/mensajeria.xhtml";
+        try {
+            m.setEstado("Borrado");
+            mensajeFacade.edit(m);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
 
     public String reenviarMensaje(Usuario ue, Usuario ur) {
         String res = "";
@@ -101,7 +115,7 @@ public class MensajeControlador implements Serializable {
             m.setIdEmisor(ur);
             m.setIdReceptor(ue);
             m.setFecha(fechaActual);
-            String me = "ENVIADA";
+            String me = "Enviado";
             m.setEstado(me);
             m.setAsunto((String) params.get("asunto"));
             m.setMensaje((String) params.get("mensaje"));
@@ -119,6 +133,14 @@ public class MensajeControlador implements Serializable {
 
     public void setMensajeTemp(Mensaje mensajeTemp) {
         this.mensajeTemp = mensajeTemp;
+    }
+
+    public List<Mensaje> getMensajes() {
+        return mensajes;
+    }
+
+    public void setMensajes(List<Mensaje> mensajes) {
+        this.mensajes = mensajes;
     }
 
 }

@@ -206,7 +206,7 @@
                                     <h4 class="modal-title" id="myModalLabel">Confirmacion</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <h3>Esta seguro que desea eliminar el mensaje ?</h3>
+                                    <h3>Esta seguro que desea cancelar la cita ?</h3>
                                 </div>
                                 <div class="modal-footer">
                                     <h:commandButton class="botones2 btn" value="Cancelar" action="#{citaControlador.cancelarCitaAprendiz(c)}"></h:commandButton>
@@ -217,7 +217,7 @@
                     </div>
                 </div>
             </c:forEach>
-            <c:forEach var="l" items="#{usuarioControlador.usuarioLog.mensajeCollection1}">
+            <c:forEach var="l" items="#{mensajeControlador.mensajes}">
                 <div class="modal fade" id="modalVer#{l.idMensaje}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                     <div class="modal-dialog modal-sm" role="document">
                         <h:form class="form-horizontal form" id="mod2">
@@ -265,9 +265,28 @@
                         </h:form>
                     </div>
                 </div>
+                <div class="modal fade" id="modalVer#{l.idMensaje}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                    <div class="modal-dialog modal-sm" role="document">
+                        <h:form class="form-horizontal form" id="mod2">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Mensaje #{l.idMensaje}</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <h4><small>De:</small><br/>#{l.idEmisor.nombres} #{l.idEmisor.primerApellido} #{l.idEmisor.segundoApellido}</h4>
+                                    <h4><small>Asunto</small><br/>#{l.asunto}</h4>
+                                    <h4><small>Mensaje</small><br/>#{l.mensaje}</h4>
+                                    <br/>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
             </c:forEach>
-
-
             <div class="color1 row">
                 <div class="centrar container tfooter col-md-12">
                     <hr/>
@@ -280,6 +299,5 @@
                 </div>
             </div>
         </div>
-
     </h:body>
 </html>

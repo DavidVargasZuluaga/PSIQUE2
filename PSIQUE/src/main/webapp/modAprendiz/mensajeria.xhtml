@@ -59,7 +59,7 @@
                                         <table id="Usuarios1" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
                                             <thead>
                                                 <tr>
-                                                    <th data-field="Emisor" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Emisor</th>
+                                                    <th data-field="De" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">De</th>
                                                     <th data-field="Asunto" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Asunto</th>
                                                     <th data-field="Fecha" data-align="center" data-sortable="true" class="col-md-3">Fecha</th>
                                                     <th data-field="Edición" data-align="center" data-sortable="true" class="col-md-2">Edición</th>
@@ -82,7 +82,7 @@
                                                                 <h:commandLink class="btn botonesnav" onclick="$('#modalResponder#{l.idMensaje}').modal(); return false;" title="Responder">
                                                                     <i class="fa fa-envelope fa-lg"></i>
                                                                 </h:commandLink>
-                                                                <h:commandLink class="btn botonesnav" onclick="$('#modalVer#{l.idMensaje}').modal(); return false;" title="Eliminar">
+                                                                <h:commandLink class="btn botonesnav" onclick="$('#modalEliminarM#{l.idMensaje}').modal(); return false;" title="Eliminar">
                                                                     <i class="fa fa-trash-o fa-lg"></i>
                                                                 </h:commandLink>
                                                             </h:form>
@@ -101,7 +101,7 @@
                                         <table id="Usuarios1" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
                                             <thead>
                                                 <tr>
-                                                    <th data-field="Emisor" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Receptor</th>
+                                                    <th data-field="Destinatario" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Destinatario</th>
                                                     <th data-field="Asunto" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Asunto</th>
                                                     <th data-field="Fecha" data-align="center" data-sortable="true" class="col-md-3">Fecha</th>
                                                     <th data-field="Edición" data-align="center" data-sortable="true" class="col-md-2">Edición</th>
@@ -110,7 +110,7 @@
                                             <tbody>                                     
                                                 <c:forEach var="l" items="#{mensajeControlador.cargarMensajesEnviados(usuarioControlador.usuarioLog)}">  
                                                     <tr>
-                                                        <td>#{l.idEmisor.nombres}</td> 
+                                                        <td>#{l.idReceptor.nombres}</td> 
                                                         <td>#{l.asunto}</td> 
                                                         <td>
                                                             <h:outputLabel style="color:black;" class="label" value="#{l.fecha}">
@@ -124,7 +124,7 @@
                                                                 <h:commandLink class="btn botonesnav" onclick="$('#modalResponder#{l.idMensaje}').modal(); return false;" title="Responder">
                                                                     <i class="fa fa-envelope fa-lg"></i>
                                                                 </h:commandLink>
-                                                                <h:commandLink class="btn botonesnav" onclick="$('#modalVer#{l.idMensaje}').modal(); return false;" title="Eliminar">
+                                                                <h:commandLink class="btn botonesnav" onclick="$('#modalEliminarM#{l.idMensaje}').modal(); return false;" title="Eliminar">
                                                                     <i class="fa fa-trash-o fa-lg"></i>
                                                                 </h:commandLink>
                                                             </h:form>
@@ -166,7 +166,7 @@
                                                                 <h:commandLink class="btn botonesnav" onclick="$('#modalResponder#{l.idMensaje}').modal(); return false;" title="Responder">
                                                                     <i class="fa fa-envelope fa-lg"></i>
                                                                 </h:commandLink>
-                                                                <h:commandLink class="btn botonesnav" onclick="$('#modalVer#{l.idMensaje}').modal(); return false;" title="Eliminar">
+                                                                <h:commandLink class="btn botonesnav" onclick="$('#modalEliminarM#{l.idMensaje}').modal(); return false;" title="Eliminar">
                                                                     <i class="fa fa-trash-o fa-lg"></i>
                                                                 </h:commandLink>
                                                             </h:form>
