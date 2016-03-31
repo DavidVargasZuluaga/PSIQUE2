@@ -11,82 +11,49 @@
         </ui:define>
 
         <ui:define name="body">
-            <div class="row container-fluid trans3">
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <div class="col-xs-12 col-sm-4 col-md-3  color1">
-                    <div class="container-fluid perfilHover">
-                        <div class="profile-sidebar control-group">
-                            <div class="profile-userpic btn-group-lg centrar">
-                                <h:graphicImage style="max-width: 200px;" value="/resources/img/perfil/pAd.jpg" class="img-responsive img-circle centrar" />
-                            </div>
-                            <hr/>
-                            <div class="profile-usertitle centrar center-block">
-                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value="#{usuarioControlador.usuarioLog.nombres} &nbsp;"/>
-                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value=" #{usuarioControlador.usuarioLog.primerApellido} &nbsp; "/>
-                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value=" #{usuarioControlador.usuarioLog.segundoApellido} &nbsp; "/>
-                                <br/> 
-                                <h:outputLabel style="color:#5a7391;" class="profile-usertitle-job centrar" value="#{usuarioControlador.usuarioLog.idRol.nombre}"/>
-                            </div>
-                            <br/>
-                            <div class="profile-usermenu botonesnav">
-                                <ul class="nav botonesnav">
-                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/miPerfil.xhtml" ><i class="fa fa-user fa-lg"></i> &nbsp; Mi perfil</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/mensajeria.xhtml" ><i class="fa fa-envelope fa-lg"></i> &nbsp; Mensajeria</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/configuracion.xhtml" ><i class="fa fa-cog fa-spin fa-lg"></i> &nbsp; Configuracion</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/ayuda.xhtml" ><i class="fa fa-question-circle fa-lg"></i> &nbsp; Ayuda</a></li>
-                                </ul>
-                            </div>  
-                            <hr/>
-                        </div>
-                    </div>
+
+
+            <div class="container-fluid centrar color1 ">
+                <h2>Datos personales</h2>
+                <hr/>
+                <div class="form-group">
+                    <label class="control-label">Estado de cuenta</label>
+                    <br/>
+                    <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.estado} &nbsp;"/>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-7" style="color: black;" >
-                    <div class="container-fluid centrar color1 ">
-                        <h2>Datos personales</h2>
-                        <hr/>
-                        <div class="form-group">
-                            <label class="control-label">Estado de cuenta</label>
-                            <br/>
-                            <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.estado} &nbsp;"/>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">ID Usuario</label>
-                            <br/>
-                            <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.idUsuario} &nbsp;"/>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Documento</label>
-                            <br/>
-                            <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.tipoDocumento} &nbsp; #{usuarioControlador.usuarioLog.noDocumento}"/>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Nombre Completo</label>
-                            <br/>
-                            <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.nombres} &nbsp; #{usuarioControlador.usuarioLog.primerApellido} &nbsp; #{usuarioControlador.usuarioLog.nombres}"/>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Correo</label>
-                            <br/>
-                            <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.correo} &nbsp;"/>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Fecha de nacimineto</label>
-                            <br/>
-                            <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.fechaNacimiento}">
-                                <f:convertDateTime pattern="dd/MM/yyy" />
-                            </h:outputLabel>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Telefono</label>
-                            <br/>
-                            <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.telefono} &nbsp;"/>
-                        </div>
-                        <br/>
-                    </div>
+                <div class="form-group">
+                    <label class="control-label">ID Usuario</label>
+                    <br/>
+                    <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.idUsuario} &nbsp;"/>
                 </div>
+                <div class="form-group">
+                    <label class="control-label">Documento</label>
+                    <br/>
+                    <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.tipoDocumento} &nbsp; #{usuarioControlador.usuarioLog.noDocumento}"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Nombre Completo</label>
+                    <br/>
+                    <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.nombres} &nbsp; #{usuarioControlador.usuarioLog.primerApellido} &nbsp; #{usuarioControlador.usuarioLog.nombres}"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Correo</label>
+                    <br/>
+                    <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.correo} &nbsp;"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Fecha de nacimineto</label>
+                    <br/>
+                    <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.fechaNacimiento}">
+                        <f:convertDateTime pattern="dd/MM/yyy" />
+                    </h:outputLabel>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Telefono</label>
+                    <br/>
+                    <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.telefono} &nbsp;"/>
+                </div>
+                <br/>
             </div>
         </ui:define>
     </ui:composition>

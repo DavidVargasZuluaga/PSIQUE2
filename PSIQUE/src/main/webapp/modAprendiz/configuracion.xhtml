@@ -12,60 +12,27 @@
         </ui:define>
 
         <ui:define name="body">
-            <div class="row container-fluid trans3">
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <div class="col-xs-12 col-sm-4 col-md-3 color1">
-                    <div class="container-fluid perfilHover">
-                        <div class="profile-sidebar control-group">
-                            <div class="profile-userpic btn-group-lg centrar">
-                                <h:graphicImage style="max-width: 100% ; max-width: 200px;" value="/resources/img/perfil/pAd.jpg" class="img-responsive img-circle centrar" />
-                            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4" style="color: black;" >
+                <div class="table-responsive">
+                    <div class="panel filterable">
+                        <h1><i class="fa fa-cog fa-spin"></i> Configuracion</h1>
+                        <hr/>
+                        <h:form>
+                            <h3>Editar datos personales</h3>
+                            <h:commandLink class="btn botones" onclick="$('#modalDatosPersonales').modal('show'); return false;" ><i class="fa fa-pencil-square-o fa-lg"></i> Editar datos personales</h:commandLink>
                             <hr/>
-                            <div class="profile-usertitle centrar center-block">
-                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value="#{usuarioControlador.usuarioLog.nombres} &nbsp;"/>
-                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value=" #{usuarioControlador.usuarioLog.primerApellido} &nbsp; "/>
-                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value=" #{usuarioControlador.usuarioLog.segundoApellido} &nbsp; "/>
-                                <br/> 
-                                <h:outputLabel style="color:#5a7391;" class="profile-usertitle-job centrar" value="#{usuarioControlador.usuarioLog.idRol.nombre}"/>
-                            </div>
+                            <h3>Cambiar foto de perfil</h3>
+                            <h:commandLink class="btn botones" ><i class="fa fa-pencil-square-o fa-lg"></i> Seleccionar archivo</h:commandLink>
                             <br/>
-                            <div class="profile-usermenu botonesnav">
-                                <ul class="nav botonesnav">
-                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/miPerfil.xhtml" ><i class="fa fa-user fa-lg"></i> &nbsp; Mi perfil</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/mensajeria.xhtml" ><i class="fa fa-envelope fa-lg"></i> &nbsp; Mensajeria</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/configuracion.xhtml" ><i class="fa fa-cog fa-spin fa-lg"></i> &nbsp; Configuracion</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/ayuda.xhtml" ><i class="fa fa-question-circle fa-lg"></i> &nbsp; Ayuda</a></li>
-                                </ul>
-                            </div>  
+                            <small>Opcion temporalmente desabilitada</small>
                             <hr/>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4" style="color: black;" >
-                    <div class="table-responsive">
-                        <div class="panel filterable">
-                            <h1><i class="fa fa-cog fa-spin"></i> Configuracion</h1>
-                            <hr/>
-                            <h:form>
-                                <h3>Editar datos personales</h3>
-                                <h:commandLink class="btn botones" onclick="$('#modalDatosPersonales').modal('show'); return false;" ><i class="fa fa-pencil-square-o fa-lg"></i> Editar datos personales</h:commandLink>
-                                <hr/>
-                                <h3>Cambiar foto de perfil</h3>
-                                <h:commandLink class="btn botones" ><i class="fa fa-pencil-square-o fa-lg"></i> Seleccionar archivo</h:commandLink>
-                                <br/>
-                                <small>Opcion temporalmente desabilitada</small>
-                                <hr/>
-                                <h3>Cambiar idioma</h3>
-                                <h:selectOneListbox disabled="true" class="form-control"> 
-                                    <f:selectItem itemLabel="English" />
-                                    <f:selectItem itemLabel="Español" />
-                                </h:selectOneListbox>
-                                <small>Opcion temporalmente desabilitada</small>
-                            </h:form>
-                        </div>
+                            <h3>Cambiar idioma</h3>
+                            <h:selectOneListbox disabled="true" class="form-control"> 
+                                <f:selectItem itemLabel="English" />
+                                <f:selectItem itemLabel="Español" />
+                            </h:selectOneListbox>
+                            <small>Opcion temporalmente desabilitada</small>
+                        </h:form>
                     </div>
                 </div>
             </div>
