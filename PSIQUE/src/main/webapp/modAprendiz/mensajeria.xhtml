@@ -45,45 +45,143 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-8 col-md-9" style="color: black;" >
-                    <div class="table-responsive">
-                        <div class="panel filterable">
-                            <h3>Bandeja de entrada</h3>
-                            <hr/>
-                            <table id="Usuarios1" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
-                                <thead>
-                                    <tr>
-                                        <th data-field="Emisor" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Emisor</th>
-                                        <th data-field="Asunto" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Asunto</th>
-                                        <th data-field="Fecha" data-align="center" data-sortable="true" class="col-md-3">Fecha</th>
-                                        <th data-field="Edición" data-align="center" data-sortable="true" class="col-md-2">Edición</th>
-                                    </tr>
-                                </thead>
-                                <tbody>                                     
-                                    <c:forEach var="l" items="#{usuarioControlador.usuarioLog.mensajeCollection1}">  
-                                        <tr>
-                                            <td>#{l.idEmisor.nombres}</td> 
-                                            <td>#{l.asunto}</td> 
-                                            <td>
-                                                <h:outputLabel style="color:black;" class="label" value="#{l.fecha}">
-                                                    <f:convertDateTime pattern="dd/MM/yyy hh:mm" />
-                                                </h:outputLabel></td> 
-                                            <td align="center" width="20%" >
-                                                <a title="Ver Perfil" href="exitoAd.html">
-                                                    <i class="fa fa-eye fa-lg botonesnav"></i>
-                                                </a>
-                                                <a title="Desactivar" href="exitoAd.html">
-                                                    <i class="fa fa-lock fa-lg botonesnav"></i>
-                                                </a>
-                                                <a title="Activar" href="exitoAd.html">
-                                                    <i class="fa fa-unlock fa-lg botonesnav"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </c:forEach> 
-                                </tbody>
-                            </table>
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Bandeja de entrada</a></li>
+                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Bandeja de salida</a></li>
+                            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Eliminados</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                                <div class="table-responsive">
+                                    <div class="panel filterable color1">
+                                        <h3>Bandeja de entrada</h3>
+                                        <table id="Usuarios1" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
+                                            <thead>
+                                                <tr>
+                                                    <th data-field="Emisor" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Emisor</th>
+                                                    <th data-field="Asunto" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Asunto</th>
+                                                    <th data-field="Fecha" data-align="center" data-sortable="true" class="col-md-3">Fecha</th>
+                                                    <th data-field="Edición" data-align="center" data-sortable="true" class="col-md-2">Edición</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>                                     
+                                                <c:forEach var="l" items="#{mensajeControlador.cargarMensajesRecibidos(usuarioControlador.usuarioLog)}">  
+                                                    <tr>
+                                                        <td>#{l.idEmisor.nombres}</td> 
+                                                        <td>#{l.asunto}</td> 
+                                                        <td>
+                                                            <h:outputLabel style="color:black;" class="label" value="#{l.fecha}">
+                                                                <f:convertDateTime pattern="dd/MM/yyy hh:mm" />
+                                                            </h:outputLabel></td> 
+                                                        <td align="center" width="20%" >
+                                                            <h:form>
+                                                                <h:commandLink class="btn botonesnav" onclick="$('#modalVer#{l.idMensaje}').modal(); return false;" title="Ver mensaje completo">
+                                                                    <i class="fa fa-eye fa-lg"></i>
+                                                                </h:commandLink>
+                                                                <h:commandLink class="btn botonesnav" onclick="$('#modalResponder#{l.idMensaje}').modal(); return false;" title="Responder">
+                                                                    <i class="fa fa-envelope fa-lg"></i>
+                                                                </h:commandLink>
+                                                                <h:commandLink class="btn botonesnav" onclick="$('#modalVer#{l.idMensaje}').modal(); return false;" title="Eliminar">
+                                                                    <i class="fa fa-trash-o fa-lg"></i>
+                                                                </h:commandLink>
+                                                            </h:form>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach> 
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="profile">
+                                <div class="table-responsive">
+                                    <div class="panel filterable color1">
+                                        <h3>Bandeja de salida</h3>
+                                        <table id="Usuarios1" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
+                                            <thead>
+                                                <tr>
+                                                    <th data-field="Emisor" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Receptor</th>
+                                                    <th data-field="Asunto" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Asunto</th>
+                                                    <th data-field="Fecha" data-align="center" data-sortable="true" class="col-md-3">Fecha</th>
+                                                    <th data-field="Edición" data-align="center" data-sortable="true" class="col-md-2">Edición</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>                                     
+                                                <c:forEach var="l" items="#{mensajeControlador.cargarMensajesEnviados(usuarioControlador.usuarioLog)}">  
+                                                    <tr>
+                                                        <td>#{l.idEmisor.nombres}</td> 
+                                                        <td>#{l.asunto}</td> 
+                                                        <td>
+                                                            <h:outputLabel style="color:black;" class="label" value="#{l.fecha}">
+                                                                <f:convertDateTime pattern="dd/MM/yyy hh:mm" />
+                                                            </h:outputLabel></td> 
+                                                        <td align="center" width="20%" >
+                                                            <h:form>
+                                                                <h:commandLink class="btn botonesnav" onclick="$('#modalVer#{l.idMensaje}').modal(); return false;" title="Ver mensaje completo">
+                                                                    <i class="fa fa-eye fa-lg"></i>
+                                                                </h:commandLink>
+                                                                <h:commandLink class="btn botonesnav" onclick="$('#modalResponder#{l.idMensaje}').modal(); return false;" title="Responder">
+                                                                    <i class="fa fa-envelope fa-lg"></i>
+                                                                </h:commandLink>
+                                                                <h:commandLink class="btn botonesnav" onclick="$('#modalVer#{l.idMensaje}').modal(); return false;" title="Eliminar">
+                                                                    <i class="fa fa-trash-o fa-lg"></i>
+                                                                </h:commandLink>
+                                                            </h:form>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach> 
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="messages">
+                                <div class="table-responsive">
+                                    <div class="panel filterable color1">
+                                        <h3>Mensajes eliminados</h3>
+                                        <table id="Usuarios1" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
+                                            <thead>
+                                                <tr>
+                                                    <th data-field="Emisor" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Receptor</th>
+                                                    <th data-field="Asunto" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Asunto</th>
+                                                    <th data-field="Fecha" data-align="center" data-sortable="true" class="col-md-3">Fecha</th>
+                                                    <th data-field="Edición" data-align="center" data-sortable="true" class="col-md-2">Edición</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>                                     
+                                                <c:forEach var="l" items="#{mensajeControlador.cargarMensajesEliminador(usuarioControlador.usuarioLog)}">  
+                                                    <tr>
+                                                        <td>#{l.idEmisor.nombres}</td> 
+                                                        <td>#{l.asunto}</td> 
+                                                        <td>
+                                                            <h:outputLabel style="color:black;" class="label" value="#{l.fecha}">
+                                                                <f:convertDateTime pattern="dd/MM/yyy hh:mm" />
+                                                            </h:outputLabel></td> 
+                                                        <td align="center" width="20%" >
+                                                            <h:form>
+                                                                <h:commandLink class="btn botonesnav" onclick="$('#modalVer#{l.idMensaje}').modal(); return false;" title="Ver mensaje completo">
+                                                                    <i class="fa fa-eye fa-lg"></i>
+                                                                </h:commandLink>
+                                                                <h:commandLink class="btn botonesnav" onclick="$('#modalResponder#{l.idMensaje}').modal(); return false;" title="Responder">
+                                                                    <i class="fa fa-envelope fa-lg"></i>
+                                                                </h:commandLink>
+                                                                <h:commandLink class="btn botonesnav" onclick="$('#modalVer#{l.idMensaje}').modal(); return false;" title="Eliminar">
+                                                                    <i class="fa fa-trash-o fa-lg"></i>
+                                                                </h:commandLink>
+                                                            </h:form>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach> 
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
+
                 </div>
             </div>
         </ui:define>

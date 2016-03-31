@@ -91,9 +91,10 @@
                                 <c:choose>
                                     <c:when test="#{c.estado == 'PENDIENTE'}">
                                         <div class="col-xm-12 ">
-                                            <h:commandLink title="Cancelar cita" class="btn botonesinv" action="#{citaControlador.cancelarCitaAprendiz(c)}" >
-                                                <i class="fa fa-times-circle fa-lg"></i>
-                                            </h:commandLink><h3>Ud tiene una cita programada</h3>
+                                            <h:commandLink class="btn botonesinv" onclick="$('#modalEliminar#{c.idCita}').modal(); return false;" title="Eliminar cita">
+                                                <i class="fa fa-times-circle-o fa-lg"></i>
+                                            </h:commandLink>
+                                            <h3>Ud tiene una cita programada</h3>
                                             <h4>Fecha y hora</h4>
                                             <h:outputLabel style="color:black;" class="label" value="#{c.fecha}">
                                                 <f:convertDateTime pattern="dd/MM/yyy hh:mm" />
@@ -106,8 +107,8 @@
                                     </c:when>
                                     <c:when test="#{c.estado == 'SOLICITADA'}">
                                         <div class="col-xm-12 ">
-                                            <h:commandLink title="Cancelar cita" class="btn botonesinv" action="#{citaControlador.cancelarCitaAprendiz(c)}" >
-                                                <i class="fa fa-times-circle fa-lg"></i>
+                                            <h:commandLink class="btn botonesinv" onclick="$('#modalEliminar#{c.idCita}').modal(); return false;" title="Eliminar cita">
+                                                <i class="fa fa-times-circle-o fa-lg"></i>
                                             </h:commandLink>
                                             <h:outputLabel style="font-size:20px;" >&nbsp; Ud solicito una cita</h:outputLabel>
                                             <h4>Fecha y hora</h4>

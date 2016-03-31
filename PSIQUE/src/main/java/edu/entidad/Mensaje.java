@@ -171,5 +171,9 @@ public class Mensaje implements Serializable {
     public String toString() {
         return "edu.entidad.Mensaje[ idMensaje=" + idMensaje + " ]";
     }
+
+    public void estado(String enviada) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
