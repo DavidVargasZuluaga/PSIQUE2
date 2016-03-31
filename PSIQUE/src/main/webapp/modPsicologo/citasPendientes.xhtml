@@ -1,145 +1,52 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <h:head>
-        <meta charset="utf-8"/>
-        <!-- InstanceBeginEditable name="doctitle" -->
-        <title>Citas Solicitadas</title>
-        <!-- InstanceEndEditable -->
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-        <link rel="shortcut icon" href="img/icono.ico"/>
-        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
-        <h:outputStylesheet library="css" name="estilos.css"/>
-        <h:outputStylesheet library="css" name="font-awesome.css"/> 
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="PlantillaPsicologo.xhtml">
 
-        <h:outputScript library="js" name="jquery-1.12.2.min.js" target="head"/>
-        <h:outputScript library="js" name="bootstrap.min.js" target="body"/>
-        <h:outputScript library="js" name="bootstrap-table.min.css" target="body"/>
+        <ui:define name="title">
+            Psicologo
+        </ui:define>
 
-        <script type="text/javascript" src="../resources/js/bootstrap-table.min.js"></script>
-        <!-- InstanceEndEditable -->
-    </h:head>
-    <h:body>
-        <header class="">
-            <nav class="trans2 navbar-fixed-top">
-                <div class="container ">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed " data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" >
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar color2"></span>
-                            <span class="icon-bar color2" ></span>
-                            <span class="icon-bar color2"></span>
-                        </button>
-                        <a class="navbar-brand botonesnav">Psicologo</a>
+        <ui:define name="body">
+            <div class="table-responsive">
+                <div class="panel filterable">
+                    <div class="panel-heading ">
+                        <h3 class="centrar panel-title">Aprendices SILSPA</h3>
                     </div>
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li><a href="../../modUsuario/miPerfilP.html" class="botonesnav"><i class="fa fa-home fa-lg"></i> &nbsp; Principal</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="botonesnav dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa fa-book fa-lg"></i> &nbsp; Historial &nbsp; <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a><strong>Citas Pendientes</strong></a></li>
-                                    <li><a href="citasSolicitadas.xhtml"><i class="fa fa-circle-o fa-lg"></i> &nbsp; Citas solicitadas</a></li>
-                                    <li><a href="citasPendientes.xhtml"><i class="fa fa fa-clock-o fa-lg"></i> &nbsp; Citas pendientes</a></li>
-                                    <li><a href="mostrarCitas.xhtml"><i class="fa ffa fa-archive fa-lg"></i> &nbsp; Historial de citas</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="indexPsicologo.xhtml"><i class="fa fa fa-male fa-lg"></i> &nbsp; <strong>Historial de un aprendiz</strong></a></li>
-                                    <li role="separator" class="divider"></li>
-                                </ul>
-                            </li>
-                            <li><a href="../../modUsuario/Notificaciones/NotifiPsi.html" class="botonesnav"><i class="fa fa-bookmark fa-lg"></i> &nbsp; Notificaciones &nbsp; <span class="badge color2">12</span></a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="../../index.html" class="botonesnav"><i class="fa fa-sign-out fa-lg"></i> &nbsp; Cerrar Sesion</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <img class="imgdere" alt="Brand" src="../../img/ojo64.png"/>
-                        </ul>					
-                    </div>
-                </div>
-            </nav>
-        </header>
-        <section>
-            <div class="container trans">
-                <br/><br/><br/>
-                <!-- InstanceBeginEditable name="TODO" -->
-                <div class="row margen color1">
-                    <div class="container">
-                        <div class="col-xs-12 col-sm-12 col-md-12 ">
-                            <h1><i class="fa fa-circle-o fa-lg"></i> &nbsp; Citas Pendientes</h1>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="col-xs-12 col-sm-12 col-md-12 ">
+                    <table id="Usuarios1" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
+                        <thead>
+                            <tr>
+                                <th data-field="Documento" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Documento</th>
+                                <th data-field="Nombres" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Nombres</th>
+                                <th data-field="Primer apellido" data-align="center" data-sortable="true" class="col-md-2">Primer apellido</th>
+                                <th data-field="Segundo apellido" data-align="center" data-sortable="true" class="col-md-2">Segundo apellido</th>
+                                <th data-field="Fecha" data-align="center" data-sortable="true" class="col-md-2">Fecha</th>
+                                <th data-field="Opciones" data-align="center" data-sortable="true" class="col-md-2">Opciones</th>
+                            </tr>
+                        </thead>
 
+                        <tbody>
+                            <ui:repeat var="miLista" value="#{usuarioControlador.mostrarCitasPendientes()}">
+                                <tr>
+                                    <td>#{miLista.idAprendiz.usuario.noDocumento}</td>
+                                    <td>#{miLista.idAprendiz.usuario.nombres}</td>
+                                    <td>#{miLista.idAprendiz.usuario.primerApellido}</td>
+                                    <td>#{miLista.idAprendiz.usuario.segundoApellido}</td>
+                                    <td>#{miLista.idAprendiz.usuario.fechaNacimiento}</td>
+                                    <td>#{miLista.estado}</td>
+                                    <td><h:form><h:commandButton value="cancelar" action="#{usuarioControlador.cancelarCita(miLista)}" onclick=""/></h:form></td>
 
-                        </div>
-                    </div>
-
-
-                    <div class="container ">
-                        <div class="table-responsive">
-                            <div class="panel filterable">
-                                <div class="panel-heading ">
-                                    <h3 class="centrar panel-title">Aprendices SILSPA</h3>
-                                </div>
-                                <table id="Usuarios1" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
-                                    <thead>
-                                        <tr>
-                                            <th data-field="Documento" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Documento</th>
-                                            <th data-field="Nombres" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Nombres</th>
-                                            <th data-field="Primer apellido" data-align="center" data-sortable="true" class="col-md-2">Primer apellido</th>
-                                            <th data-field="Segundo apellido" data-align="center" data-sortable="true" class="col-md-2">Segundo apellido</th>
-                                            <th data-field="Fecha" data-align="center" data-sortable="true" class="col-md-2">Fecha</th>
-                                            <th data-field="Opciones" data-align="center" data-sortable="true" class="col-md-2">Opciones</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <ui:repeat var="miLista" value="#{usuarioControlador.mostrarCitasPendientes()}">
-                                            <tr>
-                                                <td>#{miLista.idAprendiz.usuario.noDocumento}</td>
-                                                <td>#{miLista.idAprendiz.usuario.nombres}</td>
-                                                <td>#{miLista.idAprendiz.usuario.primerApellido}</td>
-                                                <td>#{miLista.idAprendiz.usuario.segundoApellido}</td>
-                                                <td>#{miLista.idAprendiz.usuario.fechaNacimiento}</td>
-                                                <td>#{miLista.estado}</td>
-                                                <td><h:form><h:commandButton value="cancelar" action="#{usuarioControlador.cancelarCita(miLista)}" onclick=""/></h:form></td>
-                                                
-                                            </tr>
-                                        </ui:repeat>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- InstanceEndEditable -->
-            </div>
-            <div class="color1 row">
-                <br/>
-                <div class="col btn-group col-sx6 col-sm-6 col-md-4 col-md-offset-5 col-sm-offset-4 col-xs-offset-4" >
-                    <butoon class="btn btn-primary" tabindex="20"><i class="fa fa-facebook fa-2x"></i></butoon>
-                    <butoon class="btn btn-info" tabindex="21"><i class="fa fa-twitter fa-2x"></i></butoon>
-                    <butoon class="btn  btn-danger" tabindex="22"><i class="fa fa-youtube-play fa-2x"></i></butoon>
-                    <butoon class="btn btn-warning" tabindex="23" ><i class="fa fa-google-plus fa-2x"></i></butoon>
+                                </tr>
+                            </ui:repeat>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </section>
-        <footer class="color1">
-            <div class="centrar container tfooter col-md-12">
-                <h4>CopyRigth © 2015 | SILSPA Todos los derechos reservados
-                    Sistema de Información Logistíco para el Seguimiento Psicologico del Aprendiz.   
-                    <small>  SILSPA 0.30</small>
-                </h4>
-            </div>
-        </footer>
-        <!-- InstanceBeginEditable name="Script" --> 
-     
-    </h:body>
+        </ui:define>
+    </ui:composition>
 </html>
 
