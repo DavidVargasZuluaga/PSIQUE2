@@ -63,8 +63,20 @@ public class UsuarioControlador implements Serializable {
         aprendizTemp = new Aprendiz();
         psicologoLog = new Psicologo();
         
-        listaUsuarios = new ArrayList();
+        listaUsuarios = usuarioFacade.findAll();
         listaPsicologos = psicologoFacade.findAll();
+    }
+    
+    public Usuario buscarPorNombre(String nombre){
+        List<Usuario> listaU = usuarioFacade.findAll();
+        Usuario us = new Usuario();
+        for (int i = 0; i < listaU.size(); i++) {
+            if(listaU.get(i).getNombres().equals(nombre) || listaU.get(i).getPrimerApellido().equals(nombre)){
+                us = listaU.get(i);
+                break;
+            }
+        }
+        return us;
     }
     
     public String autenticar() {
@@ -76,7 +88,6 @@ public class UsuarioControlador implements Serializable {
         try {
             Long doc = Long.parseLong((String) params.get("documento"));
             String clave = (String) params.get("clave");
-            this.listaUsuarios = usuarioFacade.findAll();
             for (int i = 0; i < listaUsuarios.size(); i++) {
                 if (listaUsuarios.get(i).getNoDocumento() == doc && listaUsuarios.get(i).getClave().equals(clave)) {
                     this.usuarioLog = listaUsuarios.get(i);

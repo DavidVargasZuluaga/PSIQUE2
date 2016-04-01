@@ -73,18 +73,11 @@
             </h:form>
         </header>
         <div class="container">
-
             <div class="row container-fluid trans3">
                 <br/>
                 <br/>
                 <br/>
                 <br/>
-                <c:if test="#{citaControlador.modalCita == 1}" >
-                    <div class="alert alert-warning page-alert" id="alert-1">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <strong>Turno no disponible!</strong> Hora no disponible, intentelo de nuevo en otra hora.
-                    </div>
-                </c:if>
                 <c:if test="#{citaControlador.modalCita == 1}" >
                     <div class="alert alert-warning page-alert" id="alert-1">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -120,14 +113,10 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-8 col-md-9" style="color: black;" >
-                    
                     <!--CUERPO-->
                     <ui:insert name="body"></ui:insert>
                 </div>
             </div>
-
-
-
             <div class="modal fade " id="modalValorar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                 <div class="modal-dialog modal-sm" role="document">
                     <h:form class="form-horizontal form" id="mod13">
@@ -152,6 +141,37 @@
                             </div>
                             <div class="modal-footer">
                                 <h:commandButton action="#{citaControlador.valorarCita(citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz))}" class="botones2 btn" value="Valorar cita   "></h:commandButton>
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div class="modal fade" id="modalCrearMensaje" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod6">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Crear mensaje</h4>
+                            </div>
+                            <div class="modal-body">
+                                <h3><small>Para:</small></h3>
+                                <input type="text" autocomplete="off" class="form-control" name="para" list="usuarios"/>
+                                <h3><small>Asunto:</small></h3>
+                                <input class="form-control" name="asunto"/>
+                                <h3><small>Mensaje:</small></h3>
+                                <textarea class="form-control" name="mensaje"/>
+                                <br/>
+                                <button trype="burron" class="btn botonesinv" disabled="true" ><i class="fa fa-paperclip fa-lg" title="Adjuntar archivo"></i> </button>
+                                <datalist id="usuarios">
+                                    <c:forEach var="u" items="#{usuarioControlador.listaUsuarios}" >
+                                        <option>#{u.nombres}#{u.primerApellido}#{u.segundoApellido}</option>
+                                    </c:forEach>
+                                </datalist>
+                            </div>
+                            <div class="modal-footer">
+                                <h:commandButton class="botones2 btn" value="Enviar" action="#{mensajeControlador.enviarMensaje(usuarioControlador.usuarioLog)}"></h:commandButton>
                                 <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
                             </div>
                         </div>
@@ -261,7 +281,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <h:commandButton class="botones2 btn" value="Cancelar" action="#{citaControlador.cancelarCitaAprendiz(c)}"></h:commandButton>
-                                    <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                                    <button type="button" class="btn botones" data-dismiss="modal" >Cerrar</button>
                                 </div>
                             </div>
                         </h:form>
@@ -316,21 +336,20 @@
                         </h:form>
                     </div>
                 </div>
-                <div class="modal fade" id="modalVer#{l.idMensaje}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal fade" id="modalEliminarM#{l.idMensaje}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                     <div class="modal-dialog modal-sm" role="document">
                         <h:form class="form-horizontal form" id="mod2">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Mensaje #{l.idMensaje}</h4>
+                                    <h4 class="modal-title" id="myModalLabel">Eliminar mensaje #{l.idMensaje}</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <h4><small>De:</small><br/>#{l.idEmisor.nombres} #{l.idEmisor.primerApellido} #{l.idEmisor.segundoApellido}</h4>
-                                    <h4><small>Asunto</small><br/>#{l.asunto}</h4>
-                                    <h4><small>Mensaje</small><br/>#{l.mensaje}</h4>
+                                    <h3>Esta seguro que desea borrar el mensaje ?</h3>
                                     <br/>
                                 </div>
                                 <div class="modal-footer">
+                                    <h:commandButton class="botones2 btn" value="Borrar" action="#{mensajeControlador.borrarMensajeAprendiz(l)}"></h:commandButton>
                                     <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
                                 </div>
                             </div>

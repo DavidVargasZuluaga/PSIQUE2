@@ -31,18 +31,24 @@ public class MensajeControlador implements Serializable {
     @Inject
     private MensajeFacade mensajeFacade;
 
+    @Inject
+    private UsuarioFacade usuarioFacade;
+
     private Date fechaActual;
 
+    private int modalMensaje;
     private Mensaje mensajeTemp;
     private List<Mensaje> mensajes;
+    private List<Usuario> listaUsuarios;
 
     @PostConstruct
     private void init() {
+        modalMensaje = 0;
         mensajeTemp = new Mensaje();
         fechaActual = new Date();
         mensajes = mensajeFacade.findAll();
+        listaUsuarios = usuarioFacade.findAll();
     }
-    
 
     public List<Mensaje> cargarMensajesRecibidos(Usuario u) {
         List<Mensaje> tMensajes = mensajeFacade.findAll();
@@ -92,12 +98,61 @@ public class MensajeControlador implements Serializable {
         }
         return mensajes;
     }
-    
-    public String borrarMensajeAprendiz(Mensaje m){
+
+    public String borrarMensajeAprendiz(Mensaje m) {
         String res = "/modAprendiz/mensajeria.xhtml";
         try {
             m.setEstado("Borrado");
             mensajeFacade.edit(m);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    public String enviarMensaje(Usuario us) {
+        String res = " ";
+        Mensaje m = new Mensaje();
+        String espacion = " ";
+        fechaActual = new Date();
+        Usuario receptor = new Usuario();
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        try {
+            String rec = (String) params.get("para");
+            for (int i = 0; i < listaUsuarios.size(); i++) {
+                String nombre = (listaUsuarios.get(i).getNombres()+""+ listaUsuarios.get(i).getPrimerApellido() +""+ listaUsuarios.get(i).getSegundoApellido());
+                if (rec.equals(nombre)) {
+                    receptor = listaUsuarios.get(i);
+                    m.setIdEmisor(us);
+                    m.setFecha(fechaActual);
+                    m.setIdReceptor(receptor);
+                    m.setEstado("Enviado");
+                    m.setMensaje((String) params.get("mensaje"));
+                    m.setAsunto((String) params.get("asunto"));
+                    mensajeFacade.create(m);
+                    break;
+                }
+            }
+            if (receptor.getIdUsuario() == null) {
+                modalMensaje = 1;
+            }
+            switch (us.getIdRol().getIdRol()) {
+                case 1:
+                    res = "/modAdmon/mensajeria.xhtml";
+                    break;
+                case 2:
+                    res = "/modCoordinador/mensajeria.xhtml";
+                    break;
+                case 3:
+                    res = "/modPsicologo/mensajeria.xhtml";
+                    break;
+                case 4:
+                    res = "/modAprendiz/mensajeria.xhtml";
+                    break;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
