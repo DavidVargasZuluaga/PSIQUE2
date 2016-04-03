@@ -97,6 +97,12 @@
 
 
             </script>
+            <h:form>
+                <h:commandButton action="#{estadisticaControlador.PDF()}" value="PDF" class="btn"/>
+                <h:commandButton action="#{estadisticaControlador.DOCX()}" value="WORD" class="btn"/>
+                <h:commandButton action="#{estadisticaControlador.XLSX()}" value="EXCEL" class="btn"/>
+                <h:commandButton action="#{estadisticaControlador.PPT()}" value="PPT" class="btn"/>
+            </h:form>
         </ui:define>
     </ui:composition>
 </html>

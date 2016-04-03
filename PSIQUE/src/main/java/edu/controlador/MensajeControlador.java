@@ -133,11 +133,12 @@ public class MensajeControlador implements Serializable {
                     m.setMensaje((String) params.get("mensaje"));
                     m.setAsunto((String) params.get("asunto"));
                     mensajeFacade.create(m);
+                    modalMensaje = 1;
                     break;
                 }
             }
             if (receptor.getIdUsuario() == null) {
-                modalMensaje = 1;
+                modalMensaje = 2;
             }
             switch (us.getIdRol().getIdRol()) {
                 case 1:
@@ -198,4 +199,19 @@ public class MensajeControlador implements Serializable {
         this.mensajes = mensajes;
     }
 
+    public int getModalMensaje() {
+        return modalMensaje;
+    }
+
+    public void setModalMensaje(int modalMensaje) {
+        this.modalMensaje = modalMensaje;
+    }
+
+    public List<Usuario> getListaUsuarios() {
+        return listaUsuarios;
+    }
+
+    public void setListaUsuarios(List<Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
 }

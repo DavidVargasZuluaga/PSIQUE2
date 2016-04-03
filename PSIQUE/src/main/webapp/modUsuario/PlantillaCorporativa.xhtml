@@ -16,11 +16,16 @@
         <h:outputStylesheet library="css" name="font-awesome.css"/>
         <h:outputStylesheet library="css" name="bootstrap-table.min.css"/>
         <h:outputStylesheet library="css" name="jquery.timepicker.css"/>
-        <!--<h:outputStylesheet library="css" name="bootstrapFormValidation.css"/>
-        <h:outputStylesheet library="css" name="formValidation.min.css"/>
-        <h:outputStylesheet library="css" name="bootstrap-datepicker.min.css"/>-->
         
-        <h:outputScript library="js" name="jquery-1.12.2.min.js" target="head"/>
+        <h:outputStylesheet library="css" name="bootstrapFormValidation.css"/>
+        <h:outputStylesheet library="css" name="formValidation.min.css"/>
+        <!--<h:outputStylesheet library="css" name="bootstrap-datepicker.min.css"/>-->
+        
+        <h:outputScript library="js" name="jquery-1.12.3.min.js" target="head"/>
+        <h:outputScript library="js" name="formValidation.min.js" target="head"/>
+        <h:outputScript library="js" name="bootstrapFormValidation.js" target="head"/>
+        <h:outputScript library="js" name="validacionFormularios.js" target="head"/>
+        
         <h:outputScript library="js" name="bootstrap.js" target="body"/>
         <h:outputScript library="js" name="bootstrap-table.js" target="body"/>
         <h:outputScript library="js" name="jquery.timepicker.js" target="body"/>
@@ -97,8 +102,9 @@
                     <div class="col-xs-12 col-sm-12 col-md-5">
                         <h:form id="formRegistro" class="form-group" >
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="documento">Documento</label>  
-                                <input id="documento" name="documento" type="text" pattern="[0-9]{4,15}" placeholder="10118666789" class="form-control input-md" required=""/>
+                                <label class="col-md-4 control-label" for="documento">Documento</label> 
+                                
+                                <input id="documento" name="documento" type="text" placeholder="10118666789" class="form-control input-md" tabindex="1" required="true" autofocus="true"/>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="clave">Contraseña</label>

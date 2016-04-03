@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <head>
+        <title>Lista aprendices</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="icon" type="image/vnd.microsoft.icon" href="../../img/icono.ico"></link>
+        
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputStylesheet library="css" name="estilos.css"/>
+        <h:outputStylesheet library="css" name="estilos3.css"/>
+        
+        <h:outputStylesheet library="css" name="font-awesome.css"/>
+        <h:outputStylesheet library="css" name="bootstrap-table.min.css"/>
+        <h:outputStylesheet library="css" name="jquery.timepicker.css"/>
+        <!--<h:outputStylesheet library="css" name="bootstrapFormValidation.css"/>
+        <h:outputStylesheet library="css" name="formValidation.min.css"/>
+        <h:outputStylesheet library="css" name="bootstrap-datepicker.min.css"/>-->
+
+        <h:outputScript library="js" name="jquery-1.12.2.min.js" target="head"/>
+        <h:outputScript library="js" name="bootstrap.js" target="body"/>
+        <h:outputScript library="js" name="bootstrap-table.js" target="body"/>
+        <h:outputScript library="js" name="jquery.timepicker.js" target="body"/>
+        <h:outputScript library="js" name="miCalendario.js" target="body"/>
+        <h:outputScript library="js" name="mostrar.js" target="body"/>
+    </head>
+    <!--  <script>
+          $('#myModal').on('shown.bs.modal', function () {
+              $('#myInput').focus()
+          })
+      </script>-->
+    <body class="marcaguaAd">
+        <header class="">
+            <nav class="trans2 navbar-fixed-top">
+                <div class="container ">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed " data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" >
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar color2"></span>
+                            <span class="icon-bar color2" ></span>
+                            <span class="icon-bar color2"></span>
+                        </button>
+                        <a class="navbar-brand botonesnav" href="miperfilAd.xhtml">Administrador</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="miperfilAd.xhtml" class="botonesnav"><i class="fa fa-home fa-lg"></i>Principal</a></li>
+                            <li class="dropdown">
+                                <a class="botonesnav dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users fa-lg"></i>  Usuarios  <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a><strong>Editar</strong></a></li>
+                                    <li><a href="admonAprendiz.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i>  Aprendiz</a></li>
+                                    <li><a href="admonPsicologos.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i>  Psicologo</a></li>
+                                    <li><a href="admonCoordinadores.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i>  Coordinador</a></li>
+                                    <li><a href="admonProgramas-Fichas.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i>  Programas y fichas</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a><strong>Crear</strong></a></li>
+                                    <li><a href="Registro/psicologoRegistro.xhtml"><i class="fa fa fa-user-plus fa-lg"></i>  Psicologo</a></li>
+                                    <li><a href="Registro/coordinadorRegistro.xhtml"><i class="fa fa fa-user-plus fa-lg"></i>  Coordinador</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="Registro/programaFormacionRegistro.xhtml"><i class="fa fa fa-user-plus fa-lg"></i> Registrar programa de formación</a></li>
+                                    <li><a href="Registro/fichaRegistro.xhtml"><i class="fa fa fa-user-plus fa-lg"></i> Registrar ficha</a></li>
+                                    <!-- <li role="separator" class="divider"></li>
+                                   <li><a href="administradorAdmon.html"><i class="fa fa fa-user-secret fa-lg"></i>  Administrador</a></li>
+                                    <li role="separator" class="divider"></li>-->						
+                                </ul>
+                            </li>
+                            <li><a href="Notificaciones/NotifiAdmon.xhtml" class="botonesnav"><i class="fa fa-bookmark fa-lg"></i>  Notificaciones  <span class="badge color2">6</span></a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="../index.html" class="botonesnav"><i class="fa fa-sign-out fa-lg"></i>  Cerrar Sesion</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <img class="imgdere" alt="Brand" src="../img/ojo64.png"/>
+                        </ul>					
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <section>           
+            <div class="container trans2">
+                <br/><br/><br/><br/>
+                <div class="row color1">
+                    <div class="container">
+                        <div class="col-xs-12 col-sm-12 col-md-12 ">
+                            <h1><i class="fa fa-circle-o-notch fa-spin fa-lg"></i>  Aprendices</h1>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="col-xs-12 col-sm-12 col-md-12 ">
+                            <hr/>
+                            <br/>
+                        </div>
+                    </div>
+                    <c:if test="#{controladorAprendiz.ver == 1}">
+                        <div class="alert "  aria-label="Close" data-dismiss="alert" >
+                            <table id="example" class="table table-bordered" width="100%">
+                                <legend>Caracteristicas del aprendiz</legend>
+                                <tr>
+                                    <th>Tipo Documento</th>
+                                    <th>Documento</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Telefono</th>
+                                    <th>Correo</th>
+                                    <th>Fecha de nacimiento</th>
+                                </tr>
+
+                                <tbody>
+                                    <tr>  
+                                        <td>
+                                            <h:outputLabel  class="disabled" value="#{lista.tipoDocumento}" /> 
+                                        </td> 
+
+                                        <td>
+                                            <h:outputLabel  class="disabled " value="#{lista.noDocumento}" />
+                                        </td> 
+
+                                        <td>
+                                            <h:outputLabel  class="disabled " value="#{lista.nombres}" />
+                                        </td> 
+
+                                        <td>
+                                            <h:outputLabel  class="disabled " value="#{lista.primerApellido}" />
+                                        </td>
+
+                                        <td>
+                                            <h:outputLabel  class="disabled " value="#{lista.telefono}" /> 
+                                        </td> 
+
+                                        <td>
+                                            <h:outputLabel  class="disabled " value="#{lista.correo}" />
+                                        </td> 
+
+                                        <td>
+                                            <h:outputLabel  class="disabled " value="#{lista.fechaNacimiento}" >
+                                                <f:convertDateTime pattern="dd/MM/yyy" />
+                                            </h:outputLabel>
+                                        </td>
+
+                                    </tr>       
+                                </tbody>
+                            </table>
+                            <h:form id="formularioVista">
+                                <h:link onclick="admonAprendiz"> <h:commandLink class="btn " value="Cerrar" action="#{controladorAprendiz.cerrarDatos()}"/></h:link>
+                            </h:form>
+                        </div>
+
+                    </c:if>
+                    <div class="container">
+                        <div class="table-responsive">
+                            <div class="panel filterable">
+                                <div class="panel-heading ">
+                                    <h3 class="centrar panel-title">Aprendices SILSPA</h3>
+                                </div>
+
+
+                                <table id="Usuarios2" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="Id" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Id</th>
+                                            <th data-field="Documento" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Documento</th>
+                                            <th data-field="Nombres" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Nombres</th>
+                                            <th data-field="Primer apellido" data-align="center" data-sortable="true" class="col-md-3">Primer apellido</th>
+                                            <th data-field="Segundo apellido" data-align="center" data-sortable="true" class="col-md-2">Segundo apellido</th>
+                                            <th data-field="Programa al que corresponde" data-align="center" data-sortable="true" class="col-md-2">Programa al que corresponde</th>
+                                            <th data-field="Ficha en la que se encuentra" data-align="center" data-sortable="true" class="col-md-2">Ficha en la que se encuentra</th>
+                                            <th data-field="Edición" data-align="center" data-sortable="true" class="col-md-2">Edición</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>                                     
+                                        <ui:repeat var="lista" value="#{controladorUsuario.traerListaAprendiz()}">  
+                                            <tr>
+                                                <td>#{lista.idUsuario}</td> 
+                                                <td>#{lista.noDocumento}</td> 
+                                                <td>#{lista.nombres}</td> 
+                                                <td>#{lista.primerApellido}</td> 
+                                                <td>#{lista.segundoApellido}</td> 
+                                                <td>#{lista.aprendiz.ficha.idPrograma.nombrePrograma}</td> 
+                                                <td>#{lista.aprendiz.ficha.noFicha}</td> 
+                                                <td>
+                                                    <h:form>
+                                                        <h:commandLink action="#{controladorAprendiz.verDatos()}" class="fa fa-eye fa-lg botonesnav"/>
+                                                        <h:commandLink class="btn botonesnav" onclick="$('#myModal#{lista.idUsuario}').modal(); return false;" title="Ver mensaje completo">
+                                                            <i class="fa fa-pencil fa-lg botonesnav"></i>
+                                                        </h:commandLink>
+                                                          <!--  <button type="button" class="fa fa fa-pencil fa-lg botonesnav"  title="Modifcar aprendiz" data-toggle="modal" data-target="#myModal#{lista.idUsuario}"   ></button>-->
+                                                    </h:form>                                                          
+                                                </td>    
+
+                                                <div class="modal fade" id="myModal#{lista.idUsuario}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <h:form id="formulario#{lista.idUsuario}">
+                                                                <div class="modal-body">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                                                                        <h4 class="modal-title" id="myModalLabel">Actualizar Aprendiz  #{lista.nombres} #{lista.primerApellido} </h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+
+
+                                                                        <br/>
+
+                                                                        <div class="form-group input-group">
+                                                                            <span class="input-group-addon" title="Nombre"><i class="fa fa-user"  ></i></span>
+                                                                            <input  class="form-control" id="nombres" value="#{lista.nombres}" name="nombres" />
+
+                                                                        </div>
+                                                                        <div class="form-group input-group">
+                                                                            <span class="input-group-addon" title="Primer apellido"><i class="fa fa-user"></i></span>
+                                                                          <!--  <h:inputText  class="form-control" id="primerapellido"  value="#{lista.primerApellido}"/>-->
+                                                                            <input class="form-control" id="primerApellido" value="#{lista.primerApellido}" name="primerApellido"/>
+                                                                        </div>
+                                                                        <div class="form-group input-group">
+                                                                            <span class="input-group-addon" title="Segundo apellido"><i class="fa fa-user"></i></span>
+                                                                            <input  class="form-control" id="segundoApellido" value="#{lista.segundoApellido}" name="segundoApellido" />
+                                                                        </div>
+
+                                                                        <div class="form-group input-group">
+                                                                            <span class="input-group-addon" title="Tipo de documento"><i class="fa fa-key "></i></span>
+                                                                            <div class="form-group">
+                                                                                <h:selectOneMenu value="#{lista.tipoDocumento}"  id="tipoDocumento" class="form-control">
+                                                                                    <f:selectItem itemValue="CC" itemLabel="Cédula de Ciudadania" />
+                                                                                    <f:selectItem itemValue="TI" itemLabel="Tarjeta de identidad"/>
+                                                                                    <f:selectItem itemValue="CE" itemLabel="Cédula extranjera" />
+                                                                                    <f:selectItem itemValue="PP" itemLabel="Pasaporte" />                                                                                    
+                                                                                </h:selectOneMenu>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group input-group">
+                                                                            <span class="input-group-addon" title="Número de documento">#</span>
+                                                                            <input  class="form-control" id="noDocumento" value="#{lista.noDocumento}" name="noDocumento" />                                                                           
+                                                                        </div>
+
+                                                                        <div class="form-group input-group">
+                                                                            <span class="input-group-addon" title="Correo">@</span>
+                                                                            <input class="form-control" id="correo" value="#{lista.correo}" name="correo"   />
+                                                                        </div>
+
+                                                                        <div class="form-group input-group">
+                                                                            <span class="input-group-addon" title="Contraseña"><i class="fa fa-lock" ></i></span>
+                                                                            <input class="form-control"  id="clave"  value="#{lista.clave}" name="clave"   />
+                                                                        </div>
+
+
+                                                                        <div class="form-group input-group">
+                                                                            <span class="input-group-addon" title="Telefono"><i class="fa fa-mobile"  ></i></span>
+                                                                            <input class="form-control" id="telefono" value="#{lista.telefono}"  name="telefono" />
+                                                                        </div>
+
+                                                                        <div class="form-group input-group">
+                                                                            <span class="input-group-addon" title="Estado"><i class="fa fa-unlock"  ></i></span>
+                                                                            <input class="form-control" id="Estado" value="#{lista.estado}" name="estado"   />
+                                                                        </div>
+
+                                                                        <div class="form-group input-group">
+                                                                            <span class="input-group-addon" title="Rol"><i class="fa fa-check-circle-o"  ></i></span>
+                                                                            <input  class="form-control" id="rol" value="#{lista.idRol.idRol}" name="rol"   />
+                                                                        </div>
+
+                                                                        <hr />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="modal-footer">
+
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                                                    <h:commandButton id="enviarDatos" value="Actualizar" class="btn btn-success" action="#{controladorUsuario.actualizar(lista)}" >
+                                                                        <f:param name="formulario" value="Actualizar#{lista.idUsuario}"/> 
+                                                                    </h:commandButton>
+                                                                </div>
+                                                            </h:form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </tr>
+
+
+                                        </ui:repeat> 
+                                        <br/>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/><br/><br/>
+            </div>
+            <!-- InstanceEndEditable -->
+
+            <div class="color1 row">
+                <br/>
+                <div class="col btn-group col-sx6 col-sm-6 col-md-4 col-md-offset-5 col-sm-offset-4 col-xs-offset-4" >
+                    <butoon class="btn btn-primary" tabindex="20"><i class="fa fa-facebook fa-2x"></i></butoon>
+                    <butoon class="btn btn-info" tabindex="21"><i class="fa fa-twitter fa-2x"></i></butoon>
+                    <butoon class="btn  btn-danger" tabindex="22"><i class="fa fa-youtube-play fa-2x"></i></butoon>
+                    <butoon class="btn btn-warning" tabindex="23" ><i class="fa fa-google-plus fa-2x"></i></butoon>
+                </div>
+            </div>
+        </section>
+        <footer class="color1">
+            <div class="centrar container tfooter col-md-12">
+                <h4>CopyRigth © 2015 | SILSPA Todos los derechos reservados
+                    Sistema de Información Logistíco para el Seguimiento Psicologico del Aprendiz.   
+                    <small>  SILSPA 0.30</small>
+                </h4>
+            </div>
+        </footer>
+        <!-- InstanceBeginEditable name="Script" -->
+        <!-- InstanceEndEditable -->
+    </body>
+</html>

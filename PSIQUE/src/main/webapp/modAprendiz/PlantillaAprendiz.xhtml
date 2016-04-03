@@ -32,6 +32,12 @@
         <h:outputScript library="js" name="bootstrap-datepicker.min.js" target="body"/>
         <h:outputScript library="js" name="es_ES.js" target="body"/>-->
 
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css"/>
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+
         <f:event type="preRenderView" listener="#{usuarioControlador.validarSesion()}"/>
 
         <title>
@@ -82,6 +88,18 @@
                     <div class="alert alert-warning page-alert" id="alert-1">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <strong>Turno no disponible!</strong> Hora no disponible, intentelo de nuevo en otra hora.
+                    </div>
+                </c:if>
+                <c:if test="#{mensajeControlador.modalMensaje == 1}" >
+                    <div class="alert alert-success page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Mensaje enviado</strong>
+                    </div>
+                </c:if>
+                <c:if test="#{mensajeControlador.modalMensaje == 2}" >
+                    <div class="alert alert-warning page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Usuario inexistente </strong>Por favor vuelva a intentarlo verificando escribir correctamente el nombre completo
                     </div>
                 </c:if>
                 <div class="col-xs-12 col-sm-4 col-md-3  color1">
@@ -158,6 +176,11 @@
                             <div class="modal-body">
                                 <h3><small>Para:</small></h3>
                                 <input type="text" autocomplete="off" class="form-control" name="para" list="usuarios"/>
+                                <select class="selectpicker">
+                                    <option>Mustard</option>
+                                    <option>Ketchup</option>
+                                    <option>Relish</option>
+                                </select>
                                 <h3><small>Asunto:</small></h3>
                                 <input class="form-control" name="asunto"/>
                                 <h3><small>Mensaje:</small></h3>
@@ -166,7 +189,7 @@
                                 <button trype="burron" class="btn botonesinv" disabled="true" ><i class="fa fa-paperclip fa-lg" title="Adjuntar archivo"></i> </button>
                                 <datalist id="usuarios">
                                     <c:forEach var="u" items="#{usuarioControlador.listaUsuarios}" >
-                                        <option>#{u.nombres}#{u.primerApellido}#{u.segundoApellido}</option>
+                                        <option data-value="#{u.idUsuario}" >#{u.nombres} #{u.primerApellido} #{u.segundoApellido}</option>
                                     </c:forEach>
                                 </datalist>
                             </div>

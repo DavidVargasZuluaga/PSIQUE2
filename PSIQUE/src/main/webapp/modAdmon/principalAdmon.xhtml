@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="PlantillaAdmon.xhtml">
+
+        <ui:define name="title">
+            title
+        </ui:define>
+
+        <ui:define name="body">
+            <div class="col-md-9">
+                <div class="profile-content">
+                    <form class="color 1 form-horizontal" id="formregistro" >
+                        <legend>Mi perfil</legend>
+                        <div class="control-group">
+                            <label class="control-label" for="ide">Documento</label>
+                            <!--<input id="ide" name="ide" type="text"  class="disabled input-xlarge form-control" disabled="true"/>-->
+                            <h:outputLabel style="color:black;" class="disabled input-xlarge form-control" value="#{usuarioControlador.usuarioLog.noDocumento}" />
+                        </div>
+                        <!-- Text input-->
+                        <div class="control-group">
+                            <label class="control-label" for="nombre">Nombres</label>
+                            <h:outputLabel style="color:black;" class="disabled input-xlarge form-control" value="#{usuarioControlador.usuarioLog.nombres}" />
+                        </div>
+                        <!-- Text input-->
+                        <div class="control-group">
+                            <label class="control-label" for="pApellido">Primer Apellido</label>
+                            <h:outputLabel style="color:black;" class="disabled input-xlarge form-control" value="#{usuarioControlador.usuarioLog.primerApellido}" />
+                        </div>
+                        <!-- Text input-->
+                        <div class="control-group">
+                            <label class="control-label" for="sApellido">Segundo Apelldo</label>
+                            <h:outputLabel style="color:black;" class="disabled input-xlarge form-control" value="#{usuarioControlador.usuarioLog.segundoApellido}" />
+                        </div>
+                        <!-- Text input-->
+                        <div class="control-group">
+                            <label class="control-label" for="correo">Correo</label>
+                            <h:outputLabel style="color:black;" class="disabled input-xlarge form-control" value="#{usuarioControlador.usuarioLog.correo}" />
+                        </div>
+                        <!-- Text input-->
+                        <div class="control-group">
+                            <label class="control-label" for="fechaNa">Fecha de nacimiento</label>
+                            <h:outputLabel style="color:black;" class="disabled input-xlarge form-control" value="#{usuarioControlador.usuarioLog.fechaNacimiento}" >
+                                <f:convertDateTime pattern="dd/MM/yyy" />
+                            </h:outputLabel>
+                        </div>
+                        <!-- Text input-->
+
+                        <!-- Text input-->
+                        <div class="control-group">
+                            <label class="control-label" for="telefono">Telefono</label>
+                            <h:outputLabel style="color:black;" class="disabled input-xlarge form-control" value="#{usuarioControlador.usuarioLog.telefono}" />
+                        </div>
+                        <!-- Multiple Radios -->
+                        <div class="control-group">
+                            <label class="control-label" for="estado">Estado</label>
+                            <h:outputLabel style="color:black;" class="disabled input-xlarge form-control" value="#{usuarioControlador.usuarioLog.estado}" />                                               
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="control-group">
+                            <!-- Button trigger modal -->
+
+                            <button id="btnvalidar" type="button" class="btn btn-block botones" value="entrar" data-toggle="modal" data-target="#myModal"><i class="fa fa fa-pencil fa-lg"></i> Editar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

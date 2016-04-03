@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <head>
+        <title>Registrar ficha</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" charset="utf-8"/>
+        <link rel="icon" type="image/vnd.microsoft.icon" href="../../img/icono.ico"></link>
+
+        <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
+        <link href="../../css/sweetalert.css" rel="stylesheet" type="text/css"/>
+
+        <link href="../../css/bootstrapFormValidation.css" rel="stylesheet" type="text/css" />
+        <link href="../../css/formValidation.min.css" rel="stylesheet" type="text/css" />
+        <script src="../../js/jquery-1.11.3.min.js" type="text/javascript"></script>
+        <script src="../../js/formValidation.min.js" type="text/javascript"></script>
+        <script src="../../js/bootstrapFormValidation.js" type="text/javascript"></script>
+        <script src="../../js/frameworkbootstrap.min.js" type="text/javascript"></script>
+        <script src="../../js/sweetalert.min.js" type="text/javascript"></script>
+        <script src="../../js/validacionFormularios.js" type="text/javascript"></script>   
+    </head>
+
+    <body class="marcaguaA" >
+        <header class="">
+            <nav class="trans2 navbar-fixed-top">
+                <div class="container ">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed " data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" >
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar color2"></span>
+                            <span class="icon-bar color2" ></span>
+                            <span class="icon-bar color2"></span>
+                        </button>
+                        <a class="navbar-brand botonesnav" href="../miperfilAd.xhtml">Administrador</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="../miperfilAd.xhtml" class="botonesnav"><i class="fa fa-home fa-lg"></i>Principal</a></li>
+                            <li class="dropdown">
+                                <a class="botonesnav dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users fa-lg"></i>  Usuarios  <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a><strong>Editar</strong></a></li>
+                                    <li><a href="../admonAprendiz.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i> Aprendiz</a></li>
+                                    <li><a href="../admonPsicologos.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i> Psicologo</a></li>
+                                    <li><a href="../admonCoordinadores.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i> Coordinador</a></li>
+                                    <li><a href="../admonProgramas-Fichas.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i>  Programas y fichas</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a><strong>Crear</strong></a></li>
+                                    <li><a href="psicologoRegistro.xhtml"><i class="fa fa fa-user-plus fa-lg"></i> Psicologo</a></li>
+                                    <li><a href="coordinadorRegistro.xhtml"><i class="fa fa fa-user-plus fa-lg"></i> Coordinador</a></li>
+
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="programaFormacionRegistro.xhtml"><i class="fa fa fa-user-plus fa-lg"></i> Registrar Programa de formación</a></li>
+                                    <li><a href="fichaRegistro.xhtml"><i class="fa fa fa-user-plus fa-lg"></i> Registrar ficha</a></li>
+                                    <!-- <li role="separator" class="divider"></li>
+                                   <li><a href="administradorAdmon.html"><i class="fa fa fa-user-secret fa-lg"></i>  Administrador</a></li>
+                                    <li role="separator" class="divider"></li>-->						
+                                </ul>
+                            </li>
+                            <li><a href="../Notificaciones/NotifiAdmon.xhtml" class="botonesnav"><i class="fa fa-bookmark fa-lg"></i>  Notificaciones  <span class="badge color2">6</span></a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="../index.html" class="botonesnav"><i class="fa fa-sign-out fa-lg"></i>  Cerrar Sesion</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <img class="imgdere" alt="Brand" src="../../img/ojo64.png" />      
+                        </ul>					
+                    </div>
+                </div>
+            </nav>
+        </header> 
+
+        <section>
+            <div class="container trans2">
+                <br/><br/><br/>
+                <!-- InstanceBeginEditable name="TODO" -->
+                <div class="row">
+                    <div class='col-sm-12 col-md-12'>
+
+                        <div class="jumbotron">
+                            <h1><i class="fa fa-calendar-plus-o fa-lg"></i>Registrar ficha</h1>
+                            <hr/>
+                            <h:form id="form" class="form-group" >
+                                <br/><br/>
+
+                                <div class="form-group">
+
+                                    <br/>
+                                    <h:selectOneMenu value="#{controladorFicha.idPrograma}"  class="form-control">
+                                        <c:forEach var="listaPro" items="#{controladorProgramaDeFormacion.listaProgramaDeFormacion}"     >
+                                            <f:selectItem itemValue="#{listaPro.idPrograma}" itemLabel="#{listaPro.nombrePrograma}" />                                                
+                                        </c:forEach>
+                                    </h:selectOneMenu>
+
+                                    <span class="help-block2">Seleccione un estado</span>
+                                </div>
+
+                                <div class="form-group">   
+                                    <label for="ficha"><i  class="fa fa-exclamation-circle fa-lg"></i> Número de la ficha:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                        <input type="list" class="form-control" title="Porfavor digite el número de la ficha" name="ficha" id="ficha" placeholder="Digite su contraseña" required="true"  maxlength="20" />
+                                    </div>
+                                </div>                            
+
+                                <br/><br/> 
+                                <div class="form-group text-left">
+                                    <div class="col-xm-12 col-sm-6 col-md-6">                                       
+                                        <h:commandButton class="btn botones2 btn-block" value="Registrar ficha" action="#{controladorFicha.registrarFicha}"/>                                     
+                                    </div>
+
+                                    <div class="col-xm-12 col-sm-6 col-md-6">
+                                        <button type="reset" class="btn botones btn-block" tabindex="14" >Borrar</button>
+                                    </div>                                   
+                                </div>    
+
+                                <br/><br/> 
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+                <br/><br/><br/><br/>
+            </div>  
+            <div class="color1 row">
+                <br/>
+                <div class="col btn-group col-sx6 col-sm-6 col-md-4 col-md-offset-5 col-sm-offset-4 col-xs-offset-4" >
+                    <butoon class="btn btn-primary" tabindex="20"><i class="fa fa-facebook fa-2x"></i></butoon>
+                    <butoon class="btn btn-info" tabindex="21"><i class="fa fa-twitter fa-2x"></i></butoon>
+                    <butoon class="btn  btn-danger" tabindex="22"><i class="fa fa-youtube-play fa-2x"></i></butoon>
+                    <butoon class="btn btn-warning" tabindex="23" ><i class="fa fa-google-plus fa-2x"></i></butoon>
+                </div>
+            </div>
+
+        </section>
+        <footer class="color1">
+            <div class="centrar container tfooter col-md-12">
+                <h4>CopyRigth © 2015 | SILSPA Todos los derechos reservados
+                    Sistema de Información Logistíco para el Seguimiento Psicologico del Aprendiz.   
+                    <small>  SILSPA 0.30</small>
+                </h4>
+            </div>
+        </footer>
+    </body>
+</html>

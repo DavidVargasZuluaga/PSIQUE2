@@ -97,7 +97,7 @@ public class UsuarioControlador implements Serializable {
             }
             switch (usuarioLog.getIdRol().getIdRol()) {
                 case 1:
-                    res = "/index.xhtml";
+                    res = "/modAdmon/miperfilAd.xhtml";
                     break;
                 case 2:
                     res = "/modCoordinador/principalCoordinador.xhtml";

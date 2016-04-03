@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <head>
+        <title>Registro aprendiz</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" charset="utf-8"/>
+        <link rel="icon" type="image/vnd.microsoft.icon" href="../../img/icono.ico"></link>
+
+        <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/estilos.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/sweetalert.css" rel="stylesheet" type="text/css"/>        
+        <link href="../../css/bootstrapFormValidation.css" rel="stylesheet" type="text/css" />
+        <link href="../../css/formValidation.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css"/>
+
+        <script src="../../js/jquery-1.11.3.min.js" type="text/javascript"></script>
+        <script src="../../js/formValidation.min.js" type="text/javascript"></script>
+        <script src="../../js/bootstrapFormValidation.js" type="text/javascript"></script>
+        <script src="../../js/frameworkbootstrap.min.js" type="text/javascript"></script>
+        <script src="../../js/sweetalert.min.js" type="text/javascript"></script>
+        <script src="../../js/validacionFormularios.js" type="text/javascript"></script>
+
+        <script src="../../js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+        <script src="../../js/bootstrap-datepicker.es.min.js" type="text/javascript"></script>
+        <script src="../../js/es_ES.js" type="text/javascript"></script>
+    </head>
+    <script>
+        $().ready(function () {
+            $('#btnInicio').removeClass("active");
+            $('#fecha').datepicker({
+                language: 'es',
+                format: 'dd/mm/yyyy',
+                multidateSeparator: '/',
+                startView: 0, //si inicia mostrando el dia (0), mes (1), año (2)
+                startDate: '-40y', //fecha inicial habilitada: hoy
+                endDate: '0d', //fecha final habilitada: 1 mes adelante
+                todayHighlight: true, //señalar el día actual
+                // daysOfWeekDisabled: '0,6', //deshabilitar días 0-sabado, 1-lunes... etc
+                autoclose: true, //autocerrar al perder el foco en el input
+                //defaultViewDate: {year: 2015} //Si se desea parametrizar una fecha por defecto
+            });
+
+            //Dos llamados al metodo de revalidar, cuando cambia (change) o cuando pierde foco (blur)
+            $('#fecha').change(function () {
+                $('#form').formValidation('revalidateField', 'fecha');
+            });
+            $('#fechaReserva').blur(function () {
+                $('#form').formValidation('revalidateField', 'fecha');
+            });
+
+            //métodos de validacion del otro plugin formvalidation
+            $('#form').formValidation({// Validación datos capa cliente. TENER PRESENTE EL ID DEL FORM
+                err: {container: 'tooltip'}, //muestra en tooltips
+                icon: {valid: 'fa fa-check-circle', invalid: 'fa fa-times-circle', validating: 'fa fa-refresh'}, //iconos
+                locale: 'es_ES', //idioma - debe enlazar el archivo "es_ES.js"
+                fields: {
+                    fecha: {
+                        row: '.form-group',
+                        message: 'Introduce una fecha válida con formato dd/mm/aaaa',
+                        validators: {
+                            notEmpty: {},
+                            date: {
+                                format: 'DD/MM/YYYY', // Muy importante hacer coincidir este formato, con el del DATEPICKER *******
+                                separator: '/',
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+    <body class="marcagua" >
+        <header class="">
+            <nav class="trans2 navbar-fixed-top">
+                <div class="container ">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed " data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" >
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar color2"></span>
+                            <span class="icon-bar color2" ></span>
+                            <span class="icon-bar color2"></span>
+                        </button>
+                        <a class="navbar-brand botonesnav">Usuario</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="../../index.html" class="botonesnav"><i class="fa fa-arrow-circle-o-left fa-lg"></i>  Volver al inicio</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <img class="imgdere" alt="Brand" src="../../img/ojo64.png"/>
+                        </ul>					
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <section>
+            <div class="container trans color2">
+                <br/><br/><br/>
+                <div class="row ">
+                    <div class="container "><!-- InstanceBeginEditable name="TODO" -->
+                        <div class="col-xs-12 col-sm-12 col-md-12 ">
+                            <h1><i class="fa fa-user-plus fa-lg"></i>  Registro de Aprendiz</h1>
+                            <h4>Llene los siguientes campos para crear una cuenta como aprendiz.</h4>
+                            <hr/>
+
+                            <h4>Campo requerido  <i title="Campo requerido" class="fa fa-exclamation-circle fa-lg"></i></h4>
+                            <br/>
+                            <form id="form" class="form-group form-horizontal" method="post" action="../../ModuloTest/testRegistro.html">
+                                <br/>
+                                <div class="form-group">
+                                    <label for="nombres"><i  class="fa fa-exclamation-circle fa-lg"></i> Primer y segundo nombre:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                        <input type="list" class="form-control" title="Porfavor digite el primer y el sugundo nombre" name="nombres" placeholder="Digite el primer y el sugundo nombre" required="true" id="nombres" maxlength="20" />
+                                    </div>
+                                </div>
+
+                                <!--<div class="form-group">                                   
+                                   <label  for="segundoNombre"><i title="Campo requerido" class="fa fa-exclamation-circle fa-lg"></i> Segundo nombre:</label>
+                                   <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                       <input type="list" class="form-control" name="segundoNombre" placeholder="Digite el segundo nombre del coordinador" required="true" id="dotacion" maxlength="20" />
+                                   </div>
+                               </div>
+                               <br/><br/> -->
+                                <div class="form-group">
+                                    <label  for="primerApellido"><i  class="fa fa-exclamation-circle fa-lg"></i> Primer apellido:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                        <input type="list" class="form-control" title="Porfavor digite su primer apellido" name="primerApellido" placeholder="Digite su primer apellido" required="true" id="primerApellido" maxlength="20" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  for="segundoApellido"><i  class="fa fa-exclamation-circle fa-lg"></i> Segundo apellido:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                        <input type="list" class="form-control" title="Porfavor digite su segundo apellido" name="segundoApellido" placeholder="Digite su segundo apellido" required="true" id="segundoApellido" maxlength="20" />
+                                    </div>
+                                </div>
+
+
+                                <!--   <div class="form-group text-left">
+                                       <label title="Campo requerido" for="fecha" ><i class="fa fa-exclamation-circle fa-lg"></i>  Fecha de Nacimiento:</label>
+                                       <input type="date" id="fecha" title="Ingrese la fecha de nacimiento" name="fecha"  class="form-control"  tabindex="1"/>
+                                          <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                   </div>-->
+
+                                <div class="form-group text-left">
+                                    <label title="Campo requerido" for="fecha" ><i class="fa fa-exclamation-circle fa-lg"></i>  Fecha de Nacimiento:</label><br/>
+                                    <div class="col-xs-6 dateContainer">
+                                        <div class="input-group date" id="datetimePicker">
+                                            <input type="text" id="fecha" name="fecha" title="Ingrese la fecha de nacimiento" class="form-control" placeholder="Seleccione una fecha válida" required="true" tabindex="10"/>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label for="tipoDocumento"><i  class="fa fa-exclamation-circle fa-lg"></i> Tipo documento:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                        <select class="form-control" title="Porfavor seleccione su tipo de documento" name="tipoDocumento"  data-fv-notempty-message="El tipo de documento es requerido" required="true">
+                                            <option disabled="true" selected="true" value="">-- Seleccione un tipo de documento --</option>
+                                            <option value="CC">Cédula de Ciudadania</option>
+                                            <option value="TI">Tarjeta de identidad</option>
+                                            <option value="CE">Cédula extranjera</option>
+                                            <option value="PP">Pasaporte</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="noDocumento"><i  class="fa fa-exclamation-circle fa-lg"></i> Documento:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                        <input type="list" class="form-control" title="Porfavor digite su documento" name="noDocumento" placeholder="Digite su documento del coordinador" required="true" id="noDocumento" maxlength="20" />
+                                    </div>
+                                </div>
+                              
+                                <div class="form-group">
+                                    <label for="telefono"><i  class="fa fa-exclamation-circle fa-lg"></i> Telefono:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                        <input type="list" class="form-control" title="Porfavor digite su telefono" name="telefono" placeholder="Digite su telefono" required="true" id="telefono" maxlength="20" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label for="ubicacion"><i  class="fa fa-exclamation-circle fa-lg"></i> localidad en la que vive:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                        <select class="form-control" name="ubicacion" title="Seleccione una localida" data-fv-notempty-message="La localidad es requerida" required="true">
+                                            <option disabled="true" selected="true" value="">-- Seleccione una localidad --</option>
+                                            <option value="Antonio Nariño">Antonio Nariño</option>
+                                            <option value="Barrios Unidos">Barrios Unidos</option>
+                                            <option value="Bosa">Bosa</option>
+                                            <option value="Chapinero">Chapinero</option>
+                                            <option value="Ciudad Bolívar">Ciudad Bolívar</option>
+                                            <option value="Engativá">Engativá</option>
+                                            <option value="Fontibón">Fontibón</option>
+                                            <option value="La Candelaria">La Candelaria</option>
+                                            <option value="Los Mártires">Los Mártires</option>
+                                            <option value="Puente Aranda">Puente Aranda</option>
+                                            <option value="Rafael Uribe Uribe">Rafael Uribe Uribe</option>
+                                            <option value="San Cristóbal">San Cristóbal</option>
+                                            <option value="Santa Fe">Santa Fe</option>
+                                            <option value="Suba">Suba</option>
+                                            <option value="Sumapaz">Sumapaz</option>
+                                            <option value="Teusaquillo">Teusaquillo</option>
+                                            <option value="Tunjuelito">Tunjuelito</option>
+                                            <option value="Usaquén">Usaquén</option>
+                                            <option value="Usme">Usme</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group ">
+                                    <label for="sexo"><i class="fa fa-exclamation-circle fa-lg"></i> Genero:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                        <select class="form-control" name="sexo" title="Seleccione su genero" data-fv-notempty-message="El tipo de genero es requerido" required="true">
+                                            <option disabled="true" selected="true" value="">-- Seleccione su de genero --</option>
+                                            <option value="Masculino">Masculino</option>
+                                            <option value="Femenino">Femenino</option>
+                                            <option value="Otro..">Otro..</option>                                           
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group ">
+                                    <label for="estadoCivil"><i  class="fa fa-exclamation-circle fa-lg"></i> Estado civil:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                        <select class="form-control" title="Seleccione su estado civil" name="estadoCivil"  data-fv-notempty-message="El tipo de estado civil es requerido" required="true">
+                                            <option disabled="true" selected="true" value="">-- Seleccione su estado civil --</option>
+                                            <option value="Soltero/a">Soltero/a</option>
+                                            <option value="Casado/a">Casado/a</option>
+                                            <option value="Divorciado/a">Divorciado/a</option>                                           
+                                            <option value="Viudo/a">Viudo/a</option>                                                                                                                               
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label for="raza"><i  class="fa fa-exclamation-circle fa-lg"></i> Grupo etnico:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                        <select class="form-control" title="Seleccione su grupo etnico" name="raza"  data-fv-notempty-message="El grupo etnico  es requerido" required="true">
+                                            <option disabled="true" selected="true" value="">-- Seleccione su grupo etnico --</option>
+                                            <option value="Meztizo">Meztizo</option>
+                                            <option value="Blanco">Blanco</option>
+                                            <option value="Afrocolombiano">Afrocolombiano</option>                                           
+                                            <option value="Indegena">Indegena</option>                                                                                                                               
+                                            <option value="Otro..">Otro..</option>                                                                                                                               
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label for="religion"><i class="fa fa-exclamation-circle fa-lg"></i> Religion:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                        <select class="form-control" name="religion" title="Seleccione su grupo religioso" data-fv-notempty-message="La religion es requerida" required="true">
+                                            <option disabled="true" selected="true" value="">-- Seleccione su grupo religioso --</option>
+                                            <option value="Catolica">Catolica</option>
+                                            <option value="Cristiana">Cristiana</option>
+                                            <option value="Evangelica">Evangelica</option>                                           
+                                            <option value="Pentecostalismo">Pentecostalismo</option>                                                                                                                               
+                                            <option value="Protestantismo">Protestantismo</option>                                                                                                                               
+                                            <option value="Testigos de Jehová">Testigos de Jehová</option>                                                                                                                               
+                                            <option value="Comunión Anglicana">Comunión Anglicana</option>                                                                                                                               
+                                            <option value="Rastafarismo">Rastafarismo</option>                                                                                                                               
+                                            <option value="Islamismo">Islamismo</option>                                                                                                                               
+                                            <option value="Budismo">Budismo</option>                                                                                                                               
+                                            <option value="Judaísmo">Judaísmo</option>                                                                                                                               
+                                            <option value="Iglesia Ortodoxa">Iglesia Ortodoxa</option>                                                                                                                               
+                                            <option value="Otra">Otra..</option>                                                                                                                               
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label for="tendenciaPolitica"><i class="fa fa-exclamation-circle fa-lg"></i> Tendencia politica:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                        <select class="form-control" title="Seleccione su tendencia politica" name="tendenciaPolitica"  data-fv-notempty-message="La tendencia politica es requerida" required="true">
+                                            <option disabled="true" selected="true" value="">-- Seleccione su grupo politico --</option>
+                                            <option value="Partido Social de Unidad Nacional">Partido de la U</option>
+                                            <option value="Centro Democrático">Centro Democrático</option>
+                                            <option value="Partido Conservador Colombiano">Conservador</option>                                           
+                                            <option value="Partido Liberal Colombiano">Liberal</option>                                                                                                                               
+                                            <option value="Partido Cambio Radical">Cambio Radical</option>                                                                                                                               
+                                            <option value="Partido Opción Ciudadana">PIN</option>                                                                                                                               
+                                            <option value="Alianza Verde">Alianza Verde</option>                                                                                                                               
+                                            <option value="Polo Democrático Alternativo">PDA</option>                                                                                                                               
+                                            <option value="Movimiento Independiente de Renovación Absoluta">MIRA</option>                                                                                                                               
+                                            <option value="Alianza Social Independiente">Alianza Social Independiente</option>                                                                                                                               
+                                            <option value="Movimiento Alternativo Indígena y Socialo">MAIS</option>                                                                                                                               
+                                            <option value="Fundación Ébano por Colombia Funeco">Funeco</option>                                                                                                                               
+                                            <option value="Autoridades Indígenas de Colombia">Autoridades Indígenas de Colombia</option>                                                                                                                               
+                                            <option value="Unión Patriótica">Unión Patriótica</option>                                                                                                                               
+                                            <option value="Otra">Otra..</option>                                                                                                                               
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group ">
+                                    <label for="orientacionSexual"><i  class="fa fa-exclamation-circle fa-lg"></i>Orientacion sexual:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                        <select class="form-control" name="orientacionSexual" title="Seleccione su grupo sexual" data-fv-notempty-message="El grupo sexual es requerido" required="true">
+                                            <option disabled="true" selected="true" value="">-- Seleccione su grupo sexual --</option>
+                                            <option value="Heterosexual">Heterosexual</option>
+                                            <option value="Homosexual">Homosexualidad</option>
+                                            <option value="Bisexualidad">Bisexualidad</option>                                           
+                                            <option value="Asexualidado">Asexualidad</option>                                                                                                                               
+                                            <option value="Pansexualidad">Pansexualidad</option>                                                                                                                               
+                                            <option value="Demisexualidad">Demisexualidad</option>                                                                                                                               
+                                            <option value="Antrosexualidad">Antrosexualidad</option>                                                                                                                                                                                                                                                            
+                                            <option value="Otra">Otra..</option>                                                                                                                               
+                                        </select>
+                                    </div>
+                                </div>
+                               
+                                <div class="form-group">
+                                    <label for="discapacidad"><i  class="fa fa-exclamation-circle fa-lg"></i> Discapacidad:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                        <input type="text" class="form-control" title="Si posee alguna discapacidad porfavor digitela" name="discapacidad" placeholder="Tipo de discapacidad" required="true" id="discapacidad" maxlength="20" />
+                                    </div>
+                                </div>                                                          
+
+                                <div class="form-group">
+                                    <label for="pasaTiempo"><i  class="fa fa-exclamation-circle fa-lg"></i> Pasa tiempo:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                        <input type="text" class="form-control" title="Porfavor digite sus pasatiempos" name="pasaTiempo" placeholder="Pasatiempos" required="true" id="pasaTiempo" maxlength="20" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="correo"><i  class="fa fa-exclamation-circle fa-lg"></i> Correo electronico:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                        <input type="list" class="form-control" title="Porfavor digite su correo electronico" name="correo" placeholder="Digite el correo electronico del coordinador" required="true" id="correo" maxlength="25" />
+                                    </div>
+                                </div> 
+
+                                <div class="form-group">
+                                    <label for="clave"><i  class="fa fa-exclamation-circle fa-lg"></i> Contraseña:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                        <input type="password" class="form-control" title="Porfavor digite su contraseña" name="clave" placeholder="Digite su contraseña" required="true" id="clave" maxlength="20" />
+                                    </div>
+                                </div>
+                                 
+                                <div class="form-group">
+                                    <label  for="confirmarClave"><i class="fa fa-exclamation-circle fa-lg"></i> Confirmar contraseña:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                        <input type="password" class="form-control" title="Porfavor confirme su contraseña" name="confirmarClave" placeholder="Confirme la contraseña del coordinador" required="true" id="clave" maxlength="20" />
+                                    </div>
+                                </div>                                
+                                
+                                <div class="form-group">
+                                    <label  for="ficha"><i title="Ficha" class="fa fa-exclamation-circle fa-lg"></i>Ficha:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
+                                        <input type="list" class="form-control" name="ficha" placeholder="Digite la ficha a la que pertenece" required="true" id="ficha" maxlength="20" />
+                                    </div>
+                                </div>      
+
+                                <br/><br/> 
+                                <h4>Apreciado aprendiz, para finalizar con su registro debe llenar el siguiente cuestionario</h4>
+                                <br/>
+                                <div class="form-group text-left">
+                                    <div class="col-xm-12 col-sm-6 col-md-6">
+                                        <button type="submit" class="btn botones2 btn-block" tabindex="11" >Ir a cuestionario</button>
+                                    </div>
+                                    <div class="col-xm-12 col-sm-6 col-md-6">
+                                        <button type="reset" class="btn botones btn-block" tabindex="12" style="margin-bottom: 50px" >Borrar</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <br/>
+                            <br/>
+                        </div>
+                        <!-- InstanceEndEditable --></div>
+                </div>
+            </div>
+            <div class="color1 row">
+                <br/>
+                <div class="col btn-group col-sx6 col-sm-6 col-md-4 col-md-offset-5 col-sm-offset-4 col-xs-offset-4" >
+                    <butoon class="btn btn-primary" tabindex="20"><i class="fa fa-facebook fa-2x"></i></butoon>
+                    <butoon class="btn btn-info" tabindex="21"><i class="fa fa-twitter fa-2x"></i></butoon>
+                    <butoon class="btn  btn-danger" tabindex="22"><i class="fa fa-youtube-play fa-2x"></i></butoon>
+                    <butoon class="btn btn-warning" tabindex="23" ><i class="fa fa-google-plus fa-2x"></i></butoon>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="color1">
+            <div class="centrar container tfooter col-md-12">
+                <h4>CopyRigth © 2015 | SILSPA Todos los derechos reservados
+                    Sistema de Información Logistíco para el Seguimiento Psicologico del Aprendiz.   
+                    <small>  SILSPA 0.30</small>
+                </h4>
+            </div>
+        </footer>
+    </body>
+</html>
