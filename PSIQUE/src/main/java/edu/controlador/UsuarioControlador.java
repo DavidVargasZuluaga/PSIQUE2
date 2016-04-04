@@ -14,6 +14,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import org.apache.commons.mail.EmailException;
 
 /**
  *
@@ -37,48 +38,54 @@ public class UsuarioControlador implements Serializable {
 
     @Inject
     private CitaFacade citaFacade;
-    
+
     @Inject
     private FichaFacade fichaFacade;
 
     private int modalCreacion;
     private Date fechaActual = new Date();
-    
+
+    private Mailer mailer;
     private Usuario usuarioLog;
     private Usuario usuarioTemp;
     private Aprendiz aprendizLog;
     private Aprendiz aprendizTemp;
     private Psicologo psicologoLog;
-    
+
     private List<Usuario> listaUsuarios;
     private List<Psicologo> listaPsicologos;
 
     @PostConstruct
     public void init() {
         modalCreacion = 0;
-        
+
+        usuario = new Usuario();
+        mailer = new Mailer();
         usuarioLog = new Usuario();
         usuarioTemp = new Usuario();
         aprendizLog = new Aprendiz();
         aprendizTemp = new Aprendiz();
         psicologoLog = new Psicologo();
-        
+
         listaUsuarios = usuarioFacade.findAll();
         listaPsicologos = psicologoFacade.findAll();
+        listaCoordinadores = usuarioFacade.findAll();
+        listapsicologos = usuarioFacade.findAll();
+        listaAprendiz = usuarioFacade.findAll();
     }
-    
-    public Usuario buscarPorNombre(String nombre){
+
+    public Usuario buscarPorNombre(String nombre) {
         List<Usuario> listaU = usuarioFacade.findAll();
         Usuario us = new Usuario();
         for (int i = 0; i < listaU.size(); i++) {
-            if(listaU.get(i).getNombres().equals(nombre) || listaU.get(i).getPrimerApellido().equals(nombre)){
+            if (listaU.get(i).getNombres().equals(nombre) || listaU.get(i).getPrimerApellido().equals(nombre)) {
                 us = listaU.get(i);
                 break;
             }
         }
         return us;
     }
-    
+
     public String autenticar() {
         String res = "/PSIQUE/index.xhtml";
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -161,43 +168,43 @@ public class UsuarioControlador implements Serializable {
             usuarioTemp.setPrimerApellido((String) params.get("primerApellido"));
             usuarioTemp.setSegundoApellido((String) params.get("segundoApellido"));
             usuarioTemp.setTelefono((String) params.get("telefono"));
-            for (int i = 0; i < usuarioFacade.findAll().size() ; i++) {
-                if(usuarioFacade.findAll().get(i).getNoDocumento() == usuarioTemp.getNoDocumento()){
+            for (int i = 0; i < usuarioFacade.findAll().size(); i++) {
+                if (usuarioFacade.findAll().get(i).getNoDocumento() == usuarioTemp.getNoDocumento()) {
                     existe = false;
                     usuarioTemp = new Usuario();
                     break;
                 }
             }
-            if(existe){
+            if (existe) {
                 usuarioFacade.create(usuarioTemp);
                 modalCreacion = 1;
-            }else{
+            } else {
                 modalCreacion = 2;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
-    public String crearAprendiz(){
+
+    public String crearAprendiz() {
         crearUsuario();
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map params = externalContext.getRequestParameterMap();
         HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
-        
+
         try {
-            if(usuarioTemp != null){
+            if (usuarioTemp != null) {
                 aprendizTemp.setUsuario(usuarioTemp);
                 aprendizTemp.setFicha(fichaFacade.find((Integer) params.get("Ficha")));
                 aprendizTemp.setUbicacion((String) params.get("ubicacion"));
                 aprendizTemp.setSexo((String) params.get("sexo"));
-                aprendizTemp.setEstadoCivil((String) params.get("estadoCivil")); 
-                aprendizTemp.setRaza((String) params.get("raza")); 
+                aprendizTemp.setEstadoCivil((String) params.get("estadoCivil"));
+                aprendizTemp.setRaza((String) params.get("raza"));
                 aprendizTemp.setReligion((String) params.get("religion"));
-                aprendizTemp.setTendenciaPolitica((String) params.get("politica")); 
+                aprendizTemp.setTendenciaPolitica((String) params.get("politica"));
                 aprendizTemp.setOrientacionSexual((String) params.get("sexual"));
-                aprendizTemp.setDiscapacidad((String) params.get("discapacidad")); 
+                aprendizTemp.setDiscapacidad((String) params.get("discapacidad"));
                 aprendizTemp.setPasaTiempo((String) params.get("pasaTiempo"));
                 aprendizFacade.create(aprendizTemp);
             }
@@ -206,34 +213,48 @@ public class UsuarioControlador implements Serializable {
         }
         return " ";
     }
-    
-    public String editarDatosPersonales(){
+
+    public String editarDatosPersonales() {
         String res = "/PSIQUE";
         usuarioFacade.edit(usuarioLog);
         switch (usuarioLog.getIdRol().getIdRol()) {
-                case 1:
-                    res = "/index.xhtml";
-                    break;
-                case 2:
-                    res = "/modCoordinador/configuracion.xhtml";
-                    break;
-                case 3:
-                    res = "/modPsicologo/configuracion.xhtml";
-                    break;
-                case 4:
-                    res = "/modAprendiz/configuracion.xhtml";
-                    break;
-                default:
-                    res = "/index.xhtml";
-                    break;
-            }
-        
+            case 1:
+                res = "/index.xhtml";
+                break;
+            case 2:
+                res = "/modCoordinador/configuracion.xhtml";
+                break;
+            case 3:
+                res = "/modPsicologo/configuracion.xhtml";
+                break;
+            case 4:
+                res = "/modAprendiz/configuracion.xhtml";
+                break;
+            default:
+                res = "/index.xhtml";
+                break;
+        }
         return "";
     }
-    
+
+    public String recuperarContraseña() {
+        String res = "/modUsuario/recuperarContraseña.xhtml";
+        String correo = " ";
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        try {
+            correo = ((String) params.get("correo"));
+            Mailer.send(correo, "correo", "Mensajeeeeeeeee");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
     // FELIPE ES UN PUERCO METIENDO CONTENIDO DEL MODULO CITAS EN ESTE CONTROLADOR
     // PENDIENTE POR MODIFICAR
-
     public String cancelarCita(Cita cita) {
         cita.setEstado("CANCELADA");
         citaFacade.edit(cita);
@@ -276,6 +297,91 @@ public class UsuarioControlador implements Serializable {
     public List<Cita> mostrarCitas() {
         List<Cita> Citas = citaFacade.findAll();
         return Citas;
+    }
+
+    //    Parte Andres parte del controlador Usuario
+    private Usuario usuario;
+    private List<Usuario> listaAprendiz;
+    private List<Usuario> listaCoordinadores;
+    private List<Usuario> listapsicologos;
+
+//  esto va en el post construct
+//     usuario = new Usuario();
+//        usuarioLog = new Usuario();
+//        usuarioTemp = new Usuario();
+//        usuarioTemp2 = new Usuario();
+//        listaAprendiz = usuarioFacade.findAll();
+//        listaCoordinadores = usuarioFacade.findAll();
+//        listapsicologos = usuarioFacade.findAll();
+//        listaUsuarios = new ArrayList();
+    public List<Usuario> traerListaAprendiz() {
+        List<Usuario> lista = new ArrayList();
+        for (int i = 0; i < listaAprendiz.size(); i++) {
+            if (listaAprendiz.get(i).getIdRol().getIdRol() == 4) {
+                lista.add(listaAprendiz.get(i));
+            }
+        }
+        return lista;
+    }
+
+    public List<Usuario> traerListaCoordinadores() {
+        List<Usuario> listaCo = new ArrayList();
+        for (int i = 0; i < listaCoordinadores.size(); i++) {
+            if (listaCoordinadores.get(i).getIdRol().getIdRol() == 2) {
+                listaCo.add(listaCoordinadores.get(i));
+            }
+        }
+        return listaCo;
+    }
+
+    public List<Usuario> traerListaPsicologos() {
+        List<Usuario> listaPs = new ArrayList();
+        for (int i = 0; i < listapsicologos.size(); i++) {
+            if (listapsicologos.get(i).getIdRol().getIdRol() == 3) {
+                listaPs.add(listapsicologos.get(i));
+            }
+        }
+        return listaPs;
+    }
+
+    public void actualizar(Usuario usuarioM) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        try {
+            //     rol.setIdRol((Integer.parseInt((String) params.get("rol"))));
+            usuarioM.setNombres((String) params.get("nombres"));
+            usuarioM.setPrimerApellido((String) params.get("primerApellido"));
+            usuarioM.setSegundoApellido((String) params.get("segundoApellido"));
+//            aprendiz.setTipoDocumento((String) params.get("tipoDocumento"));
+            usuarioM.setNoDocumento(Long.parseLong((String) params.get("noDocumento")));
+            usuarioM.setCorreo((String) params.get("correo"));
+            usuarioM.setClave((String) params.get("clave"));
+            usuarioM.setTelefono((String) params.get("telefono"));
+            usuarioM.setEstado((String) params.get("estado"));
+            //          aprendiz.setIdRol(rol);
+            System.out.println("a");
+            usuarioFacade.edit(usuarioM);
+            System.out.println("Usuario modificado");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public List<Usuario> getListaAprendiz() {
+        return listaAprendiz;
+    }
+
+    public void setListaAprendiz(List<Usuario> listaAprendiz) {
+        this.listaAprendiz = listaAprendiz;
     }
 
     public Usuario getUsuarioLog() {

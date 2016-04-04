@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <body>
+
+        <ui:composition template="../PlantillaPsicologo.xhtml">
+
+            <ui:define name="title">
+                title
+            </ui:define>
+
+            <ui:define name="body">
+               <div class="row margen color1">
+                   
+                    <div class="container-fluid">
+                        <div class="col-xs-12 col-sm-12 col-md-12 ">
+                            <h1><i class="fa fa-circle-o fa-lg"></i> &nbsp; Citas Solicitadas</h1>
+                        </div>
+                    </div>
+                   
+
+
+                   
+                        <div class="table-responsive">
+                            <div class="panel filterable">
+                                <div class="panel-heading ">
+                                    <h3 class="centrar panel-title">Aprendices SILSPA</h3>
+                                </div>
+                                <table id="Usuarios1" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="Documento" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Documento</th>
+                                            <th data-field="Nombres" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Nombres</th>
+                                            <th data-field="Primer apellido" data-align="center" data-sortable="true" class="col-md-2">Primer apellido</th>
+                                            <th data-field="Segundo apellido" data-align="center" data-sortable="true" class="col-md-2">Segundo apellido</th>
+                                            <th data-field="Fecha" data-align="center" data-sortable="true" class="col-md-2">Fecha</th>
+                                            <th data-field="Opciones" data-align="center" data-sortable="true" class="col-md-2">Opciones</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <ui:repeat var="miLista" value="#{psicologoControlador.mostrarAprendices()}">
+                                            <tr>
+                                                <td>#{miLista.usuario.noDocumento}</td>
+                                                <td>#{miLista.usuario.nombres}</td>
+                                                <td>#{miLista.usuario.primerApellido}</td>
+                                                <td>#{miLista.usuario.segundoApellido}</td>
+                                                <td>#{miLista.usuario.fechaNacimiento}</td>
+                                                <td><button value="1"/></td>
+                                            </tr>
+                                        </ui:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                   
+
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

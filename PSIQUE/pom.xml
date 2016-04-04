@@ -28,6 +28,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-email</artifactId>
+            <version>1.4</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
@@ -38,7 +44,11 @@
             <artifactId>jasperreports</artifactId>
             <version>5.0.1</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.typesafe.play</groupId>
+            <artifactId>play-mailer_2.11</artifactId>
+            <version>5.0.0-M1</version>
+        </dependency>
     </dependencies>
 
     <build>

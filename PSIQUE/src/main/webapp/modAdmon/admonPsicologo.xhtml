@@ -18,7 +18,7 @@
                 <div class="row color1">
                     <div class="container">
                         <div class="col-xs-12 col-sm-12 col-md-12 ">
-                            <h1><i class="fa fa-circle-o-notch fa-spin fa-lg"></i>  Coordinadores</h1>
+                            <h1><i class="fa fa-circle-o-notch fa-spin fa-lg"></i>  Psicologos</h1>
                         </div>
                     </div>
                     <div class="container">
@@ -28,7 +28,7 @@
                         </div>
                     </div>
 
-                    <c:if test="#{controladorCoordinador.ver == 1}">
+                    <c:if test="#{controladorPsicologos.ver == 1}">
                         <div class="alert "  aria-label="Close" data-dismiss="alert" >
                             <table id="example" class="table table-bordered" width="100%">
                                 <legend>Caracteristicas del aprendiz</legend>
@@ -43,51 +43,50 @@
                                 </tr>
 
                                 <tbody>
-                                    <tr>  
+                                    <tr>
                                         <td>
-                                            <h:outputLabel  class="disabled" value="#{listaCoordinadores.tipoDocumento}" /> 
+                                            <h:outputLabel  class="disabled" value="#{listaPsicologo.tipoDocumento}" /> 
                                         </td> 
 
                                         <td>
-                                            <h:outputLabel  class="disabled " value="#{listaCoordinadores.noDocumento}" />
+                                            <h:outputLabel  class="disabled " value="#{listaPsicologo.noDocumento}" />
                                         </td> 
 
                                         <td>
-                                            <h:outputLabel  class="disabled " value="#{listaCoordinadores.nombres}" />
+                                            <h:outputLabel  class="disabled " value="#{listaPsicologo.nombres}" />
                                         </td> 
 
                                         <td>
-                                            <h:outputLabel  class="disabled " value="#{listaCoordinadores.primerApellido}" />
+                                            <h:outputLabel  class="disabled " value="#{listaPsicologo.primerApellido}" />
                                         </td>
 
                                         <td>
-                                            <h:outputLabel  class="disabled " value="#{listaCoordinadores.telefono}" /> 
+                                            <h:outputLabel  class="disabled " value="#{listaPsicologo.telefono}" /> 
                                         </td> 
 
                                         <td>
-                                            <h:outputLabel  class="disabled " value="#{listaCoordinadores.correo}" />
+                                            <h:outputLabel  class="disabled " value="#{listaPsicologo.correo}" />
                                         </td> 
 
                                         <td>
-                                            <h:outputLabel  class="disabled " value="#{listaCoordinadores.fechaNacimiento}" >
+                                            <h:outputLabel  class="disabled " value="#{listaPsicologo.fechaNacimiento}" >
                                                 <f:convertDateTime pattern="dd/MM/yyy" />
                                             </h:outputLabel>
                                         </td>
-
-                                    </tr>       
+                                    </tr>        
                                 </tbody>
                             </table>
                             <h:form>
-                                <h:link onclick="admonCoordinadores"> <h:commandLink class="btn " value="Cerrar" action="#{controladorCoordinador.cerrarDatos()}"/></h:link>
+                                <h:link onclick="admonPsicologos"> <h:commandLink class="btn " value="Cerrar" action="#{controladorPsicologos.cerrarDatos()}"/></h:link>
                             </h:form>
                         </div>
-
                     </c:if>
+
                     <div class="container">
                         <div class="table-responsive">
                             <div class="panel filterable">
                                 <div class="panel-heading ">
-                                    <h3 class="centrar panel-title">Coordinadores SILSPA</h3>
+                                    <h3 class="centrar panel-title">Psicologos SILSPA</h3>
                                 </div>
                                 <table id="Usuarios1" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
                                     <thead>
@@ -97,32 +96,34 @@
                                             <th data-field="Nombres" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Nombres</th>
                                             <th data-field="Primer apellido" data-align="center" data-sortable="true" class="col-md-3">Primer apellido</th>
                                             <th data-field="Segundo apellido" data-align="center" data-sortable="true" class="col-md-2">Segundo apellido</th>
-                                            <th data-field="Programa al que corresponde" data-align="center" data-sortable="true" class="col-md-2">Programa al que corresponde</th>
                                             <th data-field="Edición" data-align="center" data-sortable="true" class="col-md-2">Edición</th>
+
                                         </tr>
                                     </thead>
 
                                     <tbody>                                     
-                                        <ui:repeat value="#{usuarioControlador.traerListaCoordinadores()}" var="listaCoordinadores">  
+
+                                        <ui:repeat var="listaPsicologo" value="#{usuarioControlador.traerListaPsicologos()}"> 
                                             <tr>
-                                                <td>#{listaCoordinadores.idUsuario}</td> 
-                                                <td>#{listaCoordinadores.noDocumento}</td> 
-                                                <td>#{listaCoordinadores.nombres}</td> 
-                                                <td>#{listaCoordinadores.primerApellido}</td> 
-                                                <td>#{listaCoordinadores.segundoApellido}</td> 
-                                                <td>#{listaCoordinadores.coordinador.idPrograma.nombrePrograma}</td> 
+                                                <td>#{listaPsicologo.idUsuario}</td> 
+                                                <td>#{listaPsicologo.noDocumento}</td> 
+                                                <td>#{listaPsicologo.nombres}</td> 
+                                                <td>#{listaPsicologo.primerApellido}</td> 
+                                                <td>#{listaPsicologo.segundoApellido}</td> 
                                                 <td>
                                                     <h:form>
-                                                        <h:commandLink action="#{controladorCoordinador.verDatos()}" class="fa fa-eye fa-lg botonesnav"/>    
-                                                        <h:commandLink class="btn botonesnav" onclick="$('#myModal#{listaCoordinadores.idUsuario}').modal(); return false;" title="Ver mensaje completo">
+                                                        <h:commandLink action="#{controladorPsicologos.verDatos()}" class="fa fa-eye fa-lg botonesnav"/> 
+                                                        <h:commandLink class="btn botonesnav" onclick="$('#myModal#{listaPsicologo.idUsuario}').modal(); return false;" title="Ver mensaje completo">
                                                             <i class="fa fa-pencil fa-lg botonesnav"></i>
                                                         </h:commandLink>
-                                                    </h:form>                                                  
-                                                </td>
+                                                    </h:form> 
 
-                                                
+                                                    
+
+                                                </td>
                                             </tr>
-                                        </ui:repeat>        						
+                                        </ui:repeat>                                           
+
                                     </tbody>
                                 </table>
                             </div>
