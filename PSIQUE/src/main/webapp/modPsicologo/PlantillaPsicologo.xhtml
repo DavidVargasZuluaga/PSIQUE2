@@ -32,8 +32,6 @@
         <h:outputScript library="js" name="bootstrap-datepicker.min.js" target="body"/>
         <h:outputScript library="js" name="es_ES.js" target="body"/>-->
 
-        <f:event type="preRenderView" listener="#{usuarioControlador.validarSesion()}"/>
-
         <title>
             <ui:insert name="title"></ui:insert>
         </title>
@@ -51,7 +49,7 @@
                                 <span class="icon-bar color2" ></span>
                                 <span class="icon-bar color2"></span>
                             </button>
-                            <a class="navbar-brand botonesnav" href="#">#{usuarioControlador.usuarioLog.idRol.nombre}</a>
+                            <a class="navbar-brand botonesnav" href="#">#{psicologoControlador.usuarioLog.idRol.nombre}</a>
                         </div>
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
@@ -59,19 +57,23 @@
                                 <li class="dropdown">
                                     <a href="#" class="botonesnav dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa fa-book fa-lg"></i> &nbsp; Historial &nbsp; <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a><strong>Citas Pendientes</strong></a></li>
-                                        <li><a href="/PSIQUE/modPsicologo/citasSolicitadas.xhtml"><i class="fa fa-circle-o fa-lg"></i> &nbsp; Citas solicitadas</a></li>
-                                        <li><a href="/PSIQUE/modPsicologo/citasPendientes.xhtml"><i class="fa fa fa-clock-o fa-lg"></i> &nbsp; Citas pendientes</a></li>
-                                        <li><a href="/PSIQUE/modPsicologo/mostrarCitas.xhtml"><i class="fa ffa fa-archive fa-lg"></i> &nbsp; Historial de citas</a></li>
+                                        <li><a><strong>Aprendices</strong></a></li>
+                                        <li><a href="modPsicologo/citasSolicitadas.xhtml"><i class="fa fa-circle-o fa-lg"></i> &nbsp; Citas solicitadas</a></li>
+                                        <li><a href="modPsicologo/citasPendientes.xhtml"><i class="fa fa fa-clock-o fa-lg"></i> &nbsp; Citas pendientes</a></li>
+                                        <li><a href="modPsicologo/HistorialDeCitas.html"><i class="fa ffa fa-archive fa-lg"></i> &nbsp; Historial de citas</a></li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="indexPsicologo.xhtml"><i class="fa fa fa-male fa-lg"></i> &nbsp; <strong>Historial de un aprendiz</strong></a></li>
+                                        <li><a href="../../modUsuario/listaAprendices.html"><i class="fa fa fa-male fa-lg"></i> &nbsp; <strong>Historial de un aprendiz</strong></a></li>
+                                        <li><a href="modPsicologo/crearTest.xhtml"><i class="fa fa fa-male fa-lg"></i> &nbsp; <strong>Crear test</strong></a></li>
+                                        <li><a href="modPsicologo/mostrarTest.xhtml"><i class="fa fa fa-male fa-lg"></i> &nbsp; <strong>Mostrar los test</strong></a></li>
+                                        <li><a href="modPsicologo/listarFichas.xhtml"><i class="fa fa fa-male fa-lg"></i> &nbsp; <strong>Asignar test a un Aprendiz</strong></a></li>
+
                                         <li role="separator" class="divider"></li>
                                     </ul>
                                 </li>
                                 <li><a href="../../modUsuario/Notificaciones/NotifiPsi.html" class="botonesnav"><i class="fa fa-bookmark fa-lg"></i> &nbsp; Notificaciones &nbsp; <span class="badge color2">12</span></a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><h:commandLink action="#{usuarioControlador.cerrarSesion()}" class="botonesnav" >Cerrar Sesion &nbsp; &nbsp;</h:commandLink></li>
+                                <li><h:commandLink action="#{psicologoControlador.cerrarSesion()}" class="botonesnav" >Cerrar Sesion &nbsp; &nbsp;</h:commandLink></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right centrar" style="padding-top:10px;" >
                                 <li class="fa fa-eye fa-2x"></li>
@@ -90,12 +92,7 @@
                 <br/>
                 <br/>
                 <br/>
-                <c:if test="#{citaControlador.modalCita == 1}" >
-                    <div class="alert alert-warning page-alert" id="alert-1">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <strong>Turno no disponible!</strong> Hora no disponible, intentelo de nuevo en otra hora.
-                    </div>
-                </c:if>
+
                 <div class="col-xs-12 col-sm-4 col-md-3  color1">
                     <div class="container-fluid perfilHover">
                         <div class="profile-sidebar control-group">
@@ -104,19 +101,33 @@
                             </div>
                             <hr/>
                             <div class="profile-usertitle centrar center-block">
-                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value="#{usuarioControlador.usuarioLog.nombres} &nbsp;"/>
-                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value=" #{usuarioControlador.usuarioLog.primerApellido} &nbsp; "/>
-                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value=" #{usuarioControlador.usuarioLog.segundoApellido} &nbsp; "/>
+                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value="#{psicologoControlador.usuarioLog.nombres} &nbsp;"/>
+                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value=" #{psicologoControlador.usuarioLog.primerApellido} &nbsp; "/>
+                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value=" #{psicologoControlador.usuarioLog.segundoApellido} &nbsp; "/>
                                 <br/> 
-                                <h:outputLabel style="color:#5a7391;" class="profile-usertitle-job centrar" value="#{usuarioControlador.usuarioLog.idRol.nombre}"/>
+                                <h:outputLabel style="color:#5a7391;" class="profile-usertitle-job centrar" value="#{psicologoControlador.usuarioLog.idRol.nombre}"/>
                             </div>
                             <br/>
                             <div class="profile-usermenu botonesnav">
-                                <ul class="nav botonesnav">
-                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/miPerfil.xhtml" ><i class="fa fa-user fa-lg"></i> &nbsp; Mi perfil</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/mensajeria.xhtml" ><i class="fa fa-envelope fa-lg"></i> &nbsp; Mensajeria</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/configuracion.xhtml" ><i class="fa fa-cog fa-spin fa-lg"></i> &nbsp; Configuracion</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/ayuda.xhtml" ><i class="fa fa-question-circle fa-lg"></i> &nbsp; Ayuda</a></li>
+                                <ul class="nav navbar-nav">
+                                    <li><a href="../../modUsuario/miPerfilP.html" class="botonesnav"><i class="fa fa-home fa-lg"></i> &nbsp; Principal</a></li>
+                                    <li class="dropdown">
+                                        <a href="#" class="botonesnav dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa fa-book fa-lg"></i> &nbsp; Historial &nbsp; <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a><strong>Aprendices</strong></a></li>
+                                            <li><a href="modPsicologo/citasSolicitadas.xhtml"><i class="fa fa-circle-o fa-lg"></i> &nbsp; Citas solicitadas</a></li>
+                                            <li><a href="citasPendientes.xhtml"><i class="fa fa fa-clock-o fa-lg"></i> &nbsp; Citas pendientes</a></li>
+                                            <li><a href="HistorialDeCitas.html"><i class="fa ffa fa-archive fa-lg"></i> &nbsp; Historial de citas</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="../../modUsuario/listaAprendices.html"><i class="fa fa fa-male fa-lg"></i> &nbsp; <strong>Historial de un aprendiz</strong></a></li>
+                                            <li><a href="crearTest.xhtml"><i class="fa fa fa-male fa-lg"></i> &nbsp; <strong>Crear test</strong></a></li>
+                                            <li><a href="mostrarTest.xhtml"><i class="fa fa fa-male fa-lg"></i> &nbsp; <strong>Mostrar los test</strong></a></li>
+                                            <li><a href="listarFichas.xhtml"><i class="fa fa fa-male fa-lg"></i> &nbsp; <strong>Asignar test a un Aprendiz</strong></a></li>
+
+                                            <li role="separator" class="divider"></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="../../modUsuario/Notificaciones/NotifiPsi.html" class="botonesnav"><i class="fa fa-bookmark fa-lg"></i> &nbsp; Notificaciones &nbsp; <span class="badge color2">12</span></a></li>
                                 </ul>
                             </div>
                             <br/>
