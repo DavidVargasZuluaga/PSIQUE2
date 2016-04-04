@@ -95,23 +95,25 @@
                         <h:graphicImage value="/resources/img/letrero.png" class="centrar img-responsive" />
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-5">
-                        <h:form id="formRegistro" class="form-group" >
+                        <h:form id="formRegistro" class="form-group" onkeypress="if (event.keyCode == 13)
+                                    document.getElementById('ingresar').click()" >
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="documento">Documento</label> 
-
-                                <input id="documento" name="documento" type="text" placeholder="10118666789" class="form-control input-md" tabindex="1" required="true" autofocus="true"/>
+                                <label class="col-md-4 control-label" for="documento" ><i class="fa fa-hashtag"></i> Documento</label> 
+                                <input id="documento" title="Solo numeros" name="documento" type="tel" pattern="[0-9]{4,15}" placeholder="10118666789" class="form-control input-md" tabindex="1" required="true" autofocus="true"/>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="clave">Contraseña</label>
-                                <input id="clave" name="clave" type="password" pattern="[a-z,A-Z,0-9]{1,20}" placeholder="************" class="form-control input-md" required=""/>
+                                <label class="col-md-4 control-label" for="clave"><i class="fa fa-key"></i> Contraseña</label>
+                                <input onkeypress="#{usuarioControlador.autenticar()}" id="clave" title="Sin caracteres especiales" name="clave" type="password" pattern="[a-z,A-Z,0-9]{4,20}" placeholder="************" class="form-control input-md" tabindex="2" required="true"/>
+                                <a href="/PSIQUE/modUsuario/recuperarContraseña.xhtml" >Recuperar contraseña</a>
                             </div>
                             <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                                <h:commandButton action="#{usuarioControlador.autenticar()}" id="ingresar" value="Ingresar" class="btn botones btn-group-justified"> </h:commandButton>
+                                <h:commandButton action="#{usuarioControlador.autenticar()}" id="ingresar" value="Ingresar" class="btn botones btn-group-justified" tabindex="3">
+                                </h:commandButton>
                             </div>
                         </h:form>
                         <div class="form-group col-xs-6 col-sm-6 col-md-6">
                             <h:form>
-                                <h:commandLink class="btn btn-block botones2" action="/modAprendiz/principalAprendiz.xhtml" tabindex="5" ><i class="fa fa-user-plus fa-lg"></i> &nbsp;  Crear cuenta</h:commandLink>
+                                <h:commandLink class="btn btn-block botones2" action="/modUsuario/Registro/aprendizRegistro.xhtml" tabindex="5" ><i class="fa fa-user-plus fa-lg"></i> &nbsp;  Crear cuenta</h:commandLink>
                             </h:form>
                         </div>
                     </div>

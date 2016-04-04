@@ -1,25 +1,43 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <head>
-        <title>Registro aprendiz</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" charset="utf-8"/>
-        <link rel="icon" type="image/vnd.microsoft.icon" href="../../img/icono.ico"></link>
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+        <link rel="shortcut icon" type="image/x-icon" href="/resources/img/icono.ico"/>
+
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputStylesheet library="css" name="estilos.css"/>
+        <h:outputStylesheet library="css" name="font-awesome.css"/>
+        <h:outputStylesheet library="css" name="bootstrap-table.min.css"/>
+        <h:outputStylesheet library="css" name="jquery.timepicker.css"/>
+        <!-- <h:outputStylesheet library="css" name="bootstrapFormValidation.css"/>
+        <h:outputStylesheet library="css" name="formValidation.min.css"/>
+        <h:outputStylesheet library="css" name="bootstrap-datepicker.min.css"/> -->
+
+        <h:outputScript library="js" name="jquery-1.12.2.min.js" target="head"/>
+        <h:outputScript library="js" name="bootstrap.js" target="body"/>
+        <h:outputScript library="js" name="bootstrap-table.js" target="body"/>
+        <h:outputScript library="js" name="jquery.timepicker.js" target="body"/>
+        <h:outputScript library="js" name="miCalendario.js" target="body"/>
+        <h:outputScript library="js" name="mostrar.js" target="body"/>
+        <!--<h:outputScript library="js" name="formValidation.min.js" target="body"/>
+        <h:outputScript library="js" name="validacionFormularios.js" target="body"/>
+        <h:outputScript library="js" name="bootstrap-datepicker.min.js" target="body"/>
+        <h:outputScript library="js" name="es_ES.js" target="body"/>-->
 
         <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="../../css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="../../css/estilos.css" rel="stylesheet" type="text/css"/>
         <link href="../../css/sweetalert.css" rel="stylesheet" type="text/css"/>        
         <link href="../../css/bootstrapFormValidation.css" rel="stylesheet" type="text/css" />
-        <link href="../../css/formValidation.min.css" rel="stylesheet" type="text/css" />
-        <link href="../../css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css"/>
+        <!--<link href="../../css/formValidation.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css"/>-->
 
         <script src="../../js/jquery-1.11.3.min.js" type="text/javascript"></script>
         <script src="../../js/formValidation.min.js" type="text/javascript"></script>
@@ -31,7 +49,7 @@ and open the template in the editor.
         <script src="../../js/bootstrap-datepicker.min.js" type="text/javascript"></script>
         <script src="../../js/bootstrap-datepicker.es.min.js" type="text/javascript"></script>
         <script src="../../js/es_ES.js" type="text/javascript"></script>
-    </head>
+    </h:head>
     <script>
         $().ready(function () {
             $('#btnInicio').removeClass("active");
@@ -77,7 +95,7 @@ and open the template in the editor.
             });
         });
     </script>
-    <body class="marcagua" >
+    <h:body class="marcagua" >
         <header class="">
             <nav class="trans2 navbar-fixed-top">
                 <div class="container ">
@@ -91,13 +109,15 @@ and open the template in the editor.
                         <a class="navbar-brand botonesnav">Usuario</a>
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="../../index.html" class="botonesnav"><i class="fa fa-arrow-circle-o-left fa-lg"></i>  Volver al inicio</a></li>
+                            <h:form>
+                                <li><h:commandLink action="#{usuarioControlador.cerrarSesion()}" class="botonesnav" >Cancelar</h:commandLink></li>
+                            </h:form>                            
                         </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <img class="imgdere" alt="Brand" src="../../img/ojo64.png"/>
-                        </ul>					
+                        <ul class="nav navbar-nav navbar-right centrar" style="padding-top:10px;" >
+
+                            <li class="fa fa-eye fa-2x"></li>
+                        </ul>			
                     </div>
                 </div>
             </nav>
@@ -180,7 +200,7 @@ and open the template in the editor.
                                         <input type="list" class="form-control" title="Porfavor digite su documento" name="noDocumento" placeholder="Digite su documento del coordinador" required="true" id="noDocumento" maxlength="20" />
                                     </div>
                                 </div>
-                              
+
                                 <div class="form-group">
                                     <label for="telefono"><i  class="fa fa-exclamation-circle fa-lg"></i> Telefono:</label>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
@@ -215,7 +235,7 @@ and open the template in the editor.
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group ">
                                     <label for="sexo"><i class="fa fa-exclamation-circle fa-lg"></i> Genero:</label>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
@@ -227,7 +247,7 @@ and open the template in the editor.
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group ">
                                     <label for="estadoCivil"><i  class="fa fa-exclamation-circle fa-lg"></i> Estado civil:</label>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
@@ -300,7 +320,7 @@ and open the template in the editor.
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group ">
                                     <label for="orientacionSexual"><i  class="fa fa-exclamation-circle fa-lg"></i>Orientacion sexual:</label>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
@@ -317,7 +337,7 @@ and open the template in the editor.
                                         </select>
                                     </div>
                                 </div>
-                               
+
                                 <div class="form-group">
                                     <label for="discapacidad"><i  class="fa fa-exclamation-circle fa-lg"></i> Discapacidad:</label>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
@@ -345,14 +365,14 @@ and open the template in the editor.
                                         <input type="password" class="form-control" title="Porfavor digite su contraseña" name="clave" placeholder="Digite su contraseña" required="true" id="clave" maxlength="20" />
                                     </div>
                                 </div>
-                                 
+
                                 <div class="form-group">
                                     <label  for="confirmarClave"><i class="fa fa-exclamation-circle fa-lg"></i> Confirmar contraseña:</label>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
                                         <input type="password" class="form-control" title="Porfavor confirme su contraseña" name="confirmarClave" placeholder="Confirme la contraseña del coordinador" required="true" id="clave" maxlength="20" />
                                     </div>
                                 </div>                                
-                                
+
                                 <div class="form-group">
                                     <label  for="ficha"><i title="Ficha" class="fa fa-exclamation-circle fa-lg"></i>Ficha:</label>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
@@ -388,7 +408,7 @@ and open the template in the editor.
                 </div>
             </div>
         </section>
-        
+
         <footer class="color1">
             <div class="centrar container tfooter col-md-12">
                 <h4>CopyRigth © 2015 | SILSPA Todos los derechos reservados
@@ -397,5 +417,5 @@ and open the template in the editor.
                 </h4>
             </div>
         </footer>
-    </body>
+    </h:body>
 </html>

@@ -80,7 +80,7 @@ public class UsuarioControlador implements Serializable {
     }
     
     public String autenticar() {
-        String res = "/index.xhtml";
+        String res = "/PSIQUE/index.xhtml";
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map params = externalContext.getRequestParameterMap();
@@ -235,13 +235,13 @@ public class UsuarioControlador implements Serializable {
     // PENDIENTE POR MODIFICAR
 
     public String cancelarCita(Cita cita) {
-        cita.setEstado("cancelada");
+        cita.setEstado("CANCELADA");
         citaFacade.edit(cita);
         return "citasSolicitadas.xhtml";
     }
 
     public String aceptarCitar(Cita cita) {
-        cita.setEstado("pendiente");
+        cita.setEstado("PENDIENTE");
         citaFacade.edit(cita);
         return "citasSolicitadas.xhtml";
     }
@@ -255,7 +255,7 @@ public class UsuarioControlador implements Serializable {
         List<Cita> Citas = citaFacade.findAll();
         List<Cita> citasPendientes = new ArrayList<Cita>();
         for (int i = 0; i < Citas.size(); i++) {
-            if (Citas.get(i).getEstado().equals("pendiente")) {
+            if (Citas.get(i).getEstado().equals("PENDIENTE")) {
                 citasPendientes.add(Citas.get(i));
             }
         }
