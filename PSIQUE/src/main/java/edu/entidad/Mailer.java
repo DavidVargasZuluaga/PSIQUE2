@@ -18,6 +18,7 @@ public class Mailer {
         props.setProperty("mail.smtp.port", "25");
         props.setProperty("mail.smtp.starttls.required", "false");
         props.setProperty("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true"); 
         props.setProperty("mail.smtp.ssl.trust", "*");
 
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {

@@ -6,9 +6,11 @@
 package edu.fachada;
 
 import edu.entidad.Usuario;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,23 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
     public UsuarioFacade() {
         super(Usuario.class);
     }
-    
+
+    public Usuario traerContrasena(String usu) {
+        Usuario usuario = null;
+        String consulta;
+        try {
+            consulta = "SELECT u FROM Usuario u WHERE u.correo = :correo";
+            Query query = em.createQuery(consulta);
+            query.setParameter("correo", usu);
+            List<Usuario> lista= query.getResultList();
+            if (!lista.isEmpty()) {
+                usuario =  lista.get(0);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return usuario;
+    }
+
 }

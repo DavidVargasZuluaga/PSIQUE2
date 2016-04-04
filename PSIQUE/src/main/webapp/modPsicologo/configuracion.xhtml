@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="PlantillaPsicologo.xhtml">
+
+        <ui:define name="title">
+            Configuracion
+        </ui:define>
+
+        <ui:define name="body">
+            <div class="col-xs-12 col-sm-6 col-md-4" style="color: black;" >
+                <div class="table-responsive">
+                    <div class="panel filterable">
+                        <h1><i class="fa fa-cog fa-spin"></i> Configuracion</h1>
+                        <hr/>
+                        <h:form>
+                            <h3>Editar datos personales</h3>
+                            <h:commandLink class="btn botones" onclick="$('#modalDatosPersonales').modal('show'); return false;" ><i class="fa fa-pencil-square-o fa-lg"></i> Editar datos personales</h:commandLink>
+                            <hr/>
+                            <h3>Cambiar foto de perfil</h3>
+                            <h:commandLink class="btn botones" ><i class="fa fa-pencil-square-o fa-lg"></i> Seleccionar archivo</h:commandLink>
+                            <br/>
+                            <small>Opcion temporalmente desabilitada</small>
+                            <hr/>
+                            <h3>Cambiar idioma</h3>
+                            <h:selectOneListbox disabled="true" class="form-control"> 
+                                <f:selectItem itemLabel="English" />
+                                <f:selectItem itemLabel="Español" />
+                            </h:selectOneListbox>
+                            <small>Opcion temporalmente desabilitada</small>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

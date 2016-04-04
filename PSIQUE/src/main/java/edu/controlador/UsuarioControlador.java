@@ -238,6 +238,7 @@ public class UsuarioControlador implements Serializable {
     }
 
     public String recuperarContraseña() {
+        Usuario usu;
         String res = "/modUsuario/recuperarContraseña.xhtml";
         String correo = " ";
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -246,7 +247,8 @@ public class UsuarioControlador implements Serializable {
         HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
             correo = ((String) params.get("correo"));
-            Mailer.send(correo, "correo", "Mensajeeeeeeeee");
+            usu = usuarioFacade.traerContrasena(correo);
+            Mailer.send(correo,"Recuperar contraseña sistema Psique", "Su clave es:"+ usu.getClave() + "Su nombre de usuario es:" + usu.getNombres());
         } catch (Exception e) {
             e.printStackTrace();
         }
